@@ -1,0 +1,34 @@
+.icon-text {
+    margin-left: -15px;
+    font-weight: 500;
+}
+.nav-link{
+    color: white;
+}
+
+.nav-item .active,
+.nav-link:hover,
+.nav-link:focus{
+    color: #ff9200 !important;
+}
+
+.landing {
+    background-color: #ff9200;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.landing .btn {
+    width: 100px;
+    background-color: #004e8B;
+    outline: #004e8B;
+    margin-top: 10px;
+    border-radius: 10%;
+    font-size: 1.25rem;
+}
+
+#typing-text {
+    font-size: 1.2rem;
+}
