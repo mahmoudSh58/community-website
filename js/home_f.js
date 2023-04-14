@@ -8,7 +8,7 @@ window.onload = function() {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       // The target element is now visible, do something here
-      let text = "OUR C";
+      let text = " is to transfer experiences among students and develop the concept of programming through competitive programming and problem-solving training. Our first goal is to create a programmer who is able to think, not a programmer who is able to memorize.";
       typeWriter(entry.target, text, 0);
     }
   });

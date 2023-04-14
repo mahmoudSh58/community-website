@@ -21,7 +21,7 @@ b_l.onclick = function() {
     font-size: 0.8rem;
     ">Contact Us</a>
     </div>
-    <button type="submit" class="btn btn-primary mx-auto">Submit</button>
+    <button type="submit" class="btn btn-primary mx-auto">Login</button>
     `;
 
     let b_x = document.createElement('div');
@@ -41,7 +41,6 @@ b_l.onclick = function() {
         document.body.style.overflow = 'initial';
     }
     
-    console.log(b_x);
     b_x.onclick = function () {
         overlay.click();
     };
