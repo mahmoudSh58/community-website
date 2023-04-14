@@ -23,12 +23,43 @@
 .landing .btn {
     width: 100px;
     background-color: #004e8B;
-    outline: #004e8B;
     margin-top: 10px;
     border-radius: 10%;
     font-size: 1.25rem;
+    font-weight: 500;
+    color: white;
+}
+.landing .btn:hover {
+    color: black;
 }
 
 #typing-text {
     font-size: 1.2rem;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 9999;
+  }
+  
+.overform {
+    position: fixed;
+    top: 10%;
+    left: 25%;
+    width: 50%;
+    padding: 20px;
+    background-color: white;
+    z-index: 10000;
+  }
+
+.xmark {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    font-size: 1.5rem;
 }
