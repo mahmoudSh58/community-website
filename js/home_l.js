@@ -8,11 +8,11 @@ b_l.onclick = function() {
     form.innerHTML= `
     <div class="mb-3">
       <label for="Email" class="form-label">Email address</label>
-      <input type="email" class="form-control" id="Email" aria-describedby="emailHelp">
-    </div>
+      <input type="email" class="form-control" id="Email" placeholder="Email" aria-describedby="emailHelp">
+    </div> 
     <div class="mb-3">
       <label for="Password" class="form-label">Password</label>
-      <input type="password" class="form-control" id="Password">
+      <input type="password" class="form-control" id="Password" placeholder="Password">
     </div>
     <div class="mb-3">
     <a href="" class="btn btn-link" style="
@@ -46,4 +46,8 @@ b_l.onclick = function() {
     };
 
     document.body.appendChild(form);
+  };
+  
+  b_s.onclick = function (){
+    window.location.replace("./page/signup.html");
   };
