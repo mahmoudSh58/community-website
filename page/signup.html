@@ -14,7 +14,7 @@
   <body>
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="../index.html">
           <img src="../image/eksu black.svg" width="70" height="50" alt="" />
           <span class="icon-text"> EKSU-PSC</span>
         </a>
@@ -35,7 +35,7 @@
               <a class="nav-link" aria-current="page" href="../index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link px-lg-3" href="#">Events</a>
+              <a class="nav-link px-lg-3" href="event.html">Events</a>
             </li>
             <li class="nav-item">
               <a class="nav-link px-lg-3" href="#">Chat</a>
@@ -57,25 +57,25 @@
     </nav>
 
     <div class="form">
-        <form class="needs-validation" novalidate>
+        <form class="needs-validation" novalidate method="post">
         <div class="form row m-2">
           <div class="col-md-4 mb-2">
             <label for="validationCustom01">First name</label>
-            <input type="text" class="form-control r" id="validationCustom01" placeholder="First name" required>
+            <input type="text" class="form-control r" id="validationCustom01" placeholder="First name" name="first_name" required>
             <div class="valid-feedback">
               Looks good!
             </div>
           </div>
           <div class="col-md-4 mb-2">
             <label for="validationCustom02">Middle name</label>
-            <input type="text" class="form-control r" id="validationCustom02" placeholder="Middle name" required>
+            <input type="text" class="form-control r" id="validationCustom02" placeholder="Middle name" name="second_name" required>
             <div class="valid-feedback">
               Looks good!
             </div>
           </div>
           <div class="col-md-4 mb-2">
             <label for="validationCustom03">Last name</label>
-            <input type="text" class="form-control r" id="validationCustom03" placeholder="Last name" required>
+            <input type="text" class="form-control r" id="validationCustom03" placeholder="Last name" name="last_name" required>
             <div class="valid-feedback">
               Looks good!
             </div>
@@ -85,7 +85,7 @@
         <div class="form row m-2">
             <div class="col-md-6 mb-2">
                 <label for="inputEmail1">Email</label>
-                <input type="email" class="form-control" id="inputEmail1" placeholder="Email" required>
+                <input type="email" class="form-control" id="inputEmail1" placeholder="Email" name="email" required>
                 <div class="invalid-feedback">
                     Please provide a valid email.
                 </div>
@@ -95,7 +95,7 @@
             </div>
             <div class="col-md-6 mb-2">
                 <label for="inputPassword1">Password</label>
-                <input type="password" class="form-control" id="inputPassword1" placeholder="Password" required>
+                <input type="password" class="form-control" id="inputPassword1" placeholder="Password" name="password" required>
                 <div class="invalid-feedback">
                     Minimum 6 characters.
                 </div>
@@ -105,7 +105,7 @@
         <div class="form row m-2">
             <div class="col-md-3 mb-2">
                 <label for="validationCustom04">Governorate</label>
-                <input type="text" class="form-control" id="validationCustom04" placeholder="Governorate" required>
+                <input type="text" class="form-control" id="validationCustom04" placeholder="Governorate" name="governorate" required>
                 <div class="invalid-feedback">
                 Please provide a valid Governorate.
                 </div>
@@ -115,7 +115,7 @@
         </div>
         <div class="col-md-3 mb-2">
             <label for="validationCustom05">City</label>
-            <input type="text" class="form-control" id="validationCustom05" placeholder="City" required>
+            <input type="text" class="form-control" id="validationCustom05" placeholder="City" name="city" required>
             <div class="invalid-feedback">
               Please provide a valid City.
             </div>
@@ -139,7 +139,7 @@
         <div class="form row m-2">
             <div class="col-md-6 mb-2">
             <label for="level"> Level (Now)</label>
-            <select class="form-select" id='level' required>
+            <select class="form-select" id='level' name="level" required>
               <option value="0">Prep (Faculty of Engineering)</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -149,7 +149,7 @@
             </div>
             <div class="col-md-6 mb-2">
                 <label for="birthday">Year of Birthday</label>
-                <select class="form-select" id='birthday' required>
+                <select class="form-select" id='birthday' name="birthday" required>
                 </select>
             </div>
         </div>
@@ -157,7 +157,7 @@
         <div class="form row m-2">
             <div class="col-md-6 mb-2">
             <label for="experience">Experience</label>
-            <select class="form-select" id='experience' required>
+            <select class="form-select" id='experience' name="experience" required>
               <option value="beginner">beginner</option>
               <option value="middle">middle</option>
               <option value="expert">expert</option>

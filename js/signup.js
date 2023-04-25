@@ -66,8 +66,7 @@ b_l.onclick = function() {
         }
         else{
             //php code
-            event.preventDefault();
-            window.location.href = "../index.html"; 
+            setTimeout(event.returnValue = true,1000);
         }
     }, false);
 },false);
