@@ -5,14 +5,17 @@ b_l.onclick = function() {
     const overlay = document.createElement('div');
     const form = document.createElement('form');
     
+    form.setAttribute('method','post');
+    form.setAttribute('action','../php_request/login.php');
+    
     form.innerHTML= `
     <div class="mb-3">
       <label for="Email" class="form-label">Email address</label>
-      <input type="email" class="form-control" id="Email" placeholder="Email" aria-describedby="emailHelp">
+      <input type="email" class="form-control" id="Email" placeholder="Email" name='email' aria-describedby="emailHelp">
     </div> 
     <div class="mb-3">
       <label for="Password" class="form-label">Password</label>
-      <input type="password" class="form-control" id="Password" placeholder="Password">
+      <input type="password" class="form-control" id="Password" name='password' placeholder="Password">
     </div>
     <div class="mb-3">
     <a href="" class="btn btn-link" style="
@@ -65,7 +68,6 @@ b_l.onclick = function() {
             event.preventDefault();
         }
         else{
-            //php code
             setTimeout(event.returnValue = true,1000);
         }
     }, false);
@@ -93,7 +95,7 @@ college.addEventListener('input',function(){
         i_c.classList.add('col-md-6','mb-2');
         i_c.innerHTML=`
         <label for="other">Name of College</label>
-        <input type="text" class="form-control" id="other" placeholder="College" required>
+        <input type="text" class="form-control" id="other" placeholder="College" name='college_name' required>
         <div class="invalid-feedback">
           Please provide a valid College.
         </div>
