@@ -104,7 +104,6 @@ college.addEventListener('input',function(){
         </div>
         `;
         var i_co = document.getElementsByClassName('i-college')[0];
-        console.log(i_co);
         i_co.appendChild(i_c);  
     }
     else if(i_c!=null){
