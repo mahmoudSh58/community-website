@@ -1,5 +1,6 @@
 body {
     position: relative;
+    overflow-x: hidden;
 }
 .icon-text {
     margin-left: -15px;

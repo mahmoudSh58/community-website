@@ -1,28 +1,29 @@
 <?php
 session_start();
-$role ='';
+$role = '';
 $con = mysqli_connect('localhost', 'root', '', 'community_website_db');
-if(isset($_COOKIE['id'])){
+if (isset($_COOKIE['id'])) {
   $id_user = $_COOKIE['id'];
   $select_q = "SELECT `role`,`block` FROM `user` WHERE `id_user` ='$id_user'";
   $data = mysqli_query($con, $select_q);
   $results = mysqli_fetch_assoc($data);
 
-  if(empty($results)){
+  if (empty($results)) {
     $_SESSION['error'] = 1;
     $_SESSION['message'] = "User is deleted.";
-    header('location: php_request/logout.php');
+    header('location: ../php_request/logout.php');
     exit;
   }
-  if($results['block']){
+  if ($results['block']) {
     $_SESSION['error'] = 1;
     $_SESSION['message'] = "User is blocked.";
-    header('location: php_request/logout.php');
+    header('location: ../php_request/logout.php');
     exit;
   }
   $role = $results['role'];
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,20 +32,22 @@ if(isset($_COOKIE['id'])){
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/bootstrap.min.css" />
-  <link rel="stylesheet" href="css/all.min.css" />
-  <link rel="stylesheet" href="css/home.css" />
-  <script src="js/home_f.js"></script>
-  <title>Home page</title>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <link rel="stylesheet" href="../css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../css/all.min.css" />
+  <link rel="stylesheet" href="../css/home.css" />
+  <link rel="stylesheet" href="../css/event.css" />
+
+  <title>Event</title>
 </head>
-
-
 
 <body>
   <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <img src="image/eksu black.svg" width="70" height="50" alt="" />
+      <a class="navbar-brand" href="../index.php">
+        <img src="../image/eksu black.svg" width="70" height="50" alt="" />
         <span class="icon-text"> EKSU-PSC</span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -53,8 +56,8 @@ if(isset($_COOKIE['id'])){
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <?php
-          if($role=='admin'){
+          <?php
+          if ($role == 'admin') {
             echo '<li class="nav-item">
                     <a class="nav-link" aria-current="page" href="#">Control</a>
                   </li>
@@ -62,10 +65,10 @@ if(isset($_COOKIE['id'])){
           }
           ?>
           <li class="nav-item">
-            <a class="nav-link active disabled" aria-current="page" href="#">Home</a>
+            <a class="nav-link" href="../index.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link px-lg-3" href="page/event.php">Events</a>
+            <a class="nav-link px-lg-3 active disabled" aria-current="page" href="#">Events</a>
           </li>
           <li class="nav-item">
             <a class="nav-link px-lg-3" href="#">Chat</a>
@@ -88,7 +91,7 @@ if(isset($_COOKIE['id'])){
                     margin-top: -6px;"
                     aria-labelledby="navbarDropdown">';
               echo '<li>
-                    <form action="php_request/logout.php" style="margin:10%;" method="post" class="d-inline">
+                    <form action="../php_request/logout.php" style="margin:10%;" method="post" class="d-inline">
                     <button class="btn btn-warning me-lg-3" type="submit">Logout</button>
                     </form>
                     </li>
@@ -110,44 +113,79 @@ if(isset($_COOKIE['id'])){
     </div>
   </nav>
 
-  <div class="landing">
-    <div class="text-center">
-      <h1>E-KSU Problem Solving Community</h1>
-      <p id="typing-text" class="text-light"></p>
+  <div class="title">
+    <span>Events</span>
+    <div class='forms'>
+    <form method="post" style='width:250px; padding:8px' class="input-group">
+      <select name="filter" class="form-select">
+        <option value="">All Event</option>
+        <option value="">Practice Event</option>
+        <option value="">Now Event</option>
+        <option value="">End Event</option>
+      </select>
+      <button type="button" class="btn btn-primary">Filter</button>
+    </form>
+
+    <form method="post" style='width:250px; padding:8px' class='input-group'>
+      <div class="form-outline">
+        <input type="search" style="border-radius: 5px 0 0 5px;width: 193px;" placeholder="search" class="form-control" />
+      </div>
+      <button type="button" class="btn btn-primary" >
+        <i class="fas fa-search"></i>
+      </button>
+    </form>
+
+
+    <?php
+    if($role=='admin'){
+      echo '<a href="add_event.php" class="btn btn-primary" style="width:234px; margin:8px">Add event</a>';
+    }
+    ?>
     </div>
+  </div>
+  <div class="cont">
+    <?php
+    $select_event_q = "SELECT * FROM `event`";
+    $data = mysqli_query($con, $select_event_q);
+    $results = mysqli_fetch_all($data, MYSQLI_ASSOC);
+    if (empty($results)) {
+      echo "
+        <p style='
+        height: 75vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+        color: #c3c3c3;
+        margin: 0;
+        '>NO EVENT YET</p>
+        ";
+    } else {
+      foreach ($results as $result) {
+        echo "
+        <div class='card text-center' style='width: 18rem;'>
+          <img src='" . $result['img_url'] . "' class='card-img-top' alt=''>
+          <div class='card-body'>
+            <h5 class='card-title'>" . $result['event_name'] . "</h5>
+            <p class='card-text'>" . $result['summary'] . "</p>
+            <button class='btn btn-primary show_e' event='" . $result['id_event'] . "'>Show</button>
+          ";
+        
+        if($role=='admin'){
+          echo "
+          <button class='btn btn-primary edit_e' event='" . $result['id_event'] . "'>Edit</button>
+          ";
+        }
+          
+        echo"
+          </div>
+        </div>
+        ";
+      }
+    }
+    ?>
   </div>
 
-  <div class="goal row">
-    <p id="target-element" class="col-12 col-lg-8"><span>GOAL</span></p>
-    <img src="image/about.jpg" alt="" class="col-4 d-none d-lg-inline" />
-  </div>
-
-  <div class="number row justify-content-center">
-    <div class="col-12 py-5 col-md-3 p-md-0 member">
-      <p>Members</p>
-      <p>
-        <?php
-          $select_user_q = "SELECT `id_user` FROM `user`";
-          $data = mysqli_query($con,$select_user_q);
-          $results = mysqli_fetch_all($data);
-          echo count($results);
-        ?>
-      </p>
-      <i class="fa-solid fa-user"></i>
-    </div>
-    <div class="col-12 py-5 col-md-3 p-md-0 event">
-      <p>Events</p>
-      <p>
-      <?php
-          $select_event_q = "SELECT `id_event` FROM `event`";
-          $data = mysqli_query($con,$select_event_q);
-          $results = mysqli_fetch_all($data);
-          echo count($results);
-        ?>
-      </p>
-      <i class="fa-solid fa-calendar-check"></i>
-    </div>
-  </div>
 
   <div class="footer">
     <footer class="bg-dark text-center text-white">
@@ -193,10 +231,9 @@ if(isset($_COOKIE['id'])){
     </a>
   </div>
 
-
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/all.min.js"></script>
-  <script src="js/home_l.js"></script>
+  <script src="../js/bootstrap.bundle.min.js"></script>
+  <script src="../js/all.min.js"></script>
+  <script src="../js/event.js"></script>
   <?php
   if (isset($_SESSION['error']) && $_SESSION['error'] != 0) {
     echo "<div class='alert alert-danger' role='alert' style='
@@ -219,8 +256,9 @@ if(isset($_COOKIE['id'])){
     ";
   }
   $_SESSION['error'] = 0;
-  $_SESSION['message']= '';
+  $_SESSION['message'] = '';
   ?>
 
 </body>
+
 </html>

@@ -12,17 +12,31 @@
 }
 
 .title{
-    margin: auto;
-    padding: 0.5rem 0;
-    width: 30%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ff9200;
+    color: white;
+    border-radius: 0 0 5px 5px;
+}
+
+.title span {
+    width: 25%;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #9b9d9e;
-    font-size: 1.8rem;
-    font-weight: 600;
-    color: white;
-    border-radius: 0 0 5px 5px;
+    color: black;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.title .forms {
+    width: 75%;
+    display: flex;
+    justify-content: space-around;
+    align-content: space-between;
+    flex-wrap: wrap;
+    padding: 10px;
 }
 
 .title_c{
@@ -32,21 +46,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: black;
     border-radius: 5px;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: white;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ff0359;
 }
 
 .desc {
-    background-color: #eee;
+    background-color: #f4ea60;
+    border-radius: 10px;
     padding: 0.5rem;
     font-size: 1.1rem;
 }
 
 .desc .t{
-    background-color: #9b9b9b;
+    background-color: #E91E63;
+    border-radius: 5px;
     display: flex;
     justify-content: center;
     padding: 2px;

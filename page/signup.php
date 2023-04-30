@@ -39,7 +39,7 @@ if (isset($_COOKIE['username'])) {
             <a class="nav-link" aria-current="page" href="../index.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link px-lg-3" href="event.html">Events</a>
+            <a class="nav-link px-lg-3" href="event.php">Events</a>
           </li>
           <li class="nav-item">
             <a class="nav-link px-lg-3" href="#">Chat</a>

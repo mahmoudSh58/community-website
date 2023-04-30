@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function() {
 
 let b_l = document.querySelector(".login");
