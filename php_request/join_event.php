@@ -1,9 +1,9 @@
 <?php
 
+session_start();
 $con = mysqli_connect('localhost', 'root', '', 'community_website_db');
 
 if(isset($_POST['practice'])){
-    session_start();
     $id_event =null;
     if(isset($_SESSION['id_event'])){
         $id_event = $_SESSION['id_event'];

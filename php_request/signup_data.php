@@ -34,7 +34,7 @@ if (isset($_POST['email'])) {
     $results = mysqli_fetch_all($data);
     if (!empty($results)) {
         $_SESSION['error'] = 1;
-        $_SESSION['message'] = "Entered email are not exist.";
+        $_SESSION['message'] = "Entered email exists.";
         header('location: ../page/signup.php');
         exit;
     }
@@ -44,7 +44,7 @@ if (isset($_POST['email'])) {
         $id = uniqid();
         $check_id_q = "SELECT `id_user`, `email` FROM `user` WHERE `id_user`='$id' ";
         $data = mysqli_query($con, $check_id_q);
-        $results = mysqli_fetch_all($data);
+        $results = mysqli_fetch_assoc($data);
         if (empty($results))
             break;
     }

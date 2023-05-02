@@ -72,17 +72,16 @@ card_buttons.forEach(function(elem){
         dataType: 'json',
         success: function(result) {
 
-          for(var key in result) {
-              console.log(key+' : '+result[key]);
-          }
           const overlay = document.createElement('div');
           const form = document.createElement('form');
           
           form.setAttribute('method','post');
           form.setAttribute('action','../php_request/join_event.php');
 
+          console.log(`${result['content']}`);
+
           form.innerHTML= `
-          <div class="mb-3 title_c">Level 0</div> 
+          <div class="mb-3 title_c">${result['event_name']}</div> 
 
           <div class="mb-3" style = '
             display: flex;
@@ -104,7 +103,7 @@ card_buttons.forEach(function(elem){
           </div>
           
           <div class="mb-3 desc text-center">
-              <div class='t'>submit Duration</div>
+              <div class='t'>Submit Duration</div>
               <div>From : ${result["from_date"]}</div>
               <div>To : ${result["to_date"]}</div>
               <div>Start : ${result['start_date']}</div>

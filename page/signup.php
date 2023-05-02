@@ -7,6 +7,7 @@ if (isset($_COOKIE['username'])) {
   exit;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
