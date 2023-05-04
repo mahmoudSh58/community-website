@@ -5,12 +5,14 @@ $con = mysqli_connect('localhost', 'root', '', 'community_website_db');
 if(isset($_GET['id'])){
   $id = htmlspecialchars($_GET['id']);
   $_SESSION['id_event']=$id;
-  $select_q = "SELECT * FROM `event` WHERE `id_event` ='$id'";
+  $select_q = "SELECT `id_event`, `event_type`, `event_name`, `from_date`, `to_date`, `start_date`, `time_create`, `summary`, `description`, `end_date`, `num_lecture`, `content`, `qualification`, `experience`,`img_url`  FROM `event` WHERE `id_event` ='$id'";
   $data = mysqli_query($con, $select_q);
   $results = mysqli_fetch_assoc($data);
 
   $results['error']=0;
   if(empty($results)){
+    $_SESSION['error'] = 1;
+    $_SESSION['message'] = "Wrong event.";
     $results['error']= 1;
   }
 

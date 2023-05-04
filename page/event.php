@@ -153,6 +153,7 @@ if (isset($_COOKIE['id'])) {
     $select_event_q = "SELECT * FROM `event`";
     $data = mysqli_query($con, $select_event_q);
     $results = mysqli_fetch_all($data, MYSQLI_ASSOC);
+
     if (empty($results)) {
       echo "
         <p style='
@@ -167,11 +168,39 @@ if (isset($_COOKIE['id'])) {
         ";
     } else {
       foreach ($results as $result) {
+        
+        $backgroung_type=null;
+        $color_type=null;
+    
+        if($result['event_type']=='course'){
+          $backgroung_type='red';
+          $color_type='white';
+        }else if($result['event_type']=='confrence'){
+          $backgroung_type='#FFEB3B';
+          $color_type='black';
+        }else if($result['event_type']=='contest'){
+          $backgroung_type='blue';
+          $color_type='white';
+        }
+
         echo "
         <div class='card text-center' style='width: 18rem;'>
           <img src='" . $result['img_url'] . "' class='card-img-top' alt=''>
           <div class='card-body'>
-            <h5 class='card-title'> <span style='color:red'>" . ucfirst($result['event_type']) . " : </span>" . ucfirst($result['event_name']) . "</h5>
+            <div style='
+            background-color: $backgroung_type;
+            color: $color_type;
+            width: 100px;
+            padding: 2px;
+            border-radius: 9px;
+            display: flex;
+            justify-content: center;
+            font-size: .9rem;
+            font-weight: 600;
+            margin:auto;
+            margin-bottom:5px;
+            '>" . ucfirst($result['event_type']) . " </div>
+            <h5 class='card-title'>". ucfirst($result['event_name']) . "</h5>
             <p class='card-text'>" . $result['summary'] . "</p>
             <button class='btn btn-primary show_e' event='" . $result['id_event'] . "'>Show</button>
           ";

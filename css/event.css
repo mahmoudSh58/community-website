@@ -49,18 +49,19 @@
     border-radius: 5px;
     font-size: 1.8rem;
     font-weight: 700;
-    color: #ff0359;
+    color: black;
 }
 
 .desc {
-    background-color: #f4ea60;
+    background-color: #ff9200;
     border-radius: 10px;
     padding: 0.5rem;
     font-size: 1.1rem;
+    font-weight: 500;
 }
 
 .desc .t{
-    background-color: #E91E63;
+    background-color: black;
     border-radius: 5px;
     display: flex;
     justify-content: center;
