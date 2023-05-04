@@ -1,10 +1,10 @@
 <?php
 session_start();
-$role ='';
+$privilege ='';
 $con = mysqli_connect('localhost', 'root', '', 'community_website_db');
 if(isset($_COOKIE['id'])){
   $id_user = $_COOKIE['id'];
-  $select_q = "SELECT `role`,`block` FROM `user` WHERE `id_user` ='$id_user'";
+  $select_q = "SELECT `privilege`,`state` FROM `user` WHERE `id_user` ='$id_user'";
   $data = mysqli_query($con, $select_q);
   $results = mysqli_fetch_assoc($data);
 
@@ -14,13 +14,15 @@ if(isset($_COOKIE['id'])){
     header('location: php_request/logout.php');
     exit;
   }
-  if($results['block']){
+  if($results['state']!=1){
     $_SESSION['error'] = 1;
-    $_SESSION['message'] = "User is blocked.";
+    if($results['state']==-1) $_SESSION['message'] = "User is blocked.";
+    else $_SESSION['message'] = "User in pending.";
     header('location: php_request/logout.php');
     exit;
   }
-  $role = $results['role'];
+
+  $privilege = $results['privilege'];
 }
 ?>
 
@@ -54,7 +56,7 @@ if(isset($_COOKIE['id'])){
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <?php
-          if($role=='admin'){
+          if($privilege=='admin' || $privilege=='owner'){
             echo '<li class="nav-item">
                     <a class="nav-link" aria-current="page" href="#">Control</a>
                   </li>

@@ -133,6 +133,15 @@ if (isset($_COOKIE['username'])) {
             Looks good!
           </div>
         </div>
+
+        <div class="col-md-6 mb-2">
+          <label for="gender">Gender</label>
+          <select class="form-select" id='gender' name='gender' required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>          
+        </div>
+
       </div>
 
       <div class="form row i-college m-2">

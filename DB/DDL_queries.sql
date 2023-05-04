@@ -33,7 +33,7 @@ CREATE TABLE `user` (
 	`birthday` year(4) NOT NULL,
 	`gender` varchar(10) NOT NULL,
 	`experience` varchar(50) NOT NULL,
-	`state`  int(11) NOT NULL DEFAULT 0, -- accepted ,  pending , blocked 
+	`state`  int(11) NOT NULL DEFAULT 0, -- 1 > accepted , 0 >  pending , -1 > blocked 
 	`blocked_by` varchar(100) ,  -- add on delete statement
 	`accept_by` varchar(100) NOT NULL, -- add on delete statement
 	`time` timestamp NOT NULL DEFAULT current_timestamp(),

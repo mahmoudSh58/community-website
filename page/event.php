@@ -1,26 +1,30 @@
 <?php
 session_start();
-$role = '';
+$privilege = '';
 $con = mysqli_connect('localhost', 'root', '', 'community_website_db');
 if (isset($_COOKIE['id'])) {
   $id_user = $_COOKIE['id'];
-  $select_q = "SELECT `role`,`block` FROM `user` WHERE `id_user` ='$id_user'";
+  $select_q = "SELECT `privilege`,`state` FROM `user` WHERE `id_user` ='$id_user'";
   $data = mysqli_query($con, $select_q);
   $results = mysqli_fetch_assoc($data);
 
   if (empty($results)) {
     $_SESSION['error'] = 1;
     $_SESSION['message'] = "User is deleted.";
-    header('location: ../php_request/logout.php');
+    header('location: php_request/logout.php');
     exit;
   }
-  if ($results['block']) {
+  if ($results['state'] != 1) {
     $_SESSION['error'] = 1;
-    $_SESSION['message'] = "User is blocked.";
-    header('location: ../php_request/logout.php');
+    if ($results['state'] == -1)
+      $_SESSION['message'] = "User is blocked.";
+    else
+      $_SESSION['message'] = "User in pending.";
+    header('location: php_request/logout.php');
     exit;
   }
-  $role = $results['role'];
+
+  $privilege = $results['privilege'];
 }
 ?>
 
@@ -57,7 +61,7 @@ if (isset($_COOKIE['id'])) {
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <?php
-          if ($role == 'admin') {
+          if ($privilege == 'admin' || $privilege == 'owner') {
             echo '<li class="nav-item">
                     <a class="nav-link" aria-current="page" href="#">Control</a>
                   </li>
@@ -116,31 +120,32 @@ if (isset($_COOKIE['id'])) {
   <div class="title">
     <span>Events</span>
     <div class='forms'>
-    <form method="post" style='width:250px; padding:8px' class="input-group">
-      <select name="filter" class="form-select">
-        <option value="">All Event</option>
-        <option value="">Practice Event</option>
-        <option value="">Now Event</option>
-        <option value="">End Event</option>
-      </select>
-      <button type="button" class="btn btn-primary">Filter</button>
-    </form>
+      <form method="post" style='width:250px; padding:8px' class="input-group">
+        <select name="filter" class="form-select">
+          <option value="">All Event</option>
+          <option value="">Practice Event</option>
+          <option value="">Now Event</option>
+          <option value="">End Event</option>
+        </select>
+        <button type="button" class="btn btn-primary">Filter</button>
+      </form>
 
-    <form method="post" style='width:250px; padding:8px' class='input-group'>
-      <div class="form-outline">
-        <input type="search" style="border-radius: 5px 0 0 5px;width: 193px;" placeholder="search" class="form-control" />
-      </div>
-      <button type="button" class="btn btn-primary" >
-        <i class="fas fa-search"></i>
-      </button>
-    </form>
+      <form method="post" style='width:250px; padding:8px' class='input-group'>
+        <div class="form-outline">
+          <input type="search" style="border-radius: 5px 0 0 5px;width: 193px;" placeholder="search"
+            class="form-control" />
+        </div>
+        <button type="button" class="btn btn-primary">
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
 
 
-    <?php
-    if($role=='admin'){
-      echo '<a href="add_event.php" class="btn btn-primary" style="width:234px; margin:8px">Add event</a>';
-    }
-    ?>
+      <?php
+      if ($privilege == 'admin' || $privilege == 'owner') {
+        echo '<a href="add_event.php" class="btn btn-primary" style="width:234px; margin:8px">Add event</a>';
+      }
+      ?>
     </div>
   </div>
   <div class="cont">
@@ -166,18 +171,18 @@ if (isset($_COOKIE['id'])) {
         <div class='card text-center' style='width: 18rem;'>
           <img src='" . $result['img_url'] . "' class='card-img-top' alt=''>
           <div class='card-body'>
-            <h5 class='card-title'>" . $result['event_name'] . "</h5>
+            <h5 class='card-title'> <span style='color:red'>" . ucfirst($result['event_type']) . " : </span>" . ucfirst($result['event_name']) . "</h5>
             <p class='card-text'>" . $result['summary'] . "</p>
             <button class='btn btn-primary show_e' event='" . $result['id_event'] . "'>Show</button>
           ";
-        
-        if($role=='admin'){
+
+          if ($privilege == 'admin' || $privilege == 'owner') {
           echo "
           <button class='btn btn-primary edit_e' event='" . $result['id_event'] . "'>Edit</button>
           ";
         }
-          
-        echo"
+
+        echo "
           </div>
         </div>
         ";

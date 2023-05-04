@@ -3,11 +3,16 @@ session_start();
 $con = mysqli_connect('localhost', 'root', '', 'community_website_db');
 
 if(isset($_GET['id'])){
-  $id = $_GET['id'];
+  $id = htmlspecialchars($_GET['id']);
   $_SESSION['id_event']=$id;
   $select_q = "SELECT * FROM `event` WHERE `id_event` ='$id'";
   $data = mysqli_query($con, $select_q);
   $results = mysqli_fetch_assoc($data);
+
+  $results['error']=0;
+  if(empty($results)){
+    $results['error']= 1;
+  }
 
   $select_q = "SELECT * FROM `practice` WHERE `id_event` ='$id'";
   $data = mysqli_query($con, $select_q);
