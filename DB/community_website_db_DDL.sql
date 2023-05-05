@@ -45,7 +45,7 @@ CREATE TABLE `user` (
 -- Table structure for table `event`
 CREATE TABLE `event` (
 	`id_event` int(11) PRIMARY KEY  AUTO_INCREMENT,
-	`event_type` varchar(50) NOT NULL, -- 2contest , 3course ,  1confrence
+	`event_type` varchar(50) NOT NULL, -- 2contest , 3course ,  1conference
 	`event_name` varchar(400) NOT NULL, 
 	`from_date` date NOT NULL,
 	`to_date` date NOT NULL,

@@ -140,7 +140,7 @@ VALUES
 		'7 days of innovation, learning, and networking at Developer Tech Week - join us to connect with experts, explore new tech, and take your skills to the next level!',
 		'Day 1 - Keynote speeches and opening ceremony<br>Day 2 - Workshops and hands-on training sessions<br>Day 3 - Panel discussions and Q&A sessions with industry experts<br>Day 4 - Hackathon or coding competition<br>Day 5 - Product demos and exhibits from leading tech companies<br>Day 6 - Career fair and networking events with recruiters and hiring managers<br>Day 7 - Closing ceremony and wrap-up sessions, featuring guest speakers and special announcements<br>',
 		'6454079ac4851',
-		'../image/events/confrence.png'
+		'../image/events/conference1.png'
 	);
 
 COMMIT;
