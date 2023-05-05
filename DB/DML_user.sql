@@ -12,46 +12,7 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `community_website_db`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user`
---
-
-CREATE TABLE `user` (
-  `id_user` varchar(100) NOT NULL,
-  `role` varchar(100) DEFAULT 'member',
-  `privilege` varchar(100) NOT NULL DEFAULT 'member',
-  `first_name` varchar(100) NOT NULL,
-  `second_name` varchar(100) NOT NULL,
-  `last_name` varchar(100) NOT NULL,
-  `email` varchar(200) NOT NULL,
-  `password` varchar(200) NOT NULL,
-  `governorate` varchar(200) NOT NULL,
-  `city` varchar(200) NOT NULL,
-  `college` varchar(200) NOT NULL,
-  `level` varchar(200) NOT NULL,
-  `birthday` year(4) NOT NULL,
-  `gender` varchar(10) NOT NULL,
-  `experience` varchar(50) NOT NULL,
-  `state` int(11) NOT NULL DEFAULT 0,
-  `blocked_by` varchar(100) DEFAULT NULL,
-  `accept_by` varchar(100) DEFAULT NULL,
-  `time` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
 -- Dumping data for table `user`
---
 
 INSERT INTO `user` (`id_user`, `role`, `privilege`, `first_name`, `second_name`, `last_name`, `email`, `password`, `governorate`, `city`, `college`, `level`, `birthday`, `gender`, `experience`, `state`, `blocked_by`, `accept_by`, `time`) VALUES
 ('645404bac1e07', 'head', 'owner', 'mohamed', 'mohamed', 'saleh', 'alrisha77777@gmail.com', '$2y$10$3lKP./bldfmwFQfGzIhE4ObmrhQPxyIwYFdJFfvj9LgpywdTFZkV.', 'kafrelsheikh', 'balteem', 'Faculty of Engineering', '3', '2001', 'male', 'middle', 1, NULL, NULL, '2023-05-04 19:17:14'),
@@ -75,30 +36,3 @@ INSERT INTO `user` (`id_user`, `role`, `privilege`, `first_name`, `second_name`,
 ('64541c3c08313', 'member', 'member', 'salma', 'ahmed', 'esmaeil', 'salma@gmail.com', '$2y$10$pQL8KL/Tr/DQBZNCmqLEN.tPw6.ZL8vxnjW18ADzqbhryrH6bgBDi', 'damietta', 'damietta', 'Faculty of Engineering', '3', '2001', 'female', 'middle', 1, NULL, NULL, '2023-05-04 20:57:32'),
 ('645456f6e7ceb', 'member', 'member', 'elias', 'ahmed', 'saleh', 'elias123@gmail.com', '$2y$10$thYbU19l9hiyXOKhfEHMh.8HdrOti3naw5mT5z8hSCRVSU4oiK6R6', 'kafrelsheikh', 'burj alburulus', 'Faculty of Engineering', '2', '2002', 'male', 'middle', 0, NULL, NULL, '2023-05-05 01:08:06');
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id_user`),
-  ADD KEY `accept_by` (`accept_by`),
-  ADD KEY `blocked_by` (`blocked_by`);
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `user`
---
-ALTER TABLE `user`
-  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`accept_by`) REFERENCES `user` (`id_user`),
-  ADD CONSTRAINT `user_ibfk_2` FOREIGN KEY (`blocked_by`) REFERENCES `user` (`id_user`);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
