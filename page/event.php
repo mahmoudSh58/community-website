@@ -175,7 +175,7 @@ if (isset($_COOKIE['id'])) {
         if($result['event_type']=='course'){
           $backgroung_type='red';
           $color_type='white';
-        }else if($result['event_type']=='confrence'){
+        }else if($result['event_type']=='conference'){
           $backgroung_type='#FFEB3B';
           $color_type='black';
         }else if($result['event_type']=='contest'){
@@ -201,7 +201,7 @@ if (isset($_COOKIE['id'])) {
             margin-bottom:5px;
             '>" . ucfirst($result['event_type']) . " </div>
             <h5 class='card-title'>". ucfirst($result['event_name']) . "</h5>
-            <p class='card-text'>" . $result['summary'] . "</p>
+            <p class='card-text'style='display: flex;align-items: center;height: 130px;'>" . $result['summary'] . "</p>
             <button class='btn btn-primary show_e' event='" . $result['id_event'] . "'>Show</button>
           ";
 

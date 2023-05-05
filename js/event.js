@@ -88,7 +88,7 @@ card_buttons.forEach(function(elem){
           if(result['event_type']=='course'){
             backgroung_type='red';
             color_type='white';
-          }else if(result['event_type']=='confrence'){
+          }else if(result['event_type']=='conference'){
             backgroung_type='#FFEB3B';
             color_type='black';
           }else if(result['event_type']=='contest'){
@@ -140,18 +140,23 @@ card_buttons.forEach(function(elem){
               <div class='t'>Start Duration</div>
               <div><i class="fa-regular fa-calendar-check"></i> ${result["start_date"]}</div>
               <div><i class="fa-regular fa-calendar-xmark"></i> ${result["end_date"]}</div>
-          </div>
-  
-          <div class="mb-3 desc text-center">
-              <div class='t'>Number of lectures</div>
-              <div>${result["num_lecture"]} Lectures</div>
-          </div>
-          
-          <div class="mb-3 desc text-center">
-              <div class='t'>Description</div>
-              <div>${result['description'].replace(/\n/g, "<br>")}</div>
           </div>`;
 
+          if(result["num_lecture"]){
+            form.innerHTML+= `
+            <div class="mb-3 desc text-center">
+              <div class='t'>Number of lectures</div>
+              <div>${result["num_lecture"]} Lectures</div>
+            </div>`;
+          }
+
+          if(result['description']){
+            form.innerHTML+= `
+            <div class="mb-3 desc text-center">
+              <div class='t'>Description</div>
+              <div>${result['description'].replace(/\n/g, "<br>")}</div>
+            </div>`;
+          }
           if(result['content']){
             form.innerHTML+= `
             <div class="mb-3 desc text-center">
@@ -172,10 +177,10 @@ card_buttons.forEach(function(elem){
             `;
           }
 
-          if(result['qualification']){
+          if(result['experience']){
             form.innerHTML+= `
             <div class="mb-3 desc text-center">
-                <div class='t'>Qualification</div>
+                <div class='t'>For</div>
                 <div>
                     ${result['experience'].replace(/\n/g, "<br>")}
                 </div>
