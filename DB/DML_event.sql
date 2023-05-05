@@ -23,7 +23,6 @@ INSERT INTO
 		`to_date`,
 		`start_date`,
 		`end_date`,
-		`time_create`,
 		`summary`,
 		`description`,
 		`num_lecture`,
@@ -39,14 +38,14 @@ VALUES
 		'2023-04-01',
 		'2023-04-11',
 		'2023-04-16',
-		'2023-5-16',
+		'2023-05-16',
 		'Programming principles and concepts in computer science will be explained to beginners.',
 		'Programming principles and concepts in computer science will be explained to beginners.',
 		4,
 		'Binary system - Basics of computer architectur - How to compile code? - What is IDE & vritual judge?',
 		'Don\'t need',
 		'645404bac1e07',
-		'../image/events/dpslv0.png'
+		'../image/events/pslv0.png'
 	),
 	(
 		'course',
@@ -54,7 +53,7 @@ VALUES
 		'2023-05-26',
 		'2023-06-16',
 		'2023-06-21',
-		'2023-8-21',
+		'2023-08-21',
 		'Ready to start your real programming  & problem solving journey? Our level 1  C++ course is the next  after CS basics - unleash your full coding potential!',
 		'Ready to start your real programming  & problem solving journey? Our level 1  C++ course is the next  after CS basics - unleash your full coding potential!',
 		8,
@@ -66,7 +65,7 @@ VALUES
 	(
 		'course',
 		'Problem Solving - level 2',
-		'2023-10-1',
+		'2023-10-01',
 		'2023-10-11',
 		'2023-10-16',
 		'2023-12-16',
@@ -95,21 +94,21 @@ INSERT INTO
 	)
 VALUES
 	(
-		' contest ',
-		' Community Contest - Easy ',
-		' 2023 -8 -21 ',
-		' 2023 -8 -25 ',
-		' 2023 -8 -26 ',
-		' 2023 -8 -26 ',
+		'contest',
+		'Community Contest - Easy ',
+		'2023-8-21',
+		'2023-8-25',
+		'2023-8-26',
+		'2023-8-26',
+		'Test your programming skills in a friendly
+		and supportive environment with our level 1 programming solving contest - First solve the problem.Then,
+		Write the code !',
 		' Test your programming skills in a friendly
 		and supportive environment with our level 1 programming solving contest - First solve the problem.Then,
-		Write the code ! - ',
-		' Test your programming skills in a friendly
-		and supportive environment with our level 1 programming solving contest - First solve the problem.Then,
-		Write the code ! - ',
-		' Beginner ',
-		' 6454079ac4851 ',
-		'../ image / events / contest.jpg '
+		Write the code !',
+		'Beginner',
+		'6454079ac4851',
+		'../image/events/contest.jpg'
 	);
 
 -- ----------------------------------------------------
@@ -121,7 +120,6 @@ INSERT INTO
 		`to_date`,
 		`start_date`,
 		`end_date`,
-		`time_create`,
 		`summary`,
 		`description`,
 		`content`,
@@ -132,10 +130,10 @@ VALUES
 	(
 		'conference',
 		'Developer Tech Week',
-		2023 -07 -07,
-		2023 -07 -10,
-		2023 -07 -11,
-		2023 -07 -17,
+		'2023-07-07',
+		'2023-07-10',
+		'2023-07-11',
+		'2023-07-17',
 		'7 days of innovation, learning, and networking at Developer Tech Week - join us to connect with experts, explore new tech, and take your skills to the next level!',
 		'7 days of innovation, learning, and networking at Developer Tech Week - join us to connect with experts, explore new tech, and take your skills to the next level!',
 		'Day 1 - Keynote speeches and opening ceremony<br>Day 2 - Workshops and hands-on training sessions<br>Day 3 - Panel discussions and Q&A sessions with industry experts<br>Day 4 - Hackathon or coding competition<br>Day 5 - Product demos and exhibits from leading tech companies<br>Day 6 - Career fair and networking events with recruiters and hiring managers<br>Day 7 - Closing ceremony and wrap-up sessions, featuring guest speakers and special announcements<br>',
