@@ -42,7 +42,7 @@ VALUES
 		'Programming principles and concepts in computer science will be explained to beginners.',
 		'Programming principles and concepts in computer science will be explained to beginners.',
 		4,
-		'Binary system - Basics of computer architectur - How to compile code? - What is IDE & vritual judge?',
+		'Binary system - Basics of computer architecture - How to compile code? - What is IDE & vritual judge?',
 		'Don\'t need',
 		'645404bac1e07',
 		'../image/events/pslv0.png'
@@ -57,7 +57,7 @@ VALUES
 		'Ready to start your real programming  & problem solving journey? Our level 1  C++ course is the next  after CS basics - unleash your full coding potential!',
 		'Ready to start your real programming  & problem solving journey? Our level 1  C++ course is the next  after CS basics - unleash your full coding potential!',
 		8,
-		'Datatyps - Variables- Operations - Conditions - Loops - ID - Arrays - Strings - Functions - Recursion - Bitmasking ',
+		'Datatyps - Variables- Operations - Conditions - Loops - Arrays - Strings - Functions - Recursion - Bitmasking ',
 		'Succeed in (Problen Solving-level 0)',
 		'645404bac1e07',
 		'../image/events/pslv1.png'
@@ -96,15 +96,15 @@ VALUES
 	(
 		'contest',
 		'Community Contest - Easy ',
-		'2023-8-21',
-		'2023-8-25',
-		'2023-8-26',
-		'2023-8-26',
+		'2023-08-21',
+		'2023-08-25',
+		'2023-08-26',
+		'2023-08-26',
 		'Test your programming skills in a friendly
-		and supportive environment with our level 1 programming solving contest - First solve the problem.Then,
+		and supportive environment with our level 1 programming - ps contest - First solve the problem.Then,
 		Write the code !',
 		' Test your programming skills in a friendly
-		and supportive environment with our level 1 programming solving contest - First solve the problem.Then,
+		and supportive environment with our level 1 programming - ps contest - First solve the problem.Then,
 		Write the code !',
 		'Beginner',
 		'6454079ac4851',

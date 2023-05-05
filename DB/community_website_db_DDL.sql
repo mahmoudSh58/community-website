@@ -33,12 +33,13 @@ CREATE TABLE `user` (
 	`birthday` year(4) NOT NULL,
 	`gender` varchar(10) NOT NULL,
 	`experience` varchar(50) NOT NULL,
-	`state`  int(11) NOT NULL DEFAULT 0, -- accepted ,  pending , blocked 
+	`state`  int(11) NOT NULL DEFAULT 0, -- 1accepted ,  0pending , -1blocked 
 	`blocked_by` varchar(100) ,  -- add on delete statement
-	`accept_by` varchar(100) NOT NULL, -- add on delete statement
+	`accept_by` varchar(100) , -- add on delete statement
 	`time` timestamp NOT NULL DEFAULT current_timestamp(),
-	FOREIGN KEY (blocked_by) REFERENCES user(id_user)
-	-- FOREIGN KEY (accept_by)  REFERENCES user(id_user),
+	FOREIGN KEY (blocked_by) REFERENCES user(id_user) ON DELETE SET NULL ON UPDATE CASCADE,
+	FOREIGN KEY (accept_by)  REFERENCES user(id_user) ON DELETE SET NULL ON UPDATE CASCADE
+
 	
 )  ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_general_ci;
 
@@ -62,8 +63,8 @@ CREATE TABLE `event` (
 	`edit_by` varchar(100) , -- add on update statement 
 	`img_url` varchar(400) NOT NULL DEFAULT '../image/events/default.jpg',
 	
-	FOREIGN KEY (made_by) REFERENCES user(id_user),
-	FOREIGN KEY (edit_by) REFERENCES user(id_user)
+	FOREIGN KEY (made_by) REFERENCES user(id_user) ON DELETE SET NULL ON UPDATE CASCADE,
+	FOREIGN KEY (edit_by) REFERENCES user(id_user) ON DELETE SET NULL ON UPDATE CASCADE
 )  ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_general_ci;
 
 
@@ -74,12 +75,10 @@ CREATE TABLE `practice` (
 	`id_user` varchar(100) NOT NULL, -- add on delete statement
 	`time` timestamp NOT NULL DEFAULT current_timestamp(),
 
-	FOREIGN KEY (id_event) REFERENCES event(id_event),
-	FOREIGN KEY (id_user) REFERENCES user(id_user),
+	FOREIGN KEY (id_event) REFERENCES event(id_event) ON DELETE SET NULL ON UPDATE CASCADE,
+	FOREIGN KEY (id_user) REFERENCES user(id_user) ON DELETE SET NULL ON UPDATE CASCADE
 	PRIMARY KEY (id_user , id_event)
 )  ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_general_ci;
-
-
 
 -- Table structure for table `problems`
 
@@ -101,8 +100,9 @@ CREATE  TABLE `user_ans` (
 	`id_user` varchar(100) NOT NULL, 
 	`prob_id` INT(11) NOT NULL, 
 	`ans` INT(11) NOT NULL  ,
-	FOREIGN KEY (id_user) REFERENCES user(id_user) ,
-	FOREIGN KEY (prob_id) REFERENCES problems(prob_id) 
+	
+	FOREIGN KEY (id_user) REFERENCES user(id_user) ON DELETE SET NULL ON UPDATE CASCADE ,
+	FOREIGN KEY (prob_id) REFERENCES problems(prob_id) ON DELETE SET NULL ON UPDATE CASCADE
 	
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_general_ci;
 
