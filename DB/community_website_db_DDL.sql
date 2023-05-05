@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 
 
 CREATE TABLE `user` (
-	`id_user` varchar(100) PRIMARY KEY NOT NULL,
+	`id_user` varchar(100) PRIMARY KEY ,
 	`role` varchar(100)  DEFAULT 'member', -- member  , HR   , head , vice , instructor 
 	`privilege` varchar(100) NOT NULL DEFAULT 'member', -- owner > admin > member
 	`first_name` varchar(100) NOT NULL,
@@ -37,8 +37,8 @@ CREATE TABLE `user` (
 	`blocked_by` varchar(100) ,  -- add on delete statement
 	`accept_by` varchar(100) NOT NULL, -- add on delete statement
 	`time` timestamp NOT NULL DEFAULT current_timestamp(),
-	FOREIGN KEY (accept_by)  REFERENCES user(id_user),
 	FOREIGN KEY (blocked_by) REFERENCES user(id_user)
+	-- FOREIGN KEY (accept_by)  REFERENCES user(id_user),
 	
 )  ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_general_ci;
 

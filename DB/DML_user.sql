@@ -36,3 +36,9 @@ INSERT INTO `user` (`id_user`, `role`, `privilege`, `first_name`, `second_name`,
 ('64541c3c08313', 'member', 'member', 'salma', 'ahmed', 'esmaeil', 'salma@gmail.com', '$2y$10$pQL8KL/Tr/DQBZNCmqLEN.tPw6.ZL8vxnjW18ADzqbhryrH6bgBDi', 'damietta', 'damietta', 'Faculty of Engineering', '3', '2001', 'female', 'middle', 1, NULL, NULL, '2023-05-04 20:57:32'),
 ('645456f6e7ceb', 'member', 'member', 'elias', 'ahmed', 'saleh', 'elias123@gmail.com', '$2y$10$thYbU19l9hiyXOKhfEHMh.8HdrOti3naw5mT5z8hSCRVSU4oiK6R6', 'kafrelsheikh', 'burj alburulus', 'Faculty of Engineering', '2', '2002', 'male', 'middle', 0, NULL, NULL, '2023-05-05 01:08:06');
 
+
+-- to add admins with no issues 
+-- we moved constrain to out of create user table statement
+ALTER TABLE `user`
+ADD CONSTRAINT `fk_accept_by`
+FOREIGN KEY (`accept_by`) REFERENCES `user` (`id_user`);
