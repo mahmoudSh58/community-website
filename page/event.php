@@ -11,7 +11,7 @@ if (isset($_COOKIE['id'])) {
   if (empty($results)) {
     $_SESSION['error'] = 1;
     $_SESSION['message'] = "User is deleted.";
-    header('location: php_request/logout.php');
+    header('location: ../php_request/logout.php');
     exit;
   }
   if ($results['state'] != 1) {
@@ -20,7 +20,7 @@ if (isset($_COOKIE['id'])) {
       $_SESSION['message'] = "User is blocked.";
     else
       $_SESSION['message'] = "User in pending.";
-    header('location: php_request/logout.php');
+    header('location: ../php_request/logout.php');
     exit;
   }
 
