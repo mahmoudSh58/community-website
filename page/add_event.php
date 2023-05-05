@@ -1,10 +1,10 @@
 <?php
 session_start();
-$role = '';
+$privilege = '';
 $con = mysqli_connect('localhost', 'root', '', 'community_website_db');
 if (isset($_COOKIE['id'])) {
     $id_user = $_COOKIE['id'];
-    $select_q = "SELECT `role`,`block` FROM `user` WHERE `id_user` ='$id_user'";
+    $select_q = "SELECT `privilege`,`state` FROM `user` WHERE `id_user` ='$id_user'";
     $data = mysqli_query($con, $select_q);
     $results = mysqli_fetch_assoc($data);
 
@@ -14,15 +14,19 @@ if (isset($_COOKIE['id'])) {
         header('location: ../php_request/logout.php');
         exit;
     }
-    if ($results['block']) {
+    if ($results['state'] != 1) {
         $_SESSION['error'] = 1;
-        $_SESSION['message'] = "User is blocked.";
+        if ($results['state'] == -1)
+            $_SESSION['message'] = "User is blocked.";
+        else
+            $_SESSION['message'] = "User in pending.";
         header('location: ../php_request/logout.php');
         exit;
     }
-    $role = $results['role'];
 
-    if ($role != 'admin') {
+    $privilege = $results['privilege'];
+
+    if ($privilege != 'admin' && $privilege != 'owner') {
         $_SESSION['error'] = 1;
         $_SESSION['message'] = "This is page for admin";
         header('location: ../index.php');
@@ -63,7 +67,7 @@ if (isset($_COOKIE['id'])) {
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <?php
-                    if ($role == 'admin') {
+                    if ($privilege == 'admin' || $privilege == 'owner') {
                         echo '<li class="nav-item">
                     <a class="nav-link" aria-current="page" href="#">Control</a>
                   </li>
@@ -123,74 +127,93 @@ if (isset($_COOKIE['id'])) {
         <form class="needs-validation" novalidate method="post" action="../php_request/add_event_req.php">
 
             <div class="form row m-2">
-                <div class="col-md-4 mb-2">
+                <div class="col-md-6 mb-2">
                     <label for="title">Title <sub style='color:red;'>*</sub> </label>
-                    <input type="text" class="form-control r" id="titlr" placeholder="Title" name="first_name" required>
+                    <input type="text" class="form-control r" id="titlr" placeholder="Title" name="title" required>
                 </div>
+
+                <div class="col-md-6 mb-2">
+                    <label for="type">Event Type <sub style='color:red;'>*</sub></label>
+                    <select name="image" id="type" class='form-select' name='type' required>
+                        <option value="course">course</option>
+                        <option value="contest">contest</option>
+                        <option value="conference">conference</option>
+                    </select>
+                </div>
+
             </div>
 
             <div class="form row m-2">
                 <div class="col-md-4 mb-2 md-form md-outline input-with-post-icon datepicker">
                     <label for="from">From <sub style='color:red;'>*</sub></label>
-                    <input placeholder="Select date" type="date" id="from" class="form-control" required>
+                    <input placeholder="Select date" type="date" id="from" name="from" class="form-control" required>
                 </div>
 
                 <div class="col-md-4 mb-2 md-form md-outline input-with-post-icon datepicker">
                     <label for="to">To <sub style='color:red;'>*</sub></label>
-                    <input placeholder="Select date" type="date" id="to" class="form-control" required>
+                    <input placeholder="Select date" type="date" id="to" name="to" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="form row m-2">
+                <div class="col-md-4 mb-2 md-form md-outline input-with-post-icon datepicker">
+                    <label for="start">Start <sub style='color:red;'>*</sub> </label>
+                    <input placeholder="Select date" type="datetime-local" id="start" name="start" class="form-control" required>
                 </div>
 
                 <div class="col-md-4 mb-2 md-form md-outline input-with-post-icon datepicker">
-                    <label for="start">Start <sub style='color:red;'>*</sub> </label>
-                    <input placeholder="Select date" type="date" id="start" class="form-control" required>
+                    <label for="end">End <sub style='color:red;'>*</sub> </label>
+                    <input placeholder="Select date" type="datetime-local" id="end" name="end" class="form-control" required>
                 </div>
+
             </div>
 
             <div class="form row m-2">
                 <div class="col-md-12 mb-2">
                     <label for="summary">Summary <sub style='color:red;'>without details *</sub> </label>
-                    <textarea class="form-control" id="summary" rows="2" required></textarea>
+                    <textarea class="form-control" id="summary" name="summary" rows="2" required></textarea>
                 </div>
             </div>
 
             <div class="form row m-2">
                 <div class="col-md-12 mb-2">
-                    <label for="description">Description <sub style='color:red;'>in details *</sub> </label>
-                    <textarea class="form-control" id="description" rows="4" required></textarea>
+                    <label for="description">Description <sub style='color:blue;'>in details</sub> </label>
+                    <textarea class="form-control" id="description" name="description" rows="4"></textarea>
                 </div>
             </div>
 
             <div class="form row m-2">
                 <div class="col-md-12 mb-2">
                     <label for="content">Content</label>
-                    <textarea class="form-control" id="content" rows="4"></textarea>
+                    <textarea class="form-control" id="content" name="content" rows="4"></textarea>
                 </div>
             </div>
 
             <div class="form row m-2">
                 <div class="col-md-12 mb-2">
                     <label for="qualifications">Qualifications</label>
-                    <textarea class="form-control" id="qualifications" rows="4" required></textarea>
+                    <textarea class="form-control" id="qualifications" name="qualifications" rows="4"></textarea>
+                </div>
+            </div>
+
+            <div class="form row m-2">
+                <div class="col-md-12 mb-2">
+                    <label for="experience">Experience</label>
+                    <textarea class="form-control" id="experience" name="experience" rows="4"></textarea>
                 </div>
             </div>
 
             <div class="form row i-college m-2">
                 <div class="col-md-6 mb-2">
-                    <label class="form-label" for="duration">Duration <sub style='color:red;'>in month *</sub> </label>
-                    <input type="number" id="duration" min='1' class="form-control" required />
-                </div>
-
-                <div class="col-md-6 mb-2">
                     <label class="form-label" for="num_lecture">Number of lectures</label>
-                    <input type="number" id="num_lecture" value="0" min='0' class="form-control" />
+                    <input type="number" id="num_lecture" name="num_lecture" min='0' class="form-control" />
                 </div>
-
             </div>
 
             <div class="form row i-image m-2">
                 <div class="col-md-6 mb-2">
                     <label for="image">Image</label>
-                    <select name="image" id="image" class='form-select'>
+                    <select name="image" id="image" name="image" class='form-select'>
                         <option value="default">default image</option>
                         <option value="other">add image</option>
                     </select>
