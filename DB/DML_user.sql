@@ -36,3 +36,5 @@ INSERT INTO `user` (`id_user`, `role`, `privilege`, `first_name`, `second_name`,
 ('64541bed6a61c', 'member', 'member', 'adam', 'waled', 'ahmed', 'adam34@gmail.com', '$2y$10$PaX470c/yCLm4lRl8aBhp..HjM62tP0ZiHO84Vomv3kWdekzNgk0y', 'beheira', 'kom hamada', 'Faculty of Engineering', '1', '2003', 'male', 'beginner', 1, NULL, NULL, '2023-05-04 20:56:13'),
 ('64541c3c08313', 'member', 'member', 'salma', 'ahmed', 'esmaeil', 'salma@gmail.com', '$2y$10$pQL8KL/Tr/DQBZNCmqLEN.tPw6.ZL8vxnjW18ADzqbhryrH6bgBDi', 'damietta', 'damietta', 'Faculty of Engineering', '3', '2001', 'female', 'middle', 1, NULL, NULL, '2023-05-04 20:57:32'),
 ('645456f6e7ceb', 'member', 'member', 'elias', 'ahmed', 'saleh', 'elias123@gmail.com', '$2y$10$thYbU19l9hiyXOKhfEHMh.8HdrOti3naw5mT5z8hSCRVSU4oiK6R6', 'kafrelsheikh', 'burj alburulus', 'Faculty of Engineering', '2', '2002', 'male', 'middle', 0, NULL, NULL, '2023-05-05 01:08:06');
+ 
+ COMMIT;
