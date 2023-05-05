@@ -71,6 +71,10 @@ card_buttons.forEach(function(elem){
         type: 'GET',
         dataType: 'json',
         success: function(result) {
+          if(result['error']){
+            window.location.replace("event.php");
+            return;
+          }
 
           const overlay = document.createElement('div');
           const form = document.createElement('form');
@@ -78,15 +82,39 @@ card_buttons.forEach(function(elem){
           form.setAttribute('method','post');
           form.setAttribute('action','../php_request/join_event.php');
 
-          console.log(`${result['content']}`);
+          let backgroung_type;
+          let color_type;
+
+          if(result['event_type']=='course'){
+            backgroung_type='red';
+            color_type='white';
+          }else if(result['event_type']=='confrence'){
+            backgroung_type='#FFEB3B';
+            color_type='black';
+          }else if(result['event_type']=='contest'){
+            backgroung_type='blue';
+            color_type='white';
+          }
 
           form.innerHTML= `
+          
+          <div class="mb-3"style='
+            background-color: ${backgroung_type};
+            color: ${color_type};
+            width: 120px;
+            padding: 5px;
+            border-radius: 9px;
+            display: flex;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+          '>${result['event_type']}</div>
           <div class="mb-3 title_c">${result['event_name']}</div> 
 
           <div class="mb-3" style = '
             display: flex;
             justify-content: space-around;
-            background-color: #ff0057;
+            background-color: black;
             color: white;
             border-radius: 5px;
           '>
@@ -104,34 +132,56 @@ card_buttons.forEach(function(elem){
           
           <div class="mb-3 desc text-center">
               <div class='t'>Submit Duration</div>
-              <div>From : ${result["from_date"]}</div>
-              <div>To : ${result["to_date"]}</div>
-              <div>Start : ${result['start_date']}</div>
+              <div><i class="fa-regular fa-calendar-check"></i> ${result["from_date"]}</div>
+              <div><i class="fa-regular fa-calendar-xmark"></i> ${result["to_date"]}</div>
+          </div>
+
+          <div class="mb-3 desc text-center">
+              <div class='t'>Start Duration</div>
+              <div><i class="fa-regular fa-calendar-check"></i> ${result["start_date"]}</div>
+              <div><i class="fa-regular fa-calendar-xmark"></i> ${result["end_date"]}</div>
           </div>
   
+          <div class="mb-3 desc text-center">
+              <div class='t'>Number of lectures</div>
+              <div>${result["num_lecture"]} Lectures</div>
+          </div>
+          
           <div class="mb-3 desc text-center">
               <div class='t'>Description</div>
-              <div>${result['description']}</div>
-          </div>
-          <div class="mb-3 desc text-center">
-              <div class='t' >Duration</div>
-              <div>${result['duration']} month -> ${result['num_lecture']} lecture</div>
-          </div>
-  
-          <div class="mb-3 desc text-center">
-              <div class='t'>Content</div>
-              <div>
-                ${result['content']}
-              </div>
-          </div>
-  
-          <div class="mb-3 desc text-center">
-              <div class='t'>Qualification</div>
-              <div>
-                  ${result['qualification']}
-              </div>
-          </div>
-          `;
+              <div>${result['description'].replace(/\n/g, "<br>")}</div>
+          </div>`;
+
+          if(result['content']){
+            form.innerHTML+= `
+            <div class="mb-3 desc text-center">
+                <div class='t'>Content</div>
+                <div>
+                  ${result['content'].replace(/\n/g, "<br>")}
+                </div>
+            </div>`;
+          }
+          if(result['qualification']){
+            form.innerHTML+= `
+            <div class="mb-3 desc text-center">
+                <div class='t'>Qualification</div>
+                <div>
+                    ${result['qualification'].replace(/\n/g, "<br>")}
+                </div>
+            </div>
+            `;
+          }
+
+          if(result['qualification']){
+            form.innerHTML+= `
+            <div class="mb-3 desc text-center">
+                <div class='t'>Qualification</div>
+                <div>
+                    ${result['experience'].replace(/\n/g, "<br>")}
+                </div>
+            </div>
+            `;
+          }
 
           to_date = new Date(result['to_date']);
           now_date = new Date();

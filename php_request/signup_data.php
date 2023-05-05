@@ -3,30 +3,32 @@ session_start();
 if (isset($_POST['email'])) {
     $con = mysqli_connect('localhost', 'root', '', 'community_website_db');
 
-    $first_name = strtolower(trim($_POST['first_name']));
+    $first_name = htmlspecialchars(strtolower(trim($_POST['first_name'])));
 
-    $second_name = strtolower(trim($_POST['second_name']));
+    $second_name = htmlspecialchars(strtolower(trim($_POST['second_name'])));
 
-    $last_name = strtolower(trim($_POST['last_name']));
+    $last_name = htmlspecialchars(strtolower(trim($_POST['last_name'])));
 
-    $email = strtolower(trim($_POST['email']));
+    $email = htmlspecialchars(strtolower(trim($_POST['email'])));
 
-    $password = $_POST['password'];
+    $password = password_hash($_POST['password'],PASSWORD_DEFAULT);
 
-    $governorate = strtolower(trim($_POST['governorate']));
+    $governorate = htmlspecialchars(strtolower(trim($_POST['governorate'])));
 
-    $city = strtolower(trim($_POST['city']));
+    $city = htmlspecialchars(strtolower(trim($_POST['city'])));
 
-    $college = $_POST['college'];
+    $gender = htmlspecialchars(strtolower(trim($_POST['gender'])));
+
+    $college = htmlspecialchars($_POST['college']);
     if ($college == 'other') {
-        $college = strtolower(trim($_POST['college_name']));
+        $college = htmlspecialchars(strtolower(trim($_POST['college_name'])));
     }
 
-    $level = $_POST['level'];
+    $level = htmlspecialchars($_POST['level']);
 
-    $birthday = $_POST['birthday'];
+    $birthday = htmlspecialchars($_POST['birthday']);
 
-    $experience = $_POST['experience'];
+    $experience = htmlspecialchars($_POST['experience']);
 
 
     $check_email_q = "SELECT `id_user`, `email` FROM `user` WHERE `email`='$email' ";
@@ -49,8 +51,8 @@ if (isset($_POST['email'])) {
             break;
     }
 
-    $insert_q = "INSERT INTO `user`(`id_user`, `first_name`, `second_name`, `last_name`, `email`, `password`, `governorate`, `city`, `college`, `level`, `birthday`, `experience`) VALUES
-                ('$id','$first_name','$second_name','$last_name','$email','$password','$governorate','$city','$college','$level','$birthday','$experience')";
+    $insert_q = "INSERT INTO `user`(`id_user`, `first_name`, `second_name`, `last_name`, `email`, `password`, `governorate` , `city`, `college`, `level`, `birthday`, `gender`, `experience`) VALUES
+                ('$id','$first_name','$second_name','$last_name','$email','$password','$governorate','$city','$college','$level','$birthday', '$gender' ,'$experience')";
     mysqli_query($con, $insert_q);
 
 
