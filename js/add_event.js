@@ -83,7 +83,7 @@ image.addEventListener('input',function(){
         i_m.classList.add('col-md-6','mb-2');
         i_m.innerHTML=`
         <label for="file" class="form-label">Upload image <sub style='color:red;'>*</sub></label>
-        <input class="form-control" type="file" id="file" name="url_img" required>
+        <input class="form-control" type="file" id="file" name="url_img"  enctype="multipart/form-data" required>
         `;
         var i_im = document.getElementsByClassName('i-image')[0];
         i_im.appendChild(i_m);  
