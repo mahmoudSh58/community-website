@@ -128,7 +128,7 @@ if (isset($_COOKIE['id'])) {
 
     <div class="cont m-3">
         <table class="table align-middle mb-0 bg-white m-0 text-center">
-            <thead class="bg-light">
+            <thead class="bg-light" >
                 <tr>
                     <th scope="col" style='width:5%'>#</th>
                     <th scope="col" style='width:30%'>Name</th>
@@ -140,31 +140,24 @@ if (isset($_COOKIE['id'])) {
             </thead>
             <tbody>
                 <?php
-                $roles = ['head', 'HR', 'instructor', 'admin', 'member'];
-                $class_role = 'badge rounded-pill bg-primary';
+                $roles = ['head', 'HR' , 'instructor' , 'admin' , 'member'];
                 if ($privilege == 'member') {
                     $i = 1;
                     foreach ($roles as $role) {
-                        if ($role == 'head')
-                            $class_role = 'badge rounded-pill bg-primary';
-                        else if ($role == 'member')
-                            $class_role = 'badge rounded-pill bg-primary';
-                        else
-                            $class_role = 'badge rounded-pill bg-primary';
                         $select_q = "SELECT `id_user`, `role` ,`privilege`,`first_name` , `second_name` , `last_name` ,`state` FROM `user` WHERE `role` ='$role'";
                         $data = mysqli_query($con, $select_q);
                         $results = mysqli_fetch_all($data, MYSQLI_ASSOC);
-
+                        
                         foreach ($results as $result) {
                             if ($result['state'] == 0 || $result['state'] == -1)
                                 continue;
-
-                            if ($result['id_user'] == $_COOKIE['id']) {
+                            
+                            if($result['id_user']==$_COOKIE['id']){
                                 echo "
                                 <tr class='table-info'>
                                     <th scope='row'>$i</th>
                                     <td>" . ucfirst($result['first_name']) . ' ' . ucfirst($result['second_name']) . ' ' . ucfirst($result['last_name']) . "</td>
-                                    <td class='$class_role'>" . ucfirst($result['role']) . "</td> 
+                                    <td>" . ucfirst($result['role']) . "</td> 
                                 </tr>";
                                 $i++;
                                 continue;
@@ -174,7 +167,7 @@ if (isset($_COOKIE['id'])) {
                                 <tr>
                                     <th scope='row'>$i</th>
                                     <td>" . ucfirst($result['first_name']) . ' ' . ucfirst($result['second_name']) . ' ' . ucfirst($result['last_name']) . "</td>
-                                    <td class='$class_role'>" . ucfirst($result['role']) . "</td> 
+                                    <td>" . ucfirst($result['role']) . "</td> 
                                 </tr>";
                             $i++;
                         }
@@ -184,24 +177,18 @@ if (isset($_COOKIE['id'])) {
                     $d = 0;
                     $_SESSION['users'] = [];
                     foreach ($roles as $role) {
-                        if ($role == 'head')
-                            $class_role = 'badge rounded-pill bg-primary';
-                        else if ($role == 'member')
-                            $class_role = 'badge rounded-pill bg-primary';
-                        else
-                            $class_role = 'badge rounded-pill bg-primary';
                         $select_q = "SELECT `id_user`, `role` ,`privilege`,`first_name` , `second_name` , `last_name` ,`state` FROM `user` WHERE `role` ='$role'";
                         $data = mysqli_query($con, $select_q);
                         $results = mysqli_fetch_all($data, MYSQLI_ASSOC);
 
                         if ($role == 'head') {
                             foreach ($results as $result) {
-                                if ($result['id_user'] == $_COOKIE['id']) {
+                                if($result['id_user']==$_COOKIE['id']){
                                     echo "
                                     <tr class='table-info'>
                                         <th scope='row'>$i</th>
                                         <td>" . ucfirst($result['first_name']) . ' ' . ucfirst($result['second_name']) . ' ' . ucfirst($result['last_name']) . "</td>
-                                        <td class='$class_role'>" . ucfirst($result['role']) . "</td>
+                                        <td>" . ucfirst($result['role']) . "</td>
                                         <td></td>
                                     </tr>";
                                     $i++;
@@ -212,7 +199,7 @@ if (isset($_COOKIE['id'])) {
                                 <tr>
                                     <th scope='row'>$i</th>
                                     <td>" . ucfirst($result['first_name']) . ' ' . ucfirst($result['second_name']) . ' ' . ucfirst($result['last_name']) . "</td>
-                                    <td class='$class_role'>" . ucfirst($result['role']) . "</td>
+                                    <td>" . ucfirst($result['role']) . "</td>
                                     <td></td>
                                 </tr>";
                                 $i++;
@@ -228,7 +215,7 @@ if (isset($_COOKIE['id'])) {
                             <tr>
                                 <th scope='row'>$i</th>
                                 <td>" . ucfirst($result['first_name']) . ' ' . ucfirst($result['second_name']) . ' ' . ucfirst($result['last_name']) . "</td>
-                                <td class='$class_role'>" . ucfirst($result['role']) . "</td>
+                                <td>" . ucfirst($result['role']) . "</td>
                                 <td style='display: flex;justify-content: space-around'>
                                 ";
                             if ($result['privilege'] == 'admin') {
@@ -273,26 +260,20 @@ if (isset($_COOKIE['id'])) {
                     $_SESSION['users'] = [];
 
                     foreach ($roles as $role) {
-                        if ($role == 'head')
-                            $class_role = 'bg-primary';
-                        else if ($role == 'member')
-                            $class_role = 'badge rounded-pill bg-primary';
-                        else
-                            $class_role = 'badge rounded-pill bg-primary';
                         $select_q = "SELECT `id_user`, `role` ,`privilege`,`first_name` , `second_name` , `last_name` ,`state` FROM `user` WHERE `role` ='$role'";
                         $data = mysqli_query($con, $select_q);
                         $results = mysqli_fetch_all($data, MYSQLI_ASSOC);
-
+                        
 
                         if ($role == 'head' || $role == 'HR' || $role == 'instructor' || $role == 'admin') {
                             foreach ($results as $result) {
-
-                                if ($result['id_user'] == $_COOKIE['id']) {
+                                
+                                if($result['id_user']==$_COOKIE['id']){
                                     echo "
                                     <tr class='table-info'>
                                         <th scope='row'>$i</th>
                                         <td>" . ucfirst($result['first_name']) . ' ' . ucfirst($result['second_name']) . ' ' . ucfirst($result['last_name']) . "</td>
-                                        <td class='$class_role'>" . ucfirst($result['role']) . "</td>
+                                        <td>" . ucfirst($result['role']) . "</td>
                                         <td></td>
                                     </tr>";
                                     $i++;
@@ -303,7 +284,7 @@ if (isset($_COOKIE['id'])) {
                                 <tr>
                                     <th scope='row'>$i</th>
                                     <td>" . ucfirst($result['first_name']) . ' ' . ucfirst($result['second_name']) . ' ' . ucfirst($result['last_name']) . "</td>
-                                    <td class='$class_role'>" . ucfirst($result['role']) . "</td>
+                                    <td>" . ucfirst($result['role']) . "</td>
                                     <td></td>
                                 </tr>";
                                 $i++;
@@ -320,7 +301,7 @@ if (isset($_COOKIE['id'])) {
                             <tr>
                                 <th scope='row'>$i</th>
                                 <td>" . ucfirst($result['first_name']) . ' ' . ucfirst($result['second_name']) . ' ' . ucfirst($result['last_name']) . "</td>
-                                <td class='$class_role'>" . ucfirst($result['role']) . "</td>
+                                <td>" . ucfirst($result['role']) . "</td>
                                 <td style='display: flex;justify-content: space-around'>
                                 ";
                             if ($result['state'] == -1) {
