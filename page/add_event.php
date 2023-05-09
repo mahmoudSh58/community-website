@@ -140,7 +140,7 @@ if (isset($_COOKIE['id'])) {
 
                 <div class="col-md-6 mb-2">
                     <label for="type">Event Type <sub style='color:red;'>*</sub></label>
-                    <select name="image" id="type" class='form-select' name='type' required>
+                    <select id="type" class='form-select' name='type' required>
                         <option value="course">course</option>
                         <option value="contest">contest</option>
                         <option value="conference">conference</option>
@@ -220,11 +220,8 @@ if (isset($_COOKIE['id'])) {
 
             <div class="form row i-image m-2">
                 <div class="col-md-6 mb-2">
-                    <label for="image">Image</label>
-                    <select name="image" id="image" name="image" class='form-select'>
-                        <option value="default">default image</option>
-                        <option value="other">add image</option>
-                    </select>
+                    <label for="file" class="form-label">Upload image <sub style='color:red;'>*</sub></label>
+                    <input class="form-control" type="file" id="file" name="url_img"  enctype="multipart/form-data" required>
                 </div>
             </div>
 

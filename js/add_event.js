@@ -1,5 +1,3 @@
-document.addEventListener("DOMContentLoaded", function() {
-
     let b_l = document.querySelector(".login");
     let b_s = document.querySelector(".signup");
     
@@ -59,7 +57,6 @@ document.addEventListener("DOMContentLoaded", function() {
         window.location.replace("signup.php");
     });
     }
-    });
 
 var forms = document.getElementsByClassName('needs-validation');
 // Loop over them and prevent submission
@@ -75,21 +72,3 @@ var validation = Array.prototype.filter.call(forms, function(form) {
     }, false);
 },false);
 
-var image = document.getElementById("image");
-var i_m=null;
-image.addEventListener('input',function(){
-    if(image.value =='other'){
-        i_m = document.createElement('div');
-        i_m.classList.add('col-md-6','mb-2');
-        i_m.innerHTML=`
-        <label for="file" class="form-label">Upload image <sub style='color:red;'>*</sub></label>
-        <input class="form-control" type="file" id="file" name="url_img"  enctype="multipart/form-data" required>
-        `;
-        var i_im = document.getElementsByClassName('i-image')[0];
-        i_im.appendChild(i_m);  
-    }
-    else if(i_m!=null){
-        i_m.remove();
-        i_m=null;
-    }
-});
