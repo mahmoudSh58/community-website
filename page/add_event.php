@@ -68,10 +68,11 @@ if (isset($_COOKIE['id'])) {
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <?php
                     if ($privilege == 'admin' || $privilege == 'owner') {
-                        echo '<li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Control</a>
-                  </li>
-            ';
+                        echo '
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">Control</a>
+                        </li>
+                        ';
                     }
                     ?>
                     <li class="nav-item">
@@ -80,12 +81,17 @@ if (isset($_COOKIE['id'])) {
                     <li class="nav-item">
                         <a class="nav-link px-lg-3" href="event.php">Events</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-lg-3" href="#">Chat</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-lg-3" href="#">Members</a>
-                    </li>
+                    <?php
+                    if (isset($_COOKIE['id'])) {
+                        echo '
+                        <li class="nav-item">
+                            <a class="nav-link px-lg-3" href="#">Chat</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-lg-3" href="member.php">Members</a>
+                        </li>';
+                    }
+                    ?>
                     <li class="nav-item mt-2 m-lg-0">
                         <?php
                         if (isset($_COOKIE['username'])) {
@@ -158,12 +164,14 @@ if (isset($_COOKIE['id'])) {
             <div class="form row m-2">
                 <div class="col-md-4 mb-2 md-form md-outline input-with-post-icon datepicker">
                     <label for="start">Start <sub style='color:red;'>*</sub> </label>
-                    <input placeholder="Select date" type="datetime-local" id="start" name="start" class="form-control" required>
+                    <input placeholder="Select date" type="datetime-local" id="start" name="start" class="form-control"
+                        required>
                 </div>
 
                 <div class="col-md-4 mb-2 md-form md-outline input-with-post-icon datepicker">
                     <label for="end">End <sub style='color:red;'>*</sub> </label>
-                    <input placeholder="Select date" type="datetime-local" id="end" name="end" class="form-control" required>
+                    <input placeholder="Select date" type="datetime-local" id="end" name="end" class="form-control"
+                        required>
                 </div>
 
             </div>

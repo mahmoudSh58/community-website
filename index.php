@@ -1,23 +1,25 @@
 <?php
 session_start();
-$privilege ='';
+$privilege = '';
 $con = mysqli_connect('localhost', 'root', '', 'community_website_db');
-if(isset($_COOKIE['id'])){
+if (isset($_COOKIE['id'])) {
   $id_user = $_COOKIE['id'];
   $select_q = "SELECT `privilege`,`state` FROM `user` WHERE `id_user` ='$id_user'";
   $data = mysqli_query($con, $select_q);
   $results = mysqli_fetch_assoc($data);
 
-  if(empty($results)){
+  if (empty($results)) {
     $_SESSION['error'] = 1;
     $_SESSION['message'] = "User is deleted.";
     header('location: php_request/logout.php');
     exit;
   }
-  if($results['state']!=1){
+  if ($results['state'] != 1) {
     $_SESSION['error'] = 1;
-    if($results['state']==-1) $_SESSION['message'] = "User is blocked.";
-    else $_SESSION['message'] = "User in pending.";
+    if ($results['state'] == -1)
+      $_SESSION['message'] = "User is blocked.";
+    else
+      $_SESSION['message'] = "User in pending.";
     header('location: php_request/logout.php');
     exit;
   }
@@ -55,8 +57,8 @@ if(isset($_COOKIE['id'])){
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <?php
-          if($privilege=='admin' || $privilege=='owner'){
+          <?php
+          if ($privilege == 'admin' || $privilege == 'owner') {
             echo '<li class="nav-item">
                     <a class="nav-link" aria-current="page" href="#">Control</a>
                   </li>
@@ -69,12 +71,18 @@ if(isset($_COOKIE['id'])){
           <li class="nav-item">
             <a class="nav-link px-lg-3" href="page/event.php">Events</a>
           </li>
+          <?php
+          if (isset($_COOKIE['id'])) {
+            echo '
           <li class="nav-item">
             <a class="nav-link px-lg-3" href="#">Chat</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link px-lg-3" href="#">Members</a>
-          </li>
+            <a class="nav-link px-lg-3" href="page/member.php">Members</a>
+          </li>'
+          ;
+          }
+          ?>
           <li class="nav-item mt-2 m-lg-0">
             <?php
             if (isset($_COOKIE['username'])) {
@@ -129,10 +137,10 @@ if(isset($_COOKIE['id'])){
       <p>Members</p>
       <p>
         <?php
-          $select_user_q = "SELECT `id_user` FROM `user`";
-          $data = mysqli_query($con,$select_user_q);
-          $results = mysqli_fetch_all($data);
-          echo count($results);
+        $select_user_q = "SELECT `id_user` FROM `user`";
+        $data = mysqli_query($con, $select_user_q);
+        $results = mysqli_fetch_all($data);
+        echo count($results);
         ?>
       </p>
       <i class="fa-solid fa-user"></i>
@@ -140,11 +148,11 @@ if(isset($_COOKIE['id'])){
     <div class="col-12 py-5 col-md-3 p-md-0 event">
       <p>Events</p>
       <p>
-      <?php
-          $select_event_q = "SELECT `id_event` FROM `event`";
-          $data = mysqli_query($con,$select_event_q);
-          $results = mysqli_fetch_all($data);
-          echo count($results);
+        <?php
+        $select_event_q = "SELECT `id_event` FROM `event`";
+        $data = mysqli_query($con, $select_event_q);
+        $results = mysqli_fetch_all($data);
+        echo count($results);
         ?>
       </p>
       <i class="fa-solid fa-calendar-check"></i>
@@ -221,8 +229,9 @@ if(isset($_COOKIE['id'])){
     ";
   }
   $_SESSION['error'] = 0;
-  $_SESSION['message']= '';
+  $_SESSION['message'] = '';
   ?>
 
 </body>
+
 </html>

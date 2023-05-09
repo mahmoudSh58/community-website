@@ -1,0 +1,52 @@
+.title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ff9200;
+    color: white;
+    border-radius: 0 0 5px 5px;
+}
+
+.title span {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 9999;
+    display: flex;
+}
+
+.overform_card {
+    position: fixed;
+    top: 5%;
+    left: 10%;
+    width: 80%;
+    height: 90%;
+    padding: 20px;
+    background-color: white;
+    z-index: 10000;
+    overflow: auto;
+}
+
+.xmark {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    font-size: 1.5rem;
+}
+
+.xmark:hover{
+    color: red;
+}
