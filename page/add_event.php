@@ -130,12 +130,12 @@ if (isset($_COOKIE['id'])) {
     </nav>
 
     <div class="form">
-        <form class="needs-validation" novalidate method="post" action="../php_request/add_event_req.php">
+        <form class="needs-validation" novalidate method="post" action="../php_request/add_event_req.php" enctype='multipart/form-data'>
 
             <div class="form row m-2">
                 <div class="col-md-6 mb-2">
                     <label for="title">Title <sub style='color:red;'>*</sub> </label>
-                    <input type="text" class="form-control r" id="titlr" placeholder="Title" name="title" required>
+                    <input type="text" class="form-control r" id="title" placeholder="Title" name="title" required>
                 </div>
 
                 <div class="col-md-6 mb-2">
