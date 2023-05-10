@@ -6,24 +6,18 @@
   //echo $id_user;
 
   // Receive event data from the Add_event page
-  $atitle = mysqli_real_escape_string($con ,$_POST['title']);
+  $atitle = $_POST['title'];
   $atype = $_POST['type'];
   $afrom = $_POST['from'];
   $ato = $_POST['to'];
   $astart = $_POST['start'];
   $aend = $_POST['end'];
-  $asummary = mysqli_real_escape_string($con ,$_POST['summary']);
-  $adescription = mysqli_real_escape_string($con ,$_POST['description']);
-  $acontent = mysqli_real_escape_string($con ,$_POST['content']);
-  $aqualifications = mysqli_real_escape_string($con ,$_POST['qualifications']);
-  $aexperience = mysqli_real_escape_string($con ,$_POST['experience']);
+  $asummary = $_POST['summary'];
+  $adescription = $_POST['description'];
+  $acontent = $_POST['content'];
+  $aqualifications = $_POST['qualifications'];
+  $aexperience = $_POST['experience'];
   $anum_lecture = $_POST['num_lecture'];
-
-  $astart = new DateTime($astart);
-  $astart = $astart->format('Y-m-d H:i:s');
-
-  $aend = new DateTime($aend);
-  $aend = $aend->format('Y-m-d H:i:s');
 
   // print_r($_FILES);
 
@@ -50,25 +44,24 @@
   
   $new_img_name = $img_name;
   move_uploaded_file($img_tmp, "../image/events/$new_img_name");
-
-  $img_name_t = mysqli_real_escape_string($con ,"../image/events/$new_img_name");
+  
   // if ($con) echo "conected <br>";
   $sql = "INSERT INTO 
   `event` 
-  ( `event_type`,
-    `event_name`,
-    `from_date`,
-    `to_date`, 
-    `start_date`, 
-    `summary`,
-    `description`,
-    `end_date`,
-    `num_lecture`,
-    `content`,
-    `qualification`,
-    `experience`,
-    `made_by`,
-    `img_url`)
+  ( event_type,
+    event_name,
+    from_date,
+    to_date, 
+    start_date1, 
+    summary,
+    description1,
+    end_date,
+    num_lecture,
+    content,
+    qualification,
+    experience,
+    made_by,
+    img_url)
     
   VALUES 
   ( 
@@ -85,10 +78,9 @@
    '$aqualifications', 
    '$aexperience', 
    '$id_user', 
-   '$img_name_t'
+   '../image/events/$new_img_name'
    )";
 
-  echo $sql;
    mysqli_query($con, $sql);
     
    header('location:../page/event.php');
