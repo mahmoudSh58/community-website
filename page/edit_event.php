@@ -222,7 +222,7 @@ if (isset($_COOKIE['id'])) {
             <div class='form row m-2'>
                 <div class='col-md-12 mb-2'>
                     <label for='qualifications'>Qualifications</label>
-                    <textarea class='form-control' id='qualifications' name='qualifications' rows='4'>".$result['qualifications']."</textarea>
+                    <textarea class='form-control' id='qualifications' name='qualifications' rows='4'>".$result['qualification']."</textarea>
                 </div>
             </div>
 
