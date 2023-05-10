@@ -275,7 +275,6 @@ $_SESSION['choosed_questions_id_ordered'] = $q_keys_db;
 	<script>
 		hljs.highlightAll();
 	</script>
-	<!-- <script src="../js/signup.js"></script> -->
 
 	<?php
 	if (isset($_SESSION['error']) && $_SESSION['error'] == 1) {

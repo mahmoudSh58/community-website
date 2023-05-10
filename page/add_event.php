@@ -19,7 +19,7 @@ if (isset($_COOKIE['id'])) {
         if ($results['state'] == -1)
             $_SESSION['message'] = "User is blocked.";
         else
-            $_SESSION['message'] = "User in pending.";
+            $_SESSION['message'] = "User is pending Approval...";
         header('location: ../php_request/logout.php');
         exit;
     }
@@ -68,10 +68,11 @@ if (isset($_COOKIE['id'])) {
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <?php
                     if ($privilege == 'admin' || $privilege == 'owner') {
-                        echo '<li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Control</a>
-                  </li>
-            ';
+                        echo '
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">Control</a>
+                        </li>
+                        ';
                     }
                     ?>
                     <li class="nav-item">
@@ -80,12 +81,17 @@ if (isset($_COOKIE['id'])) {
                     <li class="nav-item">
                         <a class="nav-link px-lg-3" href="event.php">Events</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-lg-3" href="#">Chat</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-lg-3" href="#">Members</a>
-                    </li>
+                    <?php
+                    if (isset($_COOKIE['id'])) {
+                        echo '
+                        <li class="nav-item">
+                            <a class="nav-link px-lg-3" href="#">Chat</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-lg-3" href="member.php">Members</a>
+                        </li>';
+                    }
+                    ?>
                     <li class="nav-item mt-2 m-lg-0">
                         <?php
                         if (isset($_COOKIE['username'])) {
@@ -124,17 +130,17 @@ if (isset($_COOKIE['id'])) {
     </nav>
 
     <div class="form">
-        <form class="needs-validation" novalidate method="post" action="../php_request/add_event_req.php">
+        <form class="needs-validation" novalidate method="post" action="../php_request/add_event_req.php" enctype='multipart/form-data'>
 
             <div class="form row m-2">
                 <div class="col-md-6 mb-2">
                     <label for="title">Title <sub style='color:red;'>*</sub> </label>
-                    <input type="text" class="form-control r" id="titlr" placeholder="Title" name="title" required>
+                    <input type="text" class="form-control r" id="title" placeholder="Title" name="title" required>
                 </div>
 
                 <div class="col-md-6 mb-2">
                     <label for="type">Event Type <sub style='color:red;'>*</sub></label>
-                    <select name="image" id="type" class='form-select' name='type' required>
+                    <select id="type" class='form-select' name='type' required>
                         <option value="course">course</option>
                         <option value="contest">contest</option>
                         <option value="conference">conference</option>
@@ -158,12 +164,14 @@ if (isset($_COOKIE['id'])) {
             <div class="form row m-2">
                 <div class="col-md-4 mb-2 md-form md-outline input-with-post-icon datepicker">
                     <label for="start">Start <sub style='color:red;'>*</sub> </label>
-                    <input placeholder="Select date" type="datetime-local" id="start" name="start" class="form-control" required>
+                    <input placeholder="Select date" type="datetime-local" id="start" name="start" class="form-control"
+                        required>
                 </div>
 
                 <div class="col-md-4 mb-2 md-form md-outline input-with-post-icon datepicker">
                     <label for="end">End <sub style='color:red;'>*</sub> </label>
-                    <input placeholder="Select date" type="datetime-local" id="end" name="end" class="form-control" required>
+                    <input placeholder="Select date" type="datetime-local" id="end" name="end" class="form-control"
+                        required>
                 </div>
 
             </div>
@@ -212,11 +220,8 @@ if (isset($_COOKIE['id'])) {
 
             <div class="form row i-image m-2">
                 <div class="col-md-6 mb-2">
-                    <label for="image">Image</label>
-                    <select name="image" id="image" name="image" class='form-select'>
-                        <option value="default">default image</option>
-                        <option value="other">add image</option>
-                    </select>
+                    <label for="file" class="form-label">Upload image <sub style='color:red;'>*</sub></label>
+                    <input class="form-control" type="file" id="file" name="url_img"  enctype="multipart/form-data" required>
                 </div>
             </div>
 

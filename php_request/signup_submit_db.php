@@ -187,4 +187,3 @@ if (isset($_SESSION['error']) && $_SESSION['error'] == 1) {
 }
 $_SESSION['error'] = 0;
 $_SESSION['message']= '';
-

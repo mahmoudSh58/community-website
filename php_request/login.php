@@ -19,14 +19,14 @@ if (isset($_POST['email'])) {
 
     if (empty($results)) {
         $_SESSION['error'] = 1;
-        $_SESSION['message'] = "Entered email are not exist.";
+        $_SESSION['message'] = "Entered email does not exist.";
         header("location: $referer");
         exit;
     }
     else if($results['state']!=1){
         $_SESSION['error'] = 1;
         if($results['state']==-1) $_SESSION['message'] = "User is blocked.";
-        else $_SESSION['message'] = "User in pending.";
+        else $_SESSION['message'] = "User is pending Approval...";
         header("location: $referer");
         exit;
     }
@@ -45,7 +45,8 @@ if (isset($_POST['email'])) {
 
 } else {
     $_SESSION['error'] = 1;
-    $_SESSION['message'] = "Empty data send.";
+    $_SESSION['message'] = "Empty data was send.";
     header("location: $referer");
+	 exit;
 }
 ?>
