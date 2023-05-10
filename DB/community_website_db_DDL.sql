@@ -87,7 +87,7 @@ CREATE  TABLE IF NOT EXISTS `problems` (
  `type` VARCHAR(50)  NOT NULL  , -- general cs , algorithm , data strucure , oop , other
  `difficulty` INT(11) NOT NULL , -- 1 , 2 , 3
  `statement` TEXT NOT NULL , -- the statement  + mcq 
- `ans` INT(11) NOT NULL  -- ans 1) .. 2).. 3).. 4)..
+ `ans` varchar(11) NOT NULL  -- ans 1) .. 2).. 3).. 4)..
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_general_ci;
 
 
