@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `user`
 
 
-CREATE TABLE `user` (
+CREATE TABLE IF NOT EXISTS `user` (
 	`id_user` varchar(100) PRIMARY KEY ,
 	`role` varchar(100)  DEFAULT 'member', -- member  , HR   , head , vice , instructor 
 	`privilege` varchar(100) NOT NULL DEFAULT 'member', -- owner > admin > member
@@ -44,7 +44,7 @@ CREATE TABLE `user` (
 )  ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_general_ci;
 
 -- Table structure for table `event`
-CREATE TABLE `event` (
+CREATE TABLE IF NOT EXISTS `event` (
 	`id_event` int(11) PRIMARY KEY  AUTO_INCREMENT,
 	`event_type` varchar(50) NOT NULL, -- 2contest , 3course ,  1conference
 	`event_name` varchar(400) NOT NULL, 
@@ -70,7 +70,7 @@ CREATE TABLE `event` (
 
 -- Table structure for table `practice`
 
-CREATE TABLE `practice` (
+CREATE TABLE IF NOT EXISTS `practice` (
 	`id_event` int(11) NOT NULL , -- add on delete statement
 	`id_user` varchar(100) NOT NULL, -- add on delete statement
 	`time` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -82,7 +82,7 @@ CREATE TABLE `practice` (
 
 -- Table structure for table `problems`
 
-CREATE  TABLE `problems` (
+CREATE  TABLE IF NOT EXISTS  `problems` (
  `prob_id` INT(11) PRIMARY KEY  AUTO_INCREMENT , 
  `type` VARCHAR(50)  NOT NULL  , -- general cs , algorithm , data strucure , oop , other
  `difficulty` INT(11) NOT NULL , -- 1 , 2 , 3
@@ -95,7 +95,7 @@ CREATE  TABLE `problems` (
 -- Table structure for table `user_ans`
 
 
-CREATE  TABLE `user_ans` (
+CREATE  TABLE IF NOT EXISTS `user_ans` (
 	`ans_id` INT(11) PRIMARY KEY AUTO_INCREMENT ,
 	`id_user` varchar(100) NOT NULL, 
 	`prob_id` INT(11) NOT NULL, 
