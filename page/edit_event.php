@@ -131,7 +131,7 @@ if (isset($_COOKIE['id'])) {
 
     <?php
 
-    if(!isset($_POST['id'])){
+    if (!isset($_POST['id'])) {
         $_SESSION['error'] = 1;
         $_SESSION['message'] = "Error! Try again.";
         header('location: event.php');
@@ -143,29 +143,31 @@ if (isset($_COOKIE['id'])) {
     $data = mysqli_query($con, $select_q);
     $result = mysqli_fetch_assoc($data);
 
-    if(empty($result)){
+    if (empty($result)) {
         $_SESSION['error'] = 1;
         $_SESSION['message'] = "Wrong event.";
         header('location: event.php');
         exit;
     }
 
-    echo"
+    echo "
     <div class='form'>
         <form class='needs-validation' novalidate method='post' action='../php_request/edit_event_req.php' enctype='multipart/form-data'>
-
+        <div class='form row m-2'>
+            <h3 class='h3 text-center mb-4' style='font-family : monospace;'>Edit Event {$id_event}</h3>
+        </div>
             <div class='form row m-2'>
                 <div class='col-md-6 mb-2'>
                     <label for='title'>Title <sub style='color:red;'>*</sub> </label>
-                    <input value='".$result['event_name']."' type='text' class='form-control r' id='title' placeholder='Title' name='title' required>
+                    <input value='" . $result['event_name'] . "' type='text' class='form-control r' id='title' placeholder='Title' name='title' required>
                 </div>
 
                 <div class='col-md-6 mb-2'>
                     <label for='type'>Event Type <sub style='color:red;'>*</sub></label>
                     <select id='type' class='form-select' name='type' required>
-                        <option value='course'".(($result['event_type']=='course')? 'selected':'').">course</option>
-                        <option value='contest'".(($result['event_type']=='contest')? 'selected':'').">contest</option>
-                        <option value='conference'".(($result['event_type']=='conference')? 'selected':'').">conference</option>
+                        <option value='course'" . (($result['event_type'] == 'course') ? 'selected' : '') . ">course</option>
+                        <option value='contest'" . (($result['event_type'] == 'contest') ? 'selected' : '') . ">contest</option>
+                        <option value='conference'" . (($result['event_type'] == 'conference') ? 'selected' : '') . ">conference</option>
                     </select>
                 </div>
 
@@ -174,25 +176,25 @@ if (isset($_COOKIE['id'])) {
             <div class='form row m-2'>
                 <div class='col-md-4 mb-2 md-form md-outline input-with-post-icon datepicker'>
                     <label for='from'>From <sub style='color:red;'>*</sub></label>
-                    <input value='".$result['from_date']."' placeholder='Select date' type='date' id='from' name='from' class='form-control' required>
+                    <input value='" . $result['from_date'] . "' placeholder='Select date' type='date' id='from' name='from' class='form-control' required>
                 </div>
 
                 <div class='col-md-4 mb-2 md-form md-outline input-with-post-icon datepicker'>
                     <label for='to'>To <sub style='color:red;'>*</sub></label>
-                    <input value='".$result['to_date']."' placeholder='Select date' type='date' id='to' name='to' class='form-control' required>
+                    <input value='" . $result['to_date'] . "' placeholder='Select date' type='date' id='to' name='to' class='form-control' required>
                 </div>
             </div>
 
             <div class='form row m-2'>
                 <div class='col-md-4 mb-2 md-form md-outline input-with-post-icon datepicker'>
                     <label for='start'>Start <sub style='color:red;'>*</sub> </label>
-                    <input value='".$result['start_date']."' placeholder='Select date' type='datetime-local' id='start' name='start' class='form-control'
+                    <input value='" . $result['start_date'] . "' placeholder='Select date' type='datetime-local' id='start' name='start' class='form-control'
                         required>
                 </div>
 
                 <div class='col-md-4 mb-2 md-form md-outline input-with-post-icon datepicker'>
                     <label for='end'>End <sub style='color:red;'>*</sub> </label>
-                    <input value='".$result['end_date']."' placeholder='Select date' type='datetime-local' id='end' name='end' class='form-control'
+                    <input value='" . $result['end_date'] . "' placeholder='Select date' type='datetime-local' id='end' name='end' class='form-control'
                         required>
                 </div>
 
@@ -201,42 +203,42 @@ if (isset($_COOKIE['id'])) {
             <div class='form row m-2'>
                 <div class='col-md-12 mb-2'>
                     <label for='summary'>Summary <sub style='color:red;'>without details *</sub> </label>
-                    <textarea class='form-control' id='summary' name='summary' rows='2' required>".$result['summary']."</textarea>
+                    <textarea class='form-control' id='summary' name='summary' rows='2' required>" . $result['summary'] . "</textarea>
                 </div>
             </div>
 
             <div class='form row m-2'>
                 <div class='col-md-12 mb-2'>
                     <label for='description'>Description <sub style='color:blue;'>in details</sub> </label>
-                    <textarea class='form-control' id='description' name='description' rows='4'>".$result['description']."</textarea>
+                    <textarea class='form-control' id='description' name='description' rows='4'>" . $result['description'] . "</textarea>
                 </div>
             </div>
 
             <div class='form row m-2'>
                 <div class='col-md-12 mb-2'>
                     <label for='content'>Content</label>
-                    <textarea class='form-control' id='content' name='content' rows='4'>".$result['content']."</textarea>
+                    <textarea class='form-control' id='content' name='content' rows='4'>" . $result['content'] . "</textarea>
                 </div>
             </div>
 
             <div class='form row m-2'>
                 <div class='col-md-12 mb-2'>
                     <label for='qualifications'>Qualifications</label>
-                    <textarea class='form-control' id='qualifications' name='qualifications' rows='4'>".$result['qualification']."</textarea>
+                    <textarea class='form-control' id='qualifications' name='qualifications' rows='4'>" . $result['qualification'] . "</textarea>
                 </div>
             </div>
 
             <div class='form row m-2'>
                 <div class='col-md-12 mb-2'>
                     <label for='experience'>Experience</label>
-                    <textarea class='form-control' id='experience' name='experience' rows='4'>".$result['experience']."</textarea>
+                    <textarea class='form-control' id='experience' name='experience' rows='4'>" . $result['experience'] . "</textarea>
                 </div>
             </div>
 
             <div class='form row i-college m-2'>
                 <div class='col-md-6 mb-2'>
                     <label class='form-label' for='num_lecture'>Number of lectures</label>
-                    <input value='".$result['num_lecture']."' type='number' id='num_lecture' name='num_lecture' min='0' class='form-control' />
+                    <input value='" . $result['num_lecture'] . "' type='number' id='num_lecture' name='num_lecture' min='0' class='form-control' />
                 </div>
             </div>
 
@@ -250,7 +252,7 @@ if (isset($_COOKIE['id'])) {
             <button class='btn btn-primary m-2' type='submit' style='
                 margin-left: 40% !important;
                 width: 20%;
-            '>Add event</button>
+            '>Edit Event</button>
         </form>
     </div>
     ";

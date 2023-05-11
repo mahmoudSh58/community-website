@@ -130,7 +130,11 @@ if (isset($_COOKIE['id'])) {
     </nav>
 
     <div class="form">
-        <form class="needs-validation" novalidate method="post" action="../php_request/add_event_req.php" enctype='multipart/form-data'>
+        <form class="needs-validation" novalidate method="post" action="../php_request/add_event_req.php"
+            enctype='multipart/form-data'>
+            <div class="form row m-2">
+                <h3 class="h3 text-center mb-4" style="font-family : monospace;">Add Event Application</h3>
+            </div>
 
             <div class="form row m-2">
                 <div class="col-md-6 mb-2">
@@ -221,14 +225,15 @@ if (isset($_COOKIE['id'])) {
             <div class="form row i-image m-2">
                 <div class="col-md-6 mb-2">
                     <label for="file" class="form-label">Upload image <sub style='color:red;'>*</sub></label>
-                    <input class="form-control" type="file" id="file" name="url_img"  enctype="multipart/form-data" required>
+                    <input class="form-control" type="file" id="file" name="url_img" enctype="multipart/form-data"
+                        required>
                 </div>
             </div>
 
             <button class="btn btn-primary m-2" type="submit" style="
                 margin-left: 40% !important;
                 width: 20%;
-            ">Add event</button>
+            ">Add Event</button>
         </form>
     </div>
 
