@@ -149,6 +149,7 @@ if (isset($_COOKIE['id'])) {
     if (empty($result)) {
         $_SESSION['error'] = 1;
         $_SESSION['message'] = "Wrong event.";
+        unset($_SESSION['id_event']);
         header('location: event.php');
         exit;
     }
