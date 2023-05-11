@@ -48,24 +48,28 @@
   
   $new_img_name = $img_name;
   move_uploaded_file($img_tmp, "../image/events/$new_img_name");
+
+
+  $t_img_name = mysqli_real_escape_string($con ,$new_img_name);
+  $t_img_name = "../image/events/$t_img_name";
   
   // if ($con) echo "conected <br>";
   $sql = "INSERT INTO 
   `event` 
-  ( event_type,
-    event_name,
-    from_date,
-    to_date, 
-    start_date1, 
-    summary,
-    description1,
-    end_date,
-    num_lecture,
-    content,
-    qualification,
-    experience,
-    made_by,
-    img_url)
+  ( `event_type`,
+    `event_name`,
+    `from_date`,
+    `to_date`, 
+    `start_date`, 
+    `summary`,
+    `descriptio`n,
+    `end_date`,
+    `num_lecture`,
+    `content`,
+    `qualification`,
+    `experience`,
+    `made_by`,
+    `img_url`)
     
   VALUES 
   ( 
@@ -82,7 +86,7 @@
    '$aqualifications', 
    '$aexperience', 
    '$id_user', 
-   '../image/events/$new_img_name'
+   '$t_img_name'
    )";
 
    mysqli_query($con, $sql);
