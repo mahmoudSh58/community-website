@@ -49,7 +49,13 @@
   $new_img_name = $img_name;
   move_uploaded_file($img_tmp, "../image/events/$new_img_name");
 
+  $astart = new DateTime($astart);
+  $astart = $astart->format('Y-m-d H:i:s');
 
+  $aend = new DateTime($aend);
+  $aend = $aend->format('Y-m-d H:i:s');
+
+  
   $t_img_name = mysqli_real_escape_string($con ,$new_img_name);
   $t_img_name = "../image/events/$t_img_name";
   
