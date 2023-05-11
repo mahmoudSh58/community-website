@@ -23,164 +23,162 @@ VALUES
 	(
 		'general',
 		1,
-		' < p > What is smallest unit of the information ? < / p > < ol > 
-		< li > A bit < / li > 
-		< li > A byte < / li >
-		 < li > A block < / li >
-		  < / ol > ',
+		' <p>What is smallest unit of the information ? </p> <ul> 
+		<li> A bit </li> 
+		<li> A byte </li>
+		 <li> A block </li>
+		  </ul>',
 		1
 	),
 	(
 		'general',
 		1,
-		' < p > What is the complement of 0011 0101 1001 1100 number ? < p > < ol > 
-		< li > A bit < / li >
-		 < li > A byte < / li > 
-		 < li > A block < / li > 
-		 < / ol > ',
+		' <p>What is the complement of 0011 0101 1001 1100 number ? </p> <ul> 
+		<li> 1100 1010 0110 0100 </li>
+		 <li> 1100 1010 1111 1111 </li> 
+		 <li> 1100 1010 1100 1011 </li> 
+		 </ul> ',
 		1
 	),
 	(
 		'general',
 		1,
-		' < p > What is the decimal equivalent of the binary number 0011 0101 ? < / p > < ol > 
-		< li > 1100 1010 < / li > 
-		< li > 1101 1010 < / li >
-		 < li > 1100 1111 < / li > 
-		< / ol > ',
-		1
-	),
-	(
-		'general',
-		1,
-		' < p > Which of the following is equal to a gigabyte ? < / p > < ol >
-		 < li > 1024 bytes < / li > 
-		 < li > 512 GB < / li >
-		  < li > 1024 megabytes < / li >
-		   < / ol > ',
+		' <p>What is the decimal equivalent of the binary number 0011 0101 ? </p> <ul> 
+		<li> 100 </li> 
+		<li> 110101 </li>
+		 <li> 53 </li> 
+		</ul> ',
 		3
 	),
 	(
 		'general',
 		1,
-		' < p > What kind of language can computer understand ? < / p > < ol> 
-		< li > Normal language < / li > 
-		< li > High - level language < / li > 
-		< li > Assembly language < / li >
-		 < / ol > ',
+		' <p>Which of the following is equal to a gigabyte ? </p> <ul>
+		 <li> 1024 bytes </li> 
+		 <li> 512 GB </li>
+		  <li> 1024 megabytes </li>
+		   </ul> ',
 		3
 	),
 	(
 		'general',
 		1,
-		' < p > What is a single dot on a computer screen called ? < / p > < ol > > 
-		< li > Desktop < / li > 
-		< li > Pixel < / li > 
-		< li > Color dot < / li >
-		 < / ol > ',
+		' <p>What kind of language can computer understand ? </p> <ul> 
+		<li> Normal language </li> 
+		<li> High - level language </li> 
+		<li> Assembly language </li>
+		 </ul> ',
+		3
+	),
+	(
+		'general',
+		1,
+		' <p>What is a single dot on a computer screen called ? </p> <ul>  
+		<li> Desktop </li> 
+		<li> Pixel </li> 
+		<li> Color dot </li>
+		 </ul> ',
 		2
 	),
 	(
 		'algorithm',
 		1,
-		' < p >
-		Set
-			of instructions for solving a problem
-			or accomplishing a task ? < / p > < ol > 
-			< li > Data type < / li >
-			 < li > Data structure < / li >
-			  < li > Algorithm < / li >
-			   < / ol > ',
+		' <p>Set of instructions for solving a problem or accomplishing a task ? </p> <ul> 
+			<li> Data type </li>
+			 <li> Data structure </li>
+			  <li> Algorithm </li>
+			   </ul> ',
 		3
 	),
 	(
 		'data_structure',
 		1,
-		' < p > 1.The data elements in the structure are also known as what ? < / p > 
-		< p >
-		a) members < br > 
-		b) data < br > 
-		c) objects & amp;data < br > 
-		< / p > ',
+		' <p>The data elements in the structure are also known as what ? </p> 
+		<ul>
+		<li>members</li> 
+		<li>data</li>
+		<li>objects and data</li>
+		</ul> ',
 		1
 	),
 	(
 		'data_structure',
 		1,
-		' < p > used to store data in an organised
-and efficient manner ? </p> <ol> 
+		' <p>Used to store data in an organised
+and efficient manner ? </p> <ul> 
 <li> OS </li> 
 <li> Data Structure </li>
  <li> Programming language </li> 
-</ol> ',
+</ul> ',
 		2
 	),
 	(
 		' oop ',
 		1,
-		' < p > a programming paradigm based on the concept of "objects" < / p > < ol > 
-		< li > Flowchart < / li > 
-		< li > Pseudocode < / li > 
-		< li >(OOP) Object Oriented Programming < / li > 
-		< / ol > ',
+		' <p>A programming paradigm based on the concept of "objects" </p> <ul> 
+		<li> Flowchart </li> 
+		<li> Pseudocode </li> 
+		<li>(OOP) Object Oriented Programming </li> 
+		</ul> ',
 		3
 	),
 	-- 7 medium problems
 	(
 		'general',
 		2,
-		'<p> The language processor which converts assembly language into machine language is </p> <ol>
+		'<p>The language processor which converts assembly language into machine language is </p> <ul>
 	<li>Interpreter</li>
 	<li>Compiler Trees</li>
 	<li>Assembler</li>
-	</ol>',
+	</ul>',
 		3
 	),
 	(
 		'general',
 		2,
-		'<p>GUI stands for</p><ol>
+		'<p>GUI stands for</p><ul>
 	<li> Graphical Universal Interface</li>
 	<li>Graphical User Interface</li>
 	<li> Graphical User Inter-relation</li>
-	</ol> ',
+	</ul> ',
 		2
 	),
 	(
 		'algorithm',
 		2,
-		'<p>Which of the following sorting algorithms provide the best time complexity in the worst-case scenario?</p> <ol>
+		'<p>Which of the following sorting algorithms provide the best time complexity in the worst-case scenario?</p> <ul>
 	<li>Merge Sort</li>
 	<li>Bubble Sort</li>
 	<li>Selection Sort</li>
-	</ol> ',
+	</ul> ',
 		1
 	),
 	(
 		'algorithm',
 		2,
-		'<p>Two main measures of the efficiency of an algorithm are?</p><ol>
+		'<p>Two main measures of the efficiency of an algorithm are?</p><ul>
 	<li>Data & Space</li>
 	<li>Processor & Memory</li>
 	<li>Time  & Space complexity</li>
-	</ol> ',
+	</ul> ',
 		3
 	),
 	(
 		'data_structure',
 		2,
-		'<p>Which of the following is a linear data structure?</p> <ol>
+		'<p>Which of the following is a linear data structure?</p> <ul>
 	<li>Array</li>
 	<li>Binary Trees</li>
 	<li>Graphs</li>
-	</ol> ',
+	</ul> ',
 		1
 	),
 	(
 		'data_structure',
 		2,
-		'<p>What is the output of the following  snippet?</p><br>
-	<code>
+		'<p>What is the output of the following  snippet?
+	<pre><code>
+
 	void solve() {
    stack &lt;int&gt; s;
    s.push(1);
@@ -191,32 +189,33 @@ and efficient manner ? </p> <ol>
        s.pop();
    }
 }
-</code>
+</code></pre></p>
 <br>
-<ol>
+<ul>
 <li>1 2 3</li> 
 <li>3 2 1</li> 
 <li>3</li> 
-</ol>',
+</ul>',
 		2
 	),
 	(
 		' oop ',
 		2,
-		'<p>Under which pillar of OOPS do base class and derived class relationships come?</p> <ol>
+		'<p>Under which pillar of OOPS do base class and derived class relationships come?</p> <ul>
 	 <li> Inheritance </li>
 	 <li> Polymorphism </li>
 	 <li> Encapsulation </li>
-	 </ol>',
+	 </ul>',
 		1
 	),
 	-- 4 hard problems
 	(
 		'algorithm',
 		3,
-		' < P > What is the time,
-and space complexity of the following code:<br>
-<code>
+		' <p>What is the time,
+and space complexity of the following code:
+<pre><code>
+
 int a = 0, b = 0;
 for (i = 0; i &lt; N; i++) {
     a = a + rand();
@@ -224,43 +223,40 @@ for (i = 0; i &lt; N; i++) {
 for (j = 0; j &lt; M; j++) {
     b = b + rand();
 }
-</code>< / p > < ol > 
-< li > O(N * M) time, O(1) space < / li > 
-< li > O(N + M) time,O(N + M) space < / li >
- < li > O(N + M) time,O(1) space < / li >
- < / ol > ',
+</code></pre></p> <ul> 
+<li> O(N * M) time, O(1) space </li> 
+<li> O(N + M) time,O(N + M) space </li>
+ <li> O(N + M) time,O(1) space </li>
+ </ul> ',
 		3
 	),
 	(
 		'algorithm',
 		3,
-		' < p > Which of the following is not a backtracking algorithm? < / p > 
-		< ol > < li > Knight tour problem < / li > 
-		< li > N queen problem < / li > 
-		< li > Tower of Hnoi < / li > < / ol > ',
+		' <p>Which of the following is not a backtracking algorithm? </p> 
+		<ul> <li> Knight tour problem </li> 
+		<li> N queen problem </li> 
+		<li> Tower of Hnoi </li> </ul> ',
 		1
 	),
 	(
 		'data_structure',
 		3,
-		' < p > What is the time complexity to
-insert
-	an element to the rear of a LinkedList(head pointer given) ? < / P > < ol > 
-	< li > O(1) < / li >
-	 < li > O(N) < / li > 
-	 < li > O(log(N)) < / li >
-	  < / ol > ',
+		' <p>What is the time complexity to insert an element to the rear of a LinkedList(head pointer given) ? </p> <ul> 
+	<li> O(1) </li>
+	 <li> O(N) </li> 
+	 <li> O(log(N)) </li>
+	  </ul> ',
 		2
 	),
 	(
 		'data_structure',
 		3,
-		' < p > Which of the following data structures can be used to implement queues ? < / P > < ol > 
-			< li > Stack < / li > 
-			< li > Arrays < / li > 
-			< li > Linked List < / li >
-			 < li > All the above < / li > 
-			 < / ol > ',
+		' <p>Which of the following data structures can be used to implement queues ? </p> <ul> 
+			<li> Stack </li> 
+			<li> Arrays </li> 
+			 <li> All the above </li> 
+			 </ul> ',
 		4
 	);
 
