@@ -157,6 +157,7 @@ if (isset($_COOKIE['id'])) {
         <div class='form row m-2'>
             <h3 class='h3 text-center mb-4' style='font-family : monospace;'>Edit Event {$id_event}</h3>
         </div>
+            <input type='hidden' name='id' value='$id_event'>
             <div class='form row m-2'>
                 <div class='col-md-6 mb-2'>
                     <label for='title'>Title <sub style='color:red;'>*</sub> </label>

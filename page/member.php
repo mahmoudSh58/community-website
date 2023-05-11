@@ -134,10 +134,10 @@ if (isset($_COOKIE['id'])) {
             <thead class="bg-light">
                 <tr>
                     <th scope="col" style='width:5%'>#</th>
-                    <th scope="col" style='width:30%'>Name</th>
+                    <th scope="col" >Name</th>
                     <th scope="col" style='width:20%'>Role</th>
                     <?php if ($privilege == 'admin' || $privilege == 'owner')
-                        echo '<th scope="col">Actions</th>';
+                        echo '<th scope="col" style="width:10%">Actions</th>';
                     ?>
                 </tr>
             </thead>
@@ -219,38 +219,45 @@ if (isset($_COOKIE['id'])) {
                                 <th scope='row'>$i</th>
                                 <td>" . ucfirst($result['first_name']) . ' ' . ucfirst($result['second_name']) . ' ' . ucfirst($result['last_name']) . "</td>
                                 <td>" . ucfirst($result['role']) . "</td>
-                                <td style='display: flex;justify-content: space-around'>
+                                <td align='center'>
+                                <div class='dropdown'>
+                                <a class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuLink' data-toggle='dropdown' data-bs-toggle='dropdown' aria-expanded='false'>
+                                <i class='fa-solid fa-gear'></i>
+                                </a>
+                                <div class='dropdown-menu' aria-labelledby='dropdownMenuLink'>
                                 ";
                             if ($result['privilege'] == 'admin') {
                                 echo "
-                                    <form action='../php_request/action_user.php' method='post'>
+                                    <form class='dropdown-item' action='../php_request/action_user.php' method='post'style='display:inline'>
                                         <input type='hidden' name='id' value='$d'>
-                                        <button type='submit' name='submit' value='unadmin' class='btn btn-danger m-1'>unAdmin</button>
+                                        <button type='submit' name='submit' value='unadmin' class='btn btn-link m-1'>unAdmin</button>
                                     </form>
                                     ";
                             } else {
                                 if ($result['state'] == -1) {
                                     echo "
-                                        <form action='../php_request/action_user.php' method='post'>
+                                        <form class='dropdown-item' action='../php_request/action_user.php' method='post' style='display:inline'>
                                             <input type='hidden' name='id' value='$d'>
-                                            <button type='submit' name='submit' value='unblock' class='btn btn-danger m-1'>unBlock</button>
+                                            <button type='submit' name='submit' value='unblock' class='btn btn-link m-1'>unBlock</button>
                                         </form>
                                         ";
                                 } else {
                                     echo "
-                                        <form action='../php_request/action_user.php' method='post'>
+                                        <form class='dropdown-item' action='../php_request/action_user.php' method='post' style='display:inline'>
                                             <input type='hidden' name='id' value='$d'>
-                                            <button type='submit' name='submit' value='block' class='btn btn-primary m-1'>Block</button>
+                                            <button type='submit' name='submit' value='block' class='btn btn-link m-1'>Block</button>
                                         </form>
 
-                                        <form action='../php_request/action_user.php' method='post'>
+                                        <form class='dropdown-item' action='../php_request/action_user.php' method='post' style='display:inline'>
                                             <input type='hidden' name='id' value='$d'>
-                                            <button type='submit' name='submit' value='admin' class='btn btn-primary m-1'>Admin</button>
+                                            <button type='submit' name='submit' value='admin' class='btn btn-link m-1'>Admin</button>
                                         </form>
                                         ";
                                 }
                             }
                             echo "
+                                </div>
+                                </div>
                                 </td>  
                             </tr>";
                             $i++;
