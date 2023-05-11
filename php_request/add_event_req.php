@@ -6,18 +6,18 @@
   //echo $id_user;
 
   // Receive event data from the Add_event page
-  $atitle = $_POST['title'];
-  $atype = $_POST['type'];
-  $afrom = $_POST['from'];
-  $ato = $_POST['to'];
-  $astart = $_POST['start'];
-  $aend = $_POST['end'];
-  $asummary = $_POST['summary'];
-  $adescription = $_POST['description'];
-  $acontent = $_POST['content'];
-  $aqualifications = $_POST['qualifications'];
-  $aexperience = $_POST['experience'];
-  $anum_lecture = $_POST['num_lecture'];
+  $atitle =  htmlspecialchars(mysqli_real_escape_string($con ,$_POST['title']));
+  $atype =  htmlspecialchars($_POST['type']);
+  $afrom =  htmlspecialchars($_POST['from']);
+  $ato =  htmlspecialchars($_POST['to']);
+  $astart =  htmlspecialchars($_POST['start']);
+  $aend =  htmlspecialchars($_POST['end']);
+  $asummary = htmlspecialchars(mysqli_real_escape_string($con ,$_POST['summary']));
+  $adescription = htmlspecialchars(mysqli_real_escape_string($con ,$_POST['description']));
+  $acontent = htmlspecialchars(mysqli_real_escape_string($con ,$_POST['content']));
+  $aqualifications = htmlspecialchars(mysqli_real_escape_string($con ,$_POST['qualifications']));
+  $aexperience = htmlspecialchars(mysqli_real_escape_string($con ,$_POST['experience']));
+  $anum_lecture = htmlspecialchars($_POST['num_lecture']);
 
   // print_r($_FILES);
 
