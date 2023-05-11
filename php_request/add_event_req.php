@@ -6,18 +6,18 @@
   //echo $id_user;
 
   // Receive event data from the Add_event page
-  $atitle = mysqli_real_escape_string($con ,$_POST['title']);
-  $atype = $_POST['type'];
-  $afrom = $_POST['from'];
-  $ato = $_POST['to'];
-  $astart = $_POST['start'];
-  $aend = $_POST['end'];
-  $asummary = mysqli_real_escape_string($con ,$_POST['summary']);
-  $adescription = mysqli_real_escape_string($con ,$_POST['description']);
-  $acontent = mysqli_real_escape_string($con ,$_POST['content']);
-  $aqualifications = mysqli_real_escape_string($con ,$_POST['qualifications']);
-  $aexperience = mysqli_real_escape_string($con ,$_POST['experience']);
-  $anum_lecture = $_POST['num_lecture'];
+  $atitle =  htmlspecialchars(mysqli_real_escape_string($con ,$_POST['title']));
+  $atype =  htmlspecialchars($_POST['type']);
+  $afrom =  htmlspecialchars($_POST['from']);
+  $ato =  htmlspecialchars($_POST['to']);
+  $astart =  htmlspecialchars($_POST['start']);
+  $aend =  htmlspecialchars($_POST['end']);
+  $asummary = htmlspecialchars(mysqli_real_escape_string($con ,$_POST['summary']));
+  $adescription = htmlspecialchars(mysqli_real_escape_string($con ,$_POST['description']));
+  $acontent = htmlspecialchars(mysqli_real_escape_string($con ,$_POST['content']));
+  $aqualifications = htmlspecialchars(mysqli_real_escape_string($con ,$_POST['qualifications']));
+  $aexperience = htmlspecialchars(mysqli_real_escape_string($con ,$_POST['experience']));
+  $anum_lecture = htmlspecialchars($_POST['num_lecture']);
 
   $astart = new DateTime($astart);
   $astart = $astart->format('Y-m-d H:i:s');
@@ -39,12 +39,16 @@
   //echo $ext_explode;
 
   if (!in_array($ext_explode, $arr_extension)) {
-    echo "Extension error";
+    $_SESSION['error'] = 1;
+    $_SESSION['message'] = "Extention error";
+    header('location:../page/add_event.php');
     exit();
   }
 
   if ($img_size >= 3000000) {
-    echo "Size error";
+    $_SESSION['error'] = 1;
+    $_SESSION['message'] = "Size error";
+    header('location:../page/add_event.php');
     exit();
   }
   
