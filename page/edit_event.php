@@ -132,14 +132,16 @@ if (isset($_COOKIE['id'])) {
 
     <?php
 
-    if (!isset($_POST['id'])) {
+    if (isset($_POST['id'])) {
+        $id_event = $_POST['id'];
+         $_SESSION['id_event']=$id_event;
+    }else if (isset($_SESSION['id_event'])) $id_event = $_SESSION['id_event'];
+    else {
         $_SESSION['error'] = 1;
         $_SESSION['message'] = "Error! Try again.";
         header('location: event.php');
         exit;
     }
-
-    $id_event = $_POST['id'];
     $select_q = "SELECT `id_event`, `event_type`, `event_name`, `from_date`, `to_date`, `start_date` , `summary`, `description`, `end_date`, `num_lecture`, `content`, `qualification`, `experience`  FROM `event` WHERE `id_event` ='$id_event'";
     $data = mysqli_query($con, $select_q);
     $result = mysqli_fetch_assoc($data);
