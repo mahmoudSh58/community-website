@@ -60,14 +60,6 @@ if (isset($_COOKIE['id'])) {
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <?php
-          if ($privilege == 'admin' || $privilege == 'owner') {
-            echo '<li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Control</a>
-                  </li>
-            ';
-          }
-          ?>
           <li class="nav-item">
             <a class="nav-link" href="../index.php">Home</a>
           </li>
@@ -76,8 +68,8 @@ if (isset($_COOKIE['id'])) {
           </li>
 
           <?php
-          if (isset($_COOKIE['id'])){
-          echo'
+          if (isset($_COOKIE['id'])) {
+            echo '
           <li class="nav-item">
           <a class="nav-link px-lg-3 disabled" style="color: #9E9E9E;" href="#">Forum<sub>(soon)</sub></a>
           </li>
@@ -86,7 +78,16 @@ if (isset($_COOKIE['id'])) {
           </li>';
           }
           ?>
-          
+
+          <?php
+          if ($privilege == 'admin' || $privilege == 'owner') {
+            echo '<li class="nav-item">
+                    			<a class="nav-link" aria-current="page" href="#">Join-Request</a>
+                			  </li>
+            			';
+          }
+          ?>
+
           <li class="nav-item mt-2 m-lg-0">
             <?php
             if (isset($_COOKIE['username'])) {
@@ -175,19 +176,19 @@ if (isset($_COOKIE['id'])) {
         ";
     } else {
       foreach ($results as $result) {
-        
-        $backgroung_type=null;
-        $color_type=null;
-    
-        if($result['event_type']=='course'){
-          $backgroung_type='red';
-          $color_type='white';
-        }else if($result['event_type']=='conference'){
-          $backgroung_type='#FFEB3B';
-          $color_type='black';
-        }else if($result['event_type']=='contest'){
-          $backgroung_type='blue';
-          $color_type='white';
+
+        $backgroung_type = null;
+        $color_type = null;
+
+        if ($result['event_type'] == 'course') {
+          $backgroung_type = 'red';
+          $color_type = 'white';
+        } else if ($result['event_type'] == 'conference') {
+          $backgroung_type = '#FFEB3B';
+          $color_type = 'black';
+        } else if ($result['event_type'] == 'contest') {
+          $backgroung_type = 'blue';
+          $color_type = 'white';
         }
 
         echo "
@@ -207,12 +208,12 @@ if (isset($_COOKIE['id'])) {
             margin:auto;
             margin-bottom:5px;
             '>" . ucfirst($result['event_type']) . " </div>
-            <h5 class='card-title'>". ucfirst($result['event_name']) . "</h5>
+            <h5 class='card-title'>" . ucfirst($result['event_name']) . "</h5>
             <p class='card-text'style='display: flex;align-items: center;height: 130px;'>" . $result['summary'] . "</p>
             <button class='btn btn-primary show_e' event='" . $result['id_event'] . "'>Show</button>
           ";
 
-          if ($privilege == 'admin' || $privilege == 'owner') {
+        if ($privilege == 'admin' || $privilege == 'owner') {
           echo "
           <form action='edit_event.php' method='post' style='display:inline'>
             <input type='hidden' name='id' value='" . $result['id_event'] . "'>

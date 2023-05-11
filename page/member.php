@@ -65,14 +65,6 @@ if (isset($_COOKIE['id'])) {
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <?php
-                    if ($privilege == 'admin' || $privilege == 'owner') {
-                        echo '<li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Control</a>
-                  </li>
-            ';
-                    }
-                    ?>
                     <li class="nav-item">
                         <a class="nav-link" href="../index.php">Home</a>
                     </li>
@@ -81,12 +73,21 @@ if (isset($_COOKIE['id'])) {
                     </li>
 
                     <li class="nav-item">
-                    <a class="nav-link px-lg-3 disabled" style="color: #9E9E9E;" href="#">Forum<sub>(soon)</sub></a>
+                        <a class="nav-link px-lg-3 disabled" style="color: #9E9E9E;" href="#">Forum<sub>(soon)</sub></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link px-lg-3 active disabled" href="#">Members</a>
                     </li>
-                    
+
+                    <?php
+                    if ($privilege == 'admin' || $privilege == 'owner') {
+                        echo '<li class="nav-item">
+                    			<a class="nav-link" aria-current="page" href="#">Join-Request</a>
+                			  </li>
+            			';
+                    }
+                    ?>
+
                     <li class="nav-item mt-2 m-lg-0">
                         <?php
                         if (isset($_COOKIE['username'])) {
@@ -130,7 +131,7 @@ if (isset($_COOKIE['id'])) {
 
     <div class="cont m-3">
         <table class="table align-middle mb-0 bg-white m-0 text-center">
-            <thead class="bg-light" >
+            <thead class="bg-light">
                 <tr>
                     <th scope="col" style='width:5%'>#</th>
                     <th scope="col" style='width:30%'>Name</th>
@@ -142,19 +143,19 @@ if (isset($_COOKIE['id'])) {
             </thead>
             <tbody>
                 <?php
-                $roles = ['head', 'HR' , 'instructor' , 'admin' , 'member'];
+                $roles = ['head', 'HR', 'instructor', 'admin', 'member'];
                 if ($privilege == 'member') {
                     $i = 1;
                     foreach ($roles as $role) {
                         $select_q = "SELECT `id_user`, `role` ,`privilege`,`first_name` , `second_name` , `last_name` ,`state` FROM `user` WHERE `role` ='$role'";
                         $data = mysqli_query($con, $select_q);
                         $results = mysqli_fetch_all($data, MYSQLI_ASSOC);
-                        
+
                         foreach ($results as $result) {
                             if ($result['state'] == 0 || $result['state'] == -1)
                                 continue;
-                            
-                            if($result['id_user']==$_COOKIE['id']){
+
+                            if ($result['id_user'] == $_COOKIE['id']) {
                                 echo "
                                 <tr class='table-info'>
                                     <th scope='row'>$i</th>
@@ -185,7 +186,7 @@ if (isset($_COOKIE['id'])) {
 
                         if ($role == 'head') {
                             foreach ($results as $result) {
-                                if($result['id_user']==$_COOKIE['id']){
+                                if ($result['id_user'] == $_COOKIE['id']) {
                                     echo "
                                     <tr class='table-info'>
                                         <th scope='row'>$i</th>
@@ -265,12 +266,12 @@ if (isset($_COOKIE['id'])) {
                         $select_q = "SELECT `id_user`, `role` ,`privilege`,`first_name` , `second_name` , `last_name` ,`state` FROM `user` WHERE `role` ='$role'";
                         $data = mysqli_query($con, $select_q);
                         $results = mysqli_fetch_all($data, MYSQLI_ASSOC);
-                        
+
 
                         if ($role == 'head' || $role == 'HR' || $role == 'instructor' || $role == 'admin') {
                             foreach ($results as $result) {
-                                
-                                if($result['id_user']==$_COOKIE['id']){
+
+                                if ($result['id_user'] == $_COOKIE['id']) {
                                     echo "
                                     <tr class='table-info'>
                                         <th scope='row'>$i</th>

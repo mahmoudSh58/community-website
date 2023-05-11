@@ -66,15 +66,6 @@ if (isset($_COOKIE['id'])) {
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <?php
-                    if ($privilege == 'admin' || $privilege == 'owner') {
-                        echo '
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Control</a>
-                        </li>
-                        ';
-                    }
-                    ?>
                     <li class="nav-item">
                         <a class="nav-link" href="../index.php">Home</a>
                     </li>
@@ -92,6 +83,16 @@ if (isset($_COOKIE['id'])) {
                         </li>';
                     }
                     ?>
+
+					<?php
+					if ($privilege == 'admin' || $privilege == 'owner') {
+						echo '<li class="nav-item">
+                    			<a class="nav-link" aria-current="page" href="#">Join-Request</a>
+                			  </li>
+            			';
+					}
+					?>
+
                     <li class="nav-item mt-2 m-lg-0">
                         <?php
                         if (isset($_COOKIE['username'])) {
