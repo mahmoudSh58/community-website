@@ -1,5 +1,6 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE)
+	session_start();
 
 //get page send request
 $referer = '../index.php';
@@ -34,6 +35,14 @@ if (isset($_POST['email'])) {
         $expire_time = time() + (30 * 24 * 60 * 60);
         setcookie('id', $results['id_user'], $expire_time, '/');
         setcookie('username', $results['first_name'], $expire_time, '/');
+
+
+		  //reset search and filter only on || login || logout || when user uses them
+		   if( isset($_SESSION['search_events_res']))
+		  		unset( $_SESSION['search_events_res']);
+			if( isset($_SESSION['filter_events_res']))
+				unset( $_SESSION['filter_events_res']);
+
         header("location: $referer");
         exit;
     } else {
@@ -49,4 +58,3 @@ if (isset($_POST['email'])) {
     header("location: $referer");
 	 exit;
 }
-?>

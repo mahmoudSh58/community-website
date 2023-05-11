@@ -202,7 +202,7 @@ card_buttons.forEach(function(elem){
             font-size: 1.3rem;
             font-weight: 600;
             color: #f44336ed;
-            ' >End</div>
+            ' >Ended</div>
             `;
           }else{
             if(result['status']==0){

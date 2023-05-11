@@ -28,7 +28,7 @@ if (isset($_COOKIE['id'])) {
 
     if ($privilege != 'admin' && $privilege != 'owner') {
         $_SESSION['error'] = 1;
-        $_SESSION['message'] = "This is page for admin";
+        $_SESSION['message'] = "Access Denied: only admins page";
         header('location: ../index.php');
         exit;
     }
@@ -85,7 +85,7 @@ if (isset($_COOKIE['id'])) {
                     if (isset($_COOKIE['id'])) {
                         echo '
                         <li class="nav-item">
-                            <a class="nav-link px-lg-3" href="#">Chat</a>
+                            <a class="nav-link px-lg-3" href="#">Hub</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link px-lg-3" href="member.php">Members</a>

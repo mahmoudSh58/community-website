@@ -99,7 +99,7 @@ $_SESSION['choosed_questions_id_ordered'] = $q_keys_db;
 						<a class="nav-link px-lg-3" href="event.php">Events</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link px-lg-3" href="#">Chat</a>
+						<a class="nav-link px-lg-3" href="#">Hub</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link px-lg-3" href="#">Members</a>
