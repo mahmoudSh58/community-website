@@ -117,18 +117,19 @@ if (isset($_COOKIE['username'])) {
 						Looks good!
 					</div>
 				</div>
+
 				<div class="col-md-6 mb-2">
 					<label for="inputPassword1">Password</label>
 					<div class="input-group">
-						<input type="password" class="form-control" id="inputPassword1" placeholder="Password" name="password" minlength="6" required>
-						<div class="input-group-append">
+						<input type="password" class="form-control rounded" id="inputPassword1" placeholder="Password" name="password" minlength="6" required>
+						<div class="input-group-prepend ms-1">
 							<button class="btn btn-outline-secondary" type="button" id="togglePassword">
-								<i class="fa fa-eye-slash " aria-hidden="true" id="eye_icon"></i>
+								<i class="fa fa-eye-slash" aria-hidden="true" id="eye_icon"></i>
 							</button>
 						</div>
-					</div>
-					<div class="invalid-feedback">
-						Minimum 6 characters.
+						<div class="invalid-feedback">
+							Minimum 6 characters.
+						</div>
 					</div>
 				</div>
 			</div>
@@ -220,21 +221,21 @@ if (isset($_COOKIE['username'])) {
 
 			<div class="form row m-2" id="signup_btn-group">
 				<div class="btn-group  mx-auto  d-flex justify-content-center " style=" width : 350px; " id="bottom_buttons">
-					<button class="btn btn-secondary  rounded-pill mx-1 disabled" style=" width : 100px;">
+					<button class="btn btn-secondary  rounded mx-1 disabled" style=" width : 100px;">
 						< Previous</button>
-							<button class="btn btn-primary  rounded-pill mx-1" type="submit">Save</button>
+							<button class="btn btn-primary  rounded mx-1" type="submit">Save</button>
 
 							<?php
 							if (session_status() == PHP_SESSION_NONE)
 								session_start();
 
 							if (isset($_SESSION['is_signup_filled']) && $_SESSION['is_signup_filled'])
-								echo '<a class="btn btn-primary  rounded-pill mx-1" style=" width : 100px;" href="./signup_quiz.php">Next ></a>';
+								echo '<a class="btn btn-primary  rounded mx-1" style=" width : 100px;" href="./signup_quiz.php">Next ></a>';
 							else
-								echo '<a class="btn btn-primary  rounded-pill mx-1" style=" width : 100px; display : none;" href="./signup_quiz.php">Next ></a>';
+								echo '<a class="btn btn-primary  rounded mx-1" style=" width : 100px; display : none;" href="./signup_quiz.php">Next ></a>';
 							?>
 
-							<a class="btn btn-primary  rounded-pill mx-1" id="next_btn_signup" style=" width : 100px; display : none;" href="./signup_quiz.php">Next ></a>
+							<a class="btn btn-primary  rounded mx-1" id="next_btn_signup" style=" width : 100px; display : none;" href="./signup_quiz.php">Next ></a>
 				</div>
 			</div>
 		</form>

@@ -2,10 +2,37 @@
 if (session_status() == PHP_SESSION_NONE)
 	session_start();
 
+//TODO make unique form token to stop duplicate submissions
 
+if (isset($_SERVER['HTTP_REFERER']) && parse_url($_SERVER['HTTP_REFERER'],  PHP_URL_PATH) == $_SERVER['REQUEST_URI']) {
+
+	echo "<div class='alert alert-danger' role='alert' style='
+					position: sticky;
+					bottom: 15px;
+	left: 25px;
+	margin: -70px;
+	width: 30%;
+	display: flex;
+	justify-content: center;
+	'>
+	" . "Duplicated Submission Redirecting to home page..." . "
+	</div>
+	<script>
+	setTimeout(function() {
+		var div = document.getElementsByClassName('alert')[0];
+		document.body.removeChild(div);
+	}, 5000);
+	</script>
+	";
+
+	$_SESSION['is_signup_filled'] = false;
+	unset($_SESSION['signup_data']);
+	header("Location: ../index.php");
+	exit;
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET' and isset($_GET))  //no skill and refreshed signup page with already filled data
-	if (isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], 'page/signup.php') !== false ){
+	if (isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], 'page/signup.php') !== false) {
 		$_user_id = save_new_user_app();
 		header('Location: ../index.php');
 		exit;
@@ -14,19 +41,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' and isset($_GET))  //no skill and refre
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' and isset($_POST)) {
 	$_SESSION['error'] = 0;
-	$_SESSION['message']= '';
-	
-	if(isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], 'page/signup_quiz.php') !== false ){
+	$_SESSION['message'] = '';
+
+	if (isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], 'page/signup_quiz.php') !== false) {
 		$_user_id = save_new_user_app();
 		//make sure he is not no skill
 		if ($_SESSION['signup_data'][12] != 'no skill')
 			save_new_user_quiz_ans($_user_id);
-
-	}else if (isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], 'php_request/signup_data.php') !== false ){
+	} else if (isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], 'php_request/signup_data.php') !== false) {
 		//if he is no skil
 		$_user_id = save_new_user_app();
 	}
-	
+
 	header('Location: ../index.php');
 	exit;
 }
@@ -45,7 +71,7 @@ function save_new_user_app()
 		exit;
 	}
 
-	if( !isset($_SESSION['signup_data']) ){
+	if (!isset($_SESSION['signup_data'])) {
 		$_SESSION['error'] = 2;
 		$_SESSION['message2'] = "Lost User Signup Data Fill again";
 
@@ -67,15 +93,15 @@ function save_new_user_app()
 	}, 5000);
 	</script>
 	";
-	$_SESSION['error'] = 0;
-	$_SESSION['message2']= '';
-	header("Location: ../page/signup.php");
-	exit;
-}
+		$_SESSION['error'] = 0;
+		$_SESSION['message2'] = '';
+		header("Location: ../page/signup.php");
+		exit;
+	}
 
 
 
-	
+
 	$user_application = $_SESSION['signup_data'];
 
 	$insert_q = "INSERT INTO `user`(`id_user`, `first_name`, `second_name`, `last_name`, `email`, `password`, `governorate` , `city`, `college`, `level`, `birthday`, `gender`, `experience`) VALUES
@@ -87,16 +113,16 @@ function save_new_user_app()
 	$expire_time = time() + (30 * 24 * 60 * 60);
 	setcookie('id', $user_application[0], $expire_time, '/');
 	setcookie('username', $user_application[1], $expire_time, '/');
-	
+
 	$user_id = $user_application[0];
 
 
 	mysqli_close($conn);
-	
+
 	if (isset($_SESSION['signup_data'][12]) && $_SESSION['signup_data'][12] == 'no skill') {
 		$_SESSION['error'] = 0;
-		$_SESSION['message']= '';
-		$_SESSION['message2']= '';
+		$_SESSION['message'] = '';
+		$_SESSION['message2'] = '';
 		$_SESSION['is_signup_filled'] = false;
 		unset($_SESSION['signup_data']);
 		header('Location: ../index.php');
@@ -123,10 +149,20 @@ function save_new_user_quiz_ans($user_id)
 	foreach ($_POST as $q_no => $ans)
 		$questions_user_ans[] = $ans;
 
-	for ($i = 0; $i < 4; $i++) {
-		$query = "INSERT INTO `user_ans` (`id_user` , `prob_id` , `ans`) VALUES
-					('$user_id' ,  '$questions_id[$i]' , '$questions_user_ans[$i]');";
+	//get correct ans
+	$correct_ans = [];
+	$select_query =  "SELECT `ans` FROM `problems` WHERE `prob_id` IN (" . implode(",", $questions_id) . ")
+	ORDER BY FIELD(`prob_id`," . implode(",", $questions_id) . ")";
 
+	$db_res = mysqli_query($conn, $select_query);
+
+	$correct_answers = [];
+	while ($row = mysqli_fetch_assoc($db_res))
+		$correct_answers[] = $row['ans'];
+
+	for ($i = 0; $i < 4; $i++) {
+		$query = "INSERT INTO `user_ans` (`id_user` , `prob_id` , `ans` , `correct_ans`) VALUES
+					('$user_id' ,  '$questions_id[$i]' , '$questions_user_ans[$i]' , '$correct_answers[$i]');";
 		mysqli_query($conn, $query);
 	}
 
@@ -150,16 +186,15 @@ function save_new_user_quiz_ans($user_id)
 		  </script>
 		";
 		$_SESSION['error'] = 0;
-		$_SESSION['message']= '';
-		$_SESSION['message2']= '';
-	
+		$_SESSION['message'] = '';
+		$_SESSION['message2'] = '';
 	}
 
 	//clean and redirect
 	$_SESSION['is_signup_filled'] = false;
 	unset($_SESSION['signup_data']);
 	unset($_SESSION['choosed_questions_id_ordered']);
-	mysqli_close($conn); 
+	mysqli_close($conn);
 
 	header('Location: ../index.php');
 	exit;
@@ -186,4 +221,4 @@ if (isset($_SESSION['error']) && $_SESSION['error'] == 1) {
 	";
 }
 $_SESSION['error'] = 0;
-$_SESSION['message']= '';
+$_SESSION['message'] = '';

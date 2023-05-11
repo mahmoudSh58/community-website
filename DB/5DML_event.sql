@@ -1,11 +1,8 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
+-- phpMyAdmin version 5.2.1
 -- https://www.phpmyadmin.net/
--- Host: 127.0.0.1
--- Generation Time: May 02, 2023 at 05:58 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
--- FILL event table
+
 SET
 	SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 

@@ -38,16 +38,28 @@ $q_keys_db =  array_keys($questions);
 $all_probs_choices = [];
 $questions_statement = [];
 $i = 0;
-foreach ($questions as $q) { //each element is a dom object that has one Question
+#TESTING
 
+foreach ($questions as $q) { //each element is a dom object that has one Question
+	
 	$dom = new DOMDocument();
-	@$dummy = $dom->loadHTML($q); //suppress warning via '@'
+	$is_loaded = $dom->loadHTML($q); //suppress warning via '@'
 	$dom_p_elems  = $dom->getElementsByTagName('p'); // statment without choices
 	$dom_li_elems = $dom->getElementsByTagName('li'); //choices each on is an element
+	$dom_code_elems = $dom->getElementsByTagName('code'); //choices each on is an element
+	
+	Echo "<pre>";#TETING
+	echo "the statmentes";
+	var_dump($questions_statement);
+	Echo "<br>";
+	var_dump($all_probs_choices);
+	Echo "<br>";
+	Echo "</pre>";
 
-	foreach ($dom_p_elems as $p_elem)
-		$questions_statement[$q_keys_db[$i]] = $p_elem->nodeValue;
+	$questions_statement[$q_keys_db[$i]] = $dom_p_elems -> item(0) -> nodeValue;
+	$questions_statement[$q_keys_db[$i]] .= "<br>" . $dom_code_elems -> item(0) -> nodeValue;
 
+ 
 	foreach ($dom_li_elems as $li_elem) //fill each question with its parsed  choices 
 		$all_probs_choices[$q_keys_db[$i]][] = $li_elem->nodeValue;  // 2D array of question ids and choices
 

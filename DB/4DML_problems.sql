@@ -1,11 +1,8 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
+-- phpMyAdmin version 5.2.1
 -- https://www.phpmyadmin.net/
--- Host: 127.0.0.1
--- Generation Time: May 02, 2023 at 05:58 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
--- FILL event table
+
 SET
 	SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 
@@ -28,7 +25,7 @@ VALUES
 		<li> A byte </li>
 		 <li> A block </li>
 		  </ul>',
-		1
+		'a'
 	),
 	(
 		'general',
@@ -38,7 +35,7 @@ VALUES
 		 <li> 1100 1010 1111 1111 </li> 
 		 <li> 1100 1010 1100 1011 </li> 
 		 </ul> ',
-		1
+		'a'
 	),
 	(
 		'general',
@@ -48,7 +45,7 @@ VALUES
 		<li> 110101 </li>
 		 <li> 53 </li> 
 		</ul> ',
-		3
+		'c'
 	),
 	(
 		'general',
@@ -58,7 +55,7 @@ VALUES
 		 <li> 512 GB </li>
 		  <li> 1024 megabytes </li>
 		   </ul> ',
-		3
+		'c'
 	),
 	(
 		'general',
@@ -68,7 +65,7 @@ VALUES
 		<li> High - level language </li> 
 		<li> Assembly language </li>
 		 </ul> ',
-		3
+		'c'
 	),
 	(
 		'general',
@@ -78,7 +75,7 @@ VALUES
 		<li> Pixel </li> 
 		<li> Color dot </li>
 		 </ul> ',
-		2
+		'b'
 	),
 	(
 		'algorithm',
@@ -88,7 +85,7 @@ VALUES
 			 <li> Data structure </li>
 			  <li> Algorithm </li>
 			   </ul> ',
-		3
+		'c'
 	),
 	(
 		'data_structure',
@@ -99,7 +96,7 @@ VALUES
 		<li>data</li>
 		<li>objects and data</li>
 		</ul> ',
-		1
+		'a'
 	),
 	(
 		'data_structure',
@@ -110,7 +107,7 @@ and efficient manner ? </p> <ul>
 <li> Data Structure </li>
  <li> Programming language </li> 
 </ul> ',
-		2
+		'b'
 	),
 	(
 		' oop ',
@@ -120,7 +117,7 @@ and efficient manner ? </p> <ul>
 		<li> Pseudocode </li> 
 		<li>(OOP) Object Oriented Programming </li> 
 		</ul> ',
-		3
+		'c'
 	),
 	-- 7 medium problems
 	(
@@ -131,7 +128,7 @@ and efficient manner ? </p> <ul>
 	<li>Compiler Trees</li>
 	<li>Assembler</li>
 	</ul>',
-		3
+		'c'
 	),
 	(
 		'general',
@@ -141,7 +138,7 @@ and efficient manner ? </p> <ul>
 	<li>Graphical User Interface</li>
 	<li> Graphical User Inter-relation</li>
 	</ul> ',
-		2
+		'c'
 	),
 	(
 		'algorithm',
@@ -151,7 +148,7 @@ and efficient manner ? </p> <ul>
 	<li>Bubble Sort</li>
 	<li>Selection Sort</li>
 	</ul> ',
-		1
+		'a'
 	),
 	(
 		'algorithm',
@@ -161,7 +158,7 @@ and efficient manner ? </p> <ul>
 	<li>Processor & Memory</li>
 	<li>Time  & Space complexity</li>
 	</ul> ',
-		3
+		'c'
 	),
 	(
 		'data_structure',
@@ -171,32 +168,28 @@ and efficient manner ? </p> <ul>
 	<li>Binary Trees</li>
 	<li>Graphs</li>
 	</ul> ',
-		1
+		'a'
 	),
 	(
 		'data_structure',
 		2,
-		'<p>What is the output of the following  snippet?
-	<pre><code>
-
+		'<p>What is the output of the following  snippet?<pre><code>
 	void solve() {
-   stack &lt;int&gt; s;
-   s.push(1);
-   s.push(2);
-   s.push(3);
-   for(int i = 1; i &lt;= 3; i++) {
-       cout &lt;&lt; s.top() &lt;&lt; “ “;
-       s.pop();
+		stack &lt;int&gt; s;
+		s.push(1);
+		s.push(2);
+		s.push(3);
+		for(int i = 1; i &lt;= 3; i++) {
+			cout &lt;&lt; s.top() &lt;&lt; " ";
+			s.pop();
    }
-}
-</code></pre></p>
-<br>
+}</code></pre></p>
 <ul>
 <li>1 2 3</li> 
 <li>3 2 1</li> 
 <li>3</li> 
 </ul>',
-		2
+		'b'
 	),
 	(
 		' oop ',
@@ -206,7 +199,7 @@ and efficient manner ? </p> <ul>
 	 <li> Polymorphism </li>
 	 <li> Encapsulation </li>
 	 </ul>',
-		1
+		'a'
 	),
 	-- 4 hard problems
 	(
@@ -215,7 +208,6 @@ and efficient manner ? </p> <ul>
 		' <p>What is the time,
 and space complexity of the following code:
 <pre><code>
-
 int a = 0, b = 0;
 for (i = 0; i &lt; N; i++) {
     a = a + rand();
@@ -228,7 +220,7 @@ for (j = 0; j &lt; M; j++) {
 <li> O(N + M) time,O(N + M) space </li>
  <li> O(N + M) time,O(1) space </li>
  </ul> ',
-		3
+		'c'
 	),
 	(
 		'algorithm',
@@ -237,7 +229,7 @@ for (j = 0; j &lt; M; j++) {
 		<ul> <li> Knight tour problem </li> 
 		<li> N queen problem </li> 
 		<li> Tower of Hnoi </li> </ul> ',
-		1
+		'a'
 	),
 	(
 		'data_structure',
@@ -247,7 +239,7 @@ for (j = 0; j &lt; M; j++) {
 	 <li> O(N) </li> 
 	 <li> O(log(N)) </li>
 	  </ul> ',
-		2
+		'b'
 	),
 	(
 		'data_structure',
@@ -257,7 +249,7 @@ for (j = 0; j &lt; M; j++) {
 			<li> Arrays </li> 
 			 <li> All the above </li> 
 			 </ul> ',
-		4
+		'c'
 	);
 
 COMMIT;

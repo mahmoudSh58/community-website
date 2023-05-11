@@ -1,19 +1,19 @@
-
--- phpMyAdmin SQL Dump
--- version 5.2.1
+-- phpMyAdmin version 5.2.1
 -- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: May 05, 2023 at 06:29 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
 SET time_zone = "+00:00";
 
+-- DISABLE FOREIGN KEY CHECKs BEFORE INSERTING SAMPLE DATA !!!
+-- DISABLE FOREIGN KEY CHECKs BEFORE INSERTING SAMPLE DATA !!!
+-- DISABLE FOREIGN KEY CHECKs BEFORE INSERTING SAMPLE DATA !!!
+
+START TRANSACTION;
 
 -- Dumping data for table `user`
+
 
 INSERT INTO `user` (`id_user`, `role`, `privilege`, `first_name`, `second_name`, `last_name`, `email`, `password`, `governorate`, `city`, `college`, `level`, `birthday`, `gender`, `experience`, `state`, `blocked_by`, `accept_by`, `time`) VALUES
 ('645404bac1e07', 'head', 'owner', 'mohamed', 'mohamed', 'saleh', 'alrisha77777@gmail.com', '$2y$10$3lKP./bldfmwFQfGzIhE4ObmrhQPxyIwYFdJFfvj9LgpywdTFZkV.', 'kafrelsheikh', 'balteem', 'Faculty of Engineering', '3', '2001', 'male', 'middle', 1, NULL, '645404bac1e07', '2023-05-04 19:17:14'),
@@ -37,5 +37,6 @@ INSERT INTO `user` (`id_user`, `role`, `privilege`, `first_name`, `second_name`,
 ('64541c3c08313', 'member', 'member', 'salma', 'ahmed', 'esmaeil', 'salma@gmail.com', '$2y$10$pQL8KL/Tr/DQBZNCmqLEN.tPw6.ZL8vxnjW18ADzqbhryrH6bgBDi', 'damietta', 'damietta', 'Faculty of Engineering', '3', '2001', 'female', 'middle', 1, NULL, '6454079ac4851', '2023-05-04 20:57:32'),
 ('645456f6e7ceb', 'member', 'member', 'elias', 'ahmed', 'saleh', 'elias123@gmail.com', '$2y$10$thYbU19l9hiyXOKhfEHMh.8HdrOti3naw5mT5z8hSCRVSU4oiK6R6', 'kafrelsheikh', 'burj alburulus', 'Faculty of Engineering', '2', '2002', 'male', 'middle', 0, NULL, '', '2023-05-05 01:08:06');
 
+
+COMMIT;
  
- COMMIT;
