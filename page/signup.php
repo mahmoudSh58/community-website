@@ -47,6 +47,7 @@ if (isset($_COOKIE['username'])) {
 </head>
 
 <body>
+
 	<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="../index.php">
@@ -76,6 +77,11 @@ if (isset($_COOKIE['username'])) {
 				</ul>
 			</div>
 		</div>
+	</nav>
+
+	</ul>
+	</div>
+	</div>
 	</nav>
 	<div class="form">
 		<form class="needs-validation" novalidate method="post" action="../php_request/signup_data.php">

@@ -43,21 +43,14 @@ $i = 0;
 foreach ($questions as $q) { //each element is a dom object that has one Question
 	
 	$dom = new DOMDocument();
-	$is_loaded = $dom->loadHTML($q); //suppress warning via '@'
+	@$is_loaded = $dom->loadHTML($q); //suppress warning via '@'
 	$dom_p_elems  = $dom->getElementsByTagName('p'); // statment without choices
 	$dom_li_elems = $dom->getElementsByTagName('li'); //choices each on is an element
 	$dom_code_elems = $dom->getElementsByTagName('code'); //choices each on is an element
 	
-	Echo "<pre>";#TETING
-	echo "the statmentes";
-	var_dump($questions_statement);
-	Echo "<br>";
-	var_dump($all_probs_choices);
-	Echo "<br>";
-	Echo "</pre>";
 
 	$questions_statement[$q_keys_db[$i]] = $dom_p_elems -> item(0) -> nodeValue;
-	$questions_statement[$q_keys_db[$i]] .= "<br>" . $dom_code_elems -> item(0) -> nodeValue;
+	@$questions_statement[$q_keys_db[$i]] .= "<br>" . $dom_code_elems -> item(0) -> nodeValue;//supress some times question has no codes
 
  
 	foreach ($dom_li_elems as $li_elem) //fill each question with its parsed  choices 

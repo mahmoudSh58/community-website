@@ -214,7 +214,10 @@ if (isset($_COOKIE['id'])) {
 
           if ($privilege == 'admin' || $privilege == 'owner') {
           echo "
-          <button class='btn btn-primary edit_e' event='" . $result['id_event'] . "'>Edit</button>
+          <form action='edit_event.php' method='post' style='display:inline'>
+            <input type='hidden' name='id' value='" . $result['id_event'] . "'>
+            <button class='btn btn-primary' type='submit'>Edit</button>
+          </form>
           ";
         }
 

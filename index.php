@@ -3,6 +3,7 @@ session_start();
 $privilege = '';
 $con = mysqli_connect('localhost', 'root', '', 'community_website_db');
 if (isset($_COOKIE['id'])) {
+
 	$id_user = $_COOKIE['id'];
 	$select_q = "SELECT `privilege`,`state` FROM `user` WHERE `id_user` ='$id_user'";
 	$data = mysqli_query($con, $select_q);
@@ -14,6 +15,16 @@ if (isset($_COOKIE['id'])) {
 		header('location: php_request/logout.php');
 		exit;
 	}
+	if ($results['state'] != 1) {
+		$_SESSION['error'] = 1;
+		if ($results['state'] == -1)
+			$_SESSION['message'] = "User is blocked.";
+		else
+			$_SESSION['message'] = "User in pending.";
+		header('location: php_request/logout.php');
+		exit;
+	}
+
 
 	if ($results['state'] != 1) {
 		$_SESSION['error'] = 1;
@@ -45,6 +56,7 @@ if (isset($_COOKIE['id'])) {
 
 
 <body>
+
 	<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="#">
@@ -73,6 +85,7 @@ if (isset($_COOKIE['id'])) {
 					<?php
 					if (isset($_COOKIE['id'])) {
 						echo '
+
           <li class="nav-item">
             <a class="nav-link px-lg-3" href="#">Chat</a>
           </li>
@@ -156,6 +169,33 @@ if (isset($_COOKIE['id'])) {
 		</div>
 	</div>
 
+	<div class="number row justify-content-center">
+		<div class="col-12 py-5 col-md-3 p-md-0 member">
+			<p>Members</p>
+			<p>
+				<?php
+				$select_user_q = "SELECT `id_user` FROM `user`";
+				$data = mysqli_query($con, $select_user_q);
+				$results = mysqli_fetch_all($data);
+				echo count($results);
+				?>
+			</p>
+			<i class="fa-solid fa-user"></i>
+		</div>
+		<div class="col-12 py-5 col-md-3 p-md-0 event">
+			<p>Events</p>
+			<p>
+				<?php
+				$select_event_q = "SELECT `id_event` FROM `event`";
+				$data = mysqli_query($con, $select_event_q);
+				$results = mysqli_fetch_all($data);
+				echo count($results);
+				?>
+			</p>
+			<i class="fa-solid fa-calendar-check"></i>
+		</div>
+	</div>
+
 	<div class="footer">
 		<footer class="bg-dark text-center text-white">
 			<!-- Grid container -->
@@ -164,6 +204,7 @@ if (isset($_COOKIE['id'])) {
 				<section class="mb-4">
 					<!-- Facebook -->
 					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+
 
 					<!-- Twitter -->
 					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-twitter"></i></a>
@@ -226,6 +267,7 @@ if (isset($_COOKIE['id'])) {
 	$_SESSION['error'] = 0;
 	$_SESSION['message'] = '';
 	?>
+
 
 </body>
 
