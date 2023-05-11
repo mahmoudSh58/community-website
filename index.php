@@ -169,32 +169,6 @@ if (isset($_COOKIE['id'])) {
 		</div>
 	</div>
 
-	<div class="number row justify-content-center">
-		<div class="col-12 py-5 col-md-3 p-md-0 member">
-			<p>Members</p>
-			<p>
-				<?php
-				$select_user_q = "SELECT `id_user` FROM `user`";
-				$data = mysqli_query($con, $select_user_q);
-				$results = mysqli_fetch_all($data);
-				echo count($results);
-				?>
-			</p>
-			<i class="fa-solid fa-user"></i>
-		</div>
-		<div class="col-12 py-5 col-md-3 p-md-0 event">
-			<p>Events</p>
-			<p>
-				<?php
-				$select_event_q = "SELECT `id_event` FROM `event`";
-				$data = mysqli_query($con, $select_event_q);
-				$results = mysqli_fetch_all($data);
-				echo count($results);
-				?>
-			</p>
-			<i class="fa-solid fa-calendar-check"></i>
-		</div>
-	</div>
 
 	<div class="footer">
 		<footer class="bg-dark text-center text-white">
