@@ -73,23 +73,23 @@
     
   VALUES 
   ( 
-   '$atype',
-   '$atitle', 
-   '$afrom', 
-   '$ato', 
-   '$astart', 
-   '$asummary', 
-   '$adescription', 
-   '$aend', 
-   '$anum_lecture', 
-   '$acontent', 
-   '$aqualifications', 
-   '$aexperience', 
-   '$id_user', 
-   '$t_img_name'
-   )";
+  '$atype',
+  '$atitle', 
+  '$afrom', 
+  '$ato', 
+  '$astart', 
+  '$asummary', 
+  '$adescription', 
+  '$aend', 
+  '$anum_lecture', 
+  '$acontent', 
+  '$aqualifications', 
+  '$aexperience', 
+  '$id_user', 
+  '$t_img_name'
+  )";
 
-   mysqli_query($con, $sql);
+  mysqli_query($con, $sql);
     
-   header('location:../page/event.php');
+  header('location:../page/event.php');
   ?> 
