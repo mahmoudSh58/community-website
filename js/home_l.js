@@ -10,23 +10,31 @@ if(b_l!=null){
       
       form.setAttribute('method','post');
       form.setAttribute('action','php_request/login.php');
+      form.setAttribute('class','text-center');
+      form.setAttribute('style','border-radius: 10px;');
       form.innerHTML= `
-      <div class="mb-3">
-        <label for="Email" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="Email" placeholder="Email" name='email' aria-describedby="emailHelp">
+      <div style='
+      padding: 47px;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #795548;
+      '>LOGIN</div>
+      <div class="input-group mb-3" style='width:calc(100% - 50px)'>
+        <span class="input-group-text"><i class="fa-regular fa-envelope"></i></span>
+        <input type="email" class="form-control text-center" id="email" placeholder="Email"  name='email'>
       </div> 
       <div class="mb-3">
-        <label for="Password" class="form-label">Password</label>
-        <input type="password" class="form-control" id="Password" name='password' placeholder="Password">
+        <div class="input-group">
+        <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
+        <input type="password" class="form-control rounded text-center" placeholder="Password" id="inputPassword1" name="password" minlength="6" required>
+        <div class="input-group-prepend ms-1">
+							<button class="btn btn-outline-secondary" type="button" id="togglePassword">
+								<i class="fa fa-eye-slash" aria-hidden="true" id="eye_icon"></i>
+							</button>
+				</div>
+        </div>
       </div>
-      <div class="mb-3">
-      <a href="" class="btn btn-link" style="
-      padding: 2px;
-      text-decoration: none;
-      font-size: 0.8rem;
-      ">Contact Us</a>
-      </div>
-      <button type="submit" class="btn btn-primary mx-auto">Login</button>
+      <button type="submit" class="btn btn-primary mx-auto w-50">Login</button>
       `
 
       let b_x = document.createElement('div');
@@ -37,6 +45,7 @@ if(b_l!=null){
       form.classList.add('overform');
 
       overlay.classList.add('overlay');
+      overlay.classList.add('text-center');
       document.body.appendChild(overlay);
       document.body.style.overflow = 'hidden';
       
@@ -51,6 +60,39 @@ if(b_l!=null){
       };
 
       document.body.appendChild(form);
+      setTimeout(()=>{
+        
+        const togglePassword = document.querySelector('#togglePassword');
+	      const password_signup = document.querySelector('#inputPassword1');
+	      togglePassword.addEventListener('click', function (e) {
+		    // toggle the type attribute
+		    const type = password_signup.getAttribute('type') === 'password' ? 'text' : 'password';
+		    password_signup.setAttribute('type', type);
+		    // toggle the eye icon
+		    const icon = this.querySelector('#eye_icon');
+		    icon.classList.toggle('fa-eye');
+		    icon.classList.toggle('fa-eye-slash');
+	      });
+
+        const email = document.getElementById('email');
+        const password = document.getElementById('inputPassword1');
+
+        email.addEventListener("focus", () => {
+          email.placeholder = "";
+        });
+      
+        email.addEventListener("blur", () => {
+          email.placeholder = "Email";
+        });
+
+        password.addEventListener("focus", () => {
+          password.placeholder = "";
+        });
+      
+        password.addEventListener("blur", () => {
+          password.placeholder = "Password";
+        });
+      },1000);
     });
 }
 
