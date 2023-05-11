@@ -19,7 +19,7 @@ if (isset($_COOKIE['id'])) {
         if ($results['state'] == -1)
             $_SESSION['message'] = "User is blocked.";
         else
-            $_SESSION['message'] = "User in pending.";
+            $_SESSION['message'] = "User is pending Approval...";
         header('location: ../php_request/logout.php');
         exit;
     }

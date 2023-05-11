@@ -5,4 +5,5 @@ setcookie('username', '', $expire_time, '/');
 unset($_COOKIE['id']);
 unset($_COOKIE['username']);
 header('Location: ../index.php');
+exit;
 ?>
