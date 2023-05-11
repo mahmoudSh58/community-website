@@ -7,7 +7,7 @@ if(b_l!=null){
         const form = document.createElement('form');
         
         form.setAttribute('method','post');
-        form.setAttribute('action','php_request/login.php');
+        form.setAttribute('action','../php_request/login.php');
         form.setAttribute('class','text-center');
         form.setAttribute('style','border-radius: 10px;');
         form.innerHTML= `

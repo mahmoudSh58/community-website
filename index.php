@@ -87,7 +87,7 @@ if (isset($_COOKIE['id'])) {
 						echo '
 
           <li class="nav-item">
-            <a class="nav-link px-lg-3" href="#">Chat</a>
+            <a class="nav-link px-lg-3 disabled" href="#">Forum<sub>(soon)</sub></a>
           </li>
           <li class="nav-item">
             <a class="nav-link px-lg-3" href="page/member.php">Members</a>
