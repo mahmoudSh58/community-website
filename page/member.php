@@ -79,12 +79,14 @@ if (isset($_COOKIE['id'])) {
                     <li class="nav-item">
                         <a class="nav-link px-lg-3" aria-current="page" href="event.php">Events</a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link px-lg-3" href="#">Chat</a>
+                    <a class="nav-link px-lg-3 disabled" style="color: #9E9E9E;" href="#">Forum<sub>(soon)</sub></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link px-lg-3 active disabled" href="#">Members</a>
                     </li>
+                    
                     <li class="nav-item mt-2 m-lg-0">
                         <?php
                         if (isset($_COOKIE['username'])) {
