@@ -55,7 +55,7 @@
   $aend = new DateTime($aend);
   $aend = $aend->format('Y-m-d H:i:s');
 
-  
+
   $t_img_name = mysqli_real_escape_string($con ,$new_img_name);
   $t_img_name = "../image/events/$t_img_name";
   
@@ -68,7 +68,7 @@
     `to_date`, 
     `start_date`, 
     `summary`,
-    `descriptio`n,
+    `description`,
     `end_date`,
     `num_lecture`,
     `content`,
@@ -95,6 +95,7 @@
   '$t_img_name'
   )";
 
+  echo $sql;
   mysqli_query($con, $sql);
     
   header('location:../page/event.php');
