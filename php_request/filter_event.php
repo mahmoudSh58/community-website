@@ -77,7 +77,7 @@ function get_filtered_events($filter_on = null)
 	} else if ($filter_on == 'conference') {
 		$filter_slct_query = "SELECT * FROM `event` WHERE `event_type` = 'conference'";
 	} else if ($filter_on == 'reg_ended') {
-		$filter_slct_query = "SELECT * FROM `event` WHERE `to_date` <  DATE(NOW())";
+		$filter_slct_query = "SELECT * FROM `event` WHERE `to_date` <  DATE(NOW()) AND `end_date` > DATE(NOW())";
 	} else if ($filter_on == 'can_join') {
 		if (!isset($_COOKIE['id'])) {
 			$filter_slct_query = "SELECT * FROM `event` WHERE `to_date` > DATE(NOW())";
