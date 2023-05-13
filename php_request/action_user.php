@@ -86,8 +86,9 @@ if (isset($_POST['id'])) {
                 exit;
             }
         } else if ($_POST['submit'] == 'admin') {
+            $new_role = htmlspecialchars($_POST['role']);
             if ($privilege == 'owner') {
-                $update_q = "UPDATE `user` SET `privilege`='admin' , `role`='admin' WHERE `id_user`='$id_req'";
+                $update_q = "UPDATE `user` SET `privilege`='admin' , `role`='$new_role' WHERE `id_user`='$id_req'";
                 mysqli_query($con, $update_q);
                 header('location: ../page/member.php');
                 exit;
