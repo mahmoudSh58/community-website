@@ -160,7 +160,7 @@ if (isset($_COOKIE['id'])) {
 				<?php if (isset($_SESSION['search_events_res']) and isset($_SESSION['last_search'])) {
 					$last_searched = htmlspecialchars($_SESSION['last_search']); //alter style = change placeholder to be Search and add value="$last_searched" choose what best suits you
 					echo "<div class=\"form-outline\">
-						<input type=\"search\" maxlength=\"100\" name=\"to_search\" style=\"border-radius: 5px 0 0 5px;width: 193px;\" value=$last_searched placeholder=\"Search\" class=\"form-control\" />
+						<input type=\"search\" maxlength=\"100\" name=\"to_search\" style=\"border-radius: 5px 0 0 5px;width: 193px;\" value=\"$last_searched\" placeholder=\"Search\" class=\"form-control\" />
 					</div>";
 					echo "<button type=\"submit\" class=\"btn btn-primary\">
 					<i class=\"fas fa-search\"></i>
