@@ -1,3 +1,5 @@
+<!-- TODO : htmlspecialchar() to avoid xss now do escaping to avoid sql injection -->
+
 <?php
 if (session_status() == PHP_SESSION_NONE) 
 	session_start();
@@ -27,7 +29,7 @@ function validate_signup_app()
 
 		$email = htmlspecialchars(strtolower(trim($_POST['email'])));
 
-		$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+		$password = password_hash($_POST['password'], PASSWORD_DEFAULT); //add pattern to html tag input 
 
 		$governorate = htmlspecialchars(strtolower(trim($_POST['governorate'])));
 
