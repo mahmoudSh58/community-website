@@ -49,6 +49,8 @@ if (isset($_COOKIE['id'])) {
     <link rel="stylesheet" href="../css/home.css" />
     <link rel="stylesheet" href="../css/join_request.css" />
 
+	<script src="../js/icon.js"></script>
+
     <title>join request</title>
 </head>
 

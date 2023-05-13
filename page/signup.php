@@ -43,6 +43,8 @@ if (isset($_COOKIE['username'])) {
 	<link rel="stylesheet" href="../css/home.css" />
 	<link rel="stylesheet" href="../css/signup.css" />
 
+	<script src="../js/icon.js"></script>
+
 	<title>Signup</title>
 </head>
 

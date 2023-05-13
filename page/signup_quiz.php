@@ -77,6 +77,8 @@ $_SESSION['choosed_questions_id_ordered'] = $q_keys_db;
 	<link rel="stylesheet" href="../css/signup.css" />
 	<link rel="stylesheet" href="../js/highlight_js/styles/default.min.css">
 
+	<script src="../js/icon.js"></script>
+
 	<title>Signup Quiz</title>
 </head>
 
