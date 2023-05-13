@@ -2,6 +2,7 @@
 if (session_status() == PHP_SESSION_NONE)
 	session_start();
 
+
 $privilege = '';
 $con = mysqli_connect('localhost', 'root', '', 'community_website_db');
 if (isset($_COOKIE['id'])) {
@@ -29,12 +30,6 @@ if (isset($_COOKIE['id'])) {
 	$privilege = $results['privilege'];
 }
 
-//TODO KEEP LAST SEARCH if just refreshed and same ip and coockies with name searched is set
-// TOOD : make search reset button
-// RESET search if is not set or null or reset button pressed
-
-// if( isset( $_SESSION['search_events_res']))
-// 	unset( $_SESSION['search_events_res']);
 ?>
 
 
@@ -87,7 +82,7 @@ if (isset($_COOKIE['id'])) {
 					if (isset($_COOKIE['id'])) {
 						echo '
           <li class="nav-item">
-            <a class="nav-link px-lg-3" href="#">Hub</a>
+            <a class="nav-link px-lg-3" href="#">Chat</a>
           </li>
           <li class="nav-item">
             <a class="nav-link px-lg-3" href="member.php">Members</a>
@@ -134,20 +129,54 @@ if (isset($_COOKIE['id'])) {
 	<div class="title">
 		<span>Events</span>
 		<div class='forms'>
-			<form method="post" style='width:250px; padding:8px' class="input-group">
+			<form method='get' action='../php_request/filter_event.php' style='width:250px; padding:8px' class="input-group">
 				<select name="filter" class="form-select">
+					<?php
+					// Define an array of option values and text
+					$options = [
+						"show_all" => "All Events",
+						"in_prac" => "Joined in",
+						"contest" => "Contests",
+						"course" => "Courses",
+						"conference" => "Conferences",
+						"can_join" => "Can Join",
+						"ended" => "Ended"
+					];
+					foreach ($options as $value => $text) {
+						if ($_SESSION['last_filter'] == $value){
+							echo "<option value=$value selected>$text</option>";
+						}
+						else
+							echo "<option value='$value'>$text</option>";
+					}
 
+					?>
 				</select>
-				<button type="button" class="btn btn-primary">Filter</button>
+				<button type="submit" class="btn btn-primary">Filter</button>
 			</form>
+			<form method="get" action='../php_request/search_event.php' style='width:250px; padding:8px' class='input-group'>
+				<?php if (isset($_SESSION['search_events_res']) and isset($_SESSION['last_search'])){
+					$last_searched = htmlspecialchars($_SESSION['last_search']); //alter style = change placeholder to be Search and add value="$last_searched" choose what best suits you
+					echo "<div class=\"form-outline\">
+						<input type=\"search\" maxlength=\"100\" name=\"to_search\" style=\"border-radius: 5px 0 0 5px;width: 193px;\" placeholder=\"$last_searched\" class=\"form-control\" />
+					</div>";
+					echo "<button type=\"submit\" class=\"btn btn-primary\">
+					<i class=\"fas fa-close\"></i>
+					</button>";
+					
+				}else{
+					echo "<div class=\"form-outline\">
+						<input type=\"search\" maxlength=\"100\" name=\"to_search\" style=\"border-radius: 5px 0 0 5px;width: 193px;\" placeholder=\"Search\" class=\"form-control\" />
+					</div>";
+					echo "<button type=\"submit\" class=\"btn btn-primary\">
+						<i class=\"fas fa-search\"></i>
+					</button>";
+					// if (isset($_GET['to_search']))
+					// 	$_SESSION['error'] = 2;
+					// 	$_SESSION['message2'] = 'Search Reset';
 
-			<form method="get" style='width:250px; padding:8px' class='input-group'>
-				<div class="form-outline">
-					<input type="search"  maxlength="100"  name="to_search" style="border-radius: 5px 0 0 5px;width: 193px;" placeholder="search" class="form-control" />
-				</div>
-				<button type="submit" class="btn btn-primary">
-					<i class="fas fa-search"></i>
-				</button>
+				}
+				?>
 			</form>
 
 
@@ -158,29 +187,63 @@ if (isset($_COOKIE['id'])) {
 			?>
 		</div>
 	</div>
+	<!-- <?php
+	#TESTING
+	echo "the state filter is " . var_dump(isset($_SESSION['filter_events_res']));
+	echo "<br>";
+	echo $_SESSION['error'];
+	echo "<br>";
+	echo "the search" . var_dump(isset($_SESSION['search_events_res']));
+	echo "<br>";
+	echo ($_SERVER['REQUEST_METHOD'] == 'GET');
+	echo "<br>";
+	echo var_dump($_SESSION['last_search'])
+	?> -->
 	<div class="cont">
 		<?php
 
-		$result = [];
+		$results = [];
 		if (!isset($_SESSION['search_events_res']) and !isset($_SESSION['filter_events_res'])) {
 			$select_event_q = "SELECT * FROM `event`";
 			$data = mysqli_query($con, $select_event_q);
 			$results = mysqli_fetch_all($data, MYSQLI_ASSOC);
-			mysqli_close($conn);
-
+			mysqli_close($con);
 		} else {
 
-			$filter_events_res = $_SESSION['filter_events_res']; //  session var from filter_event.php
-			$search_events_res = $_SESSION['search_events_res']; // session var  from search_event.php
 
-			foreach ($filter_events_res as $fltr_res) {
-				foreach ($search_events_res as $srch_res) {
-					if ($srch_res['id_event'] == $fltr_res['id_event']) { //&& the two results and show the anded result
-						$result[] = $srch_res;
+			if (isset($_SESSION['search_events_res']) and !isset($_SESSION['filter_events_res']) ) {
+				$search_events_res = $_SESSION['search_events_res']; // session var  from search_event.php
+
+				if ($search_events_res  == -1)
+					$results = $search_events_res;
+				else
+					foreach ($filter_events_res as $res)
+						$results[] = $res;
+			} else if (!isset($_SESSION['search_events_res']) and isset($_SESSION['filter_events_res'])) {
+				$filter_events_res = $_SESSION['filter_events_res']; //  session var from filter_event.php
+
+				if ($filter_events_res  == -1)
+					$results = $filter_events_res;
+				else
+					foreach ($filter_events_res as $res)
+						$results[] = $res;
+			} else {
+				$search_events_res = $_SESSION['search_events_res']; // session var  from search_event.php
+				$filter_events_res = $_SESSION['filter_events_res']; //  session var from filter_event.php
+
+				foreach ($filter_events_res as $fltr_res) {
+					if (is_int($search_events_res))
 						break;
+					foreach ($search_events_res as $srch_res) {
+						if ($srch_res['id_event'] == $fltr_res['id_event']) { //&& the two results and show the anded result
+							$results[] = $srch_res;
+							break;
+						}
 					}
 				}
 			}
+
+
 			//alternative may be faster 
 			// Get the IDs of the filter events
 			// $filter_event_ids = array_column($filter_events_res, 'id_event');
@@ -307,7 +370,7 @@ if (isset($_COOKIE['id'])) {
 	<script src="../js/all.min.js"></script>
 	<script src="../js/event.js"></script>
 	<?php
-	if (isset($_SESSION['error']) && $_SESSION['error'] != 0) {
+	if (isset($_SESSION['error']) && $_SESSION['error'] != 0 && $_SESSION['error'] != 2) {
 		echo "<div class='alert alert-danger' role='alert' style='
     position: sticky;
     bottom: 15px;
@@ -327,8 +390,29 @@ if (isset($_COOKIE['id'])) {
       </script>
     ";
 	}
+	if (isset($_SESSION['error']) && $_SESSION['error'] == 2) {
+		echo "<div class='alert alert-success' role='alert' style='
+    position: sticky;
+    bottom: 10px;
+    left: 10px;
+    margin: -70px;
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    '>
+    " . $_SESSION['message2'] . "
+    </div>
+    <script>
+      setTimeout(function() {
+        var div = document.getElementsByClassName('alert')[0];
+        document.body.removeChild(div);
+      }, 5000);
+      </script>
+    ";
+	}
 	$_SESSION['error'] = 0;
 	$_SESSION['message'] = '';
+	$_SESSION['message2'] = '';
 	?>
 
 </body>

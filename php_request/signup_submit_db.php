@@ -162,7 +162,7 @@ function save_new_user_quiz_ans($user_id)
 
 	for ($i = 0; $i < 4; $i++) {
 		$query = "INSERT INTO `user_ans` (`id_user` , `prob_id` , `ans` , `correct_ans`) VALUES
-					('$user_id' ,  '$questions_id[$i]' , '$questions_user_ans[$i]' , '$correct_answers[$i]');";
+					('$user_id' ,  $questions_id[$i] , '$questions_user_ans[$i]' , '$correct_answers[$i]');";
 		mysqli_query($conn, $query);
 	}
 

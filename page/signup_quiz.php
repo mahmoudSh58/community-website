@@ -38,7 +38,6 @@ $q_keys_db =  array_keys($questions);
 $all_probs_choices = [];
 $questions_statement = [];
 $i = 0;
-#TESTING
 
 foreach ($questions as $q) { //each element is a dom object that has one Question
 	
@@ -99,7 +98,7 @@ $_SESSION['choosed_questions_id_ordered'] = $q_keys_db;
 						<a class="nav-link px-lg-3" href="event.php">Events</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link px-lg-3" href="#">Hub</a>
+						<a class="nav-link px-lg-3" href="#">Chat</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link px-lg-3" href="#">Members</a>

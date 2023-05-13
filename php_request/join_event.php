@@ -1,5 +1,5 @@
 <?php
-
+// TODO : sql inject
 session_start();
 $con = mysqli_connect('localhost', 'root', '', 'community_website_db');
 

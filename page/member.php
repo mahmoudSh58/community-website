@@ -80,7 +80,7 @@ if (isset($_COOKIE['id'])) {
                         <a class="nav-link px-lg-3" aria-current="page" href="event.php">Events</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link px-lg-3" href="#">Hub</a>
+                        <a class="nav-link px-lg-3" href="#">Chat</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link px-lg-3 active disabled" href="#">Members</a>

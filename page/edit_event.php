@@ -85,7 +85,7 @@ if (isset($_COOKIE['id'])) {
                     if (isset($_COOKIE['id'])) {
                         echo '
                         <li class="nav-item">
-                            <a class="nav-link px-lg-3" href="#">Hub</a>
+                            <a class="nav-link px-lg-3" href="#">Chat</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link px-lg-3" href="member.php">Members</a>
@@ -139,7 +139,7 @@ if (isset($_COOKIE['id'])) {
     }
 
     $id_event = $_POST['id'];
-    $select_q = "SELECT `id_event`, `event_type`, `event_name`, `from_date`, `to_date`, `start_date` , `summary`, `description`, `end_date`, `num_lecture`, `content`, `qualification`, `experience`  FROM `event` WHERE `id_event` ='$id_event'";
+    $select_q = "SELECT `id_event`, `event_type`, `event_name`, `from_date`, `to_date`, `start_date` , `summary`, `description`, `end_date`, `num_lecture`, `content`, `qualification`, `experience`  FROM `event` WHERE `id_event` =$id_event";
     $data = mysqli_query($con, $select_q);
     $result = mysqli_fetch_assoc($data);
 
