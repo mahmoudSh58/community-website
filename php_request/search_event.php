@@ -1,4 +1,11 @@
 <?php
+
+// TODO more work on trivial char and words  
+// TODO more work on trivial char and words  
+// TODO user choose Result limit
+// TODO if number names to actual numbr  (search both)-> one to 1..
+// TODO its better : seprate words from number like level1 -> level 1
+
 if (session_status() === PHP_SESSION_NONE)
 	session_start();
 //reset search and search only on || login || logout || when user uses them
@@ -7,7 +14,7 @@ if (isset($_SESSION['search_events_res']))
 
 
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET' and mb_strlen($_GET['to_search']) > 1 and $_GET['to_search'] != null) {
+if ($_SERVER['REQUEST_METHOD'] === 'GET' and (mb_strlen($_GET['to_search']) > 1 or (is_numeric($_GET['to_search']) ) ) and $_GET['to_search'] != null) {
 	$_SESSION['search_events_res'] = -1; //search returns zero events
 	$_SESSION['search_events_res'] = search_events_main($_GET['to_search']);
 	$_SESSION['last_search'] = $_GET['to_search'];
@@ -85,7 +92,7 @@ function discard_trivial_words( mysqli $conn , string $to_clean_trivial , int $w
 	return $query_imp_words;
 }
 
-function search_events_main(string $to_search, int $limit_res = 6 , float $relevance_threshhold = 0.2 ): array | int//relevance in our MySQL is between 0-1
+function search_events_main(string $to_search, int $limit_res = 4 , float $relevance_threshhold = 24 ): array | int//relevance in our MySQL is between 0-1
 {
 	$final_found_events = [];
 	$conn = mysqli_connect('localhost' , 'root' , '' , 'community_website_db');
@@ -124,14 +131,17 @@ function search_events_main(string $to_search, int $limit_res = 6 , float $relev
 	$weights =
 		[
 			'event_name_full' => 15,
-			'summary_full'    => 10,
 			'event_name_sub'  => 8,
-			'event_type'      => 7,
-			'from_date'       => 6,
-			'start_date' 		=> 5,
+			'summary_full'    => 9,
+			'event_type'      => 8,
+			'experience_full' => 8,
+			'full_st_date'    => 7,
+			'full_from_date'  => 7,
+			'content' 			=> 6,
+			'experience'      => 5,
 			'summary' 			=> 5,
-			'experience' 		=> 5,
-			'content' 			=> 5,
+			'from_date'       => 3,
+			'start_date' 		=> 3,
 		];
 
 
@@ -148,6 +158,9 @@ function search_events_main(string $to_search, int $limit_res = 6 , float $relev
 	// start filling sub queries with  to_search user Query full match
 	$eventName_squery [] = "if (`event_name` LIKE '%" . $to_search_esc . "%' , {$weights['event_name_full']} , 0)"; //if found i.e.(perfect full match) => return score form wieghts to be added if not found return 0 to be added
 	$eventType_squery [] = "if (`summary` LIKE '%"    . $to_search_esc . "%' , {$weights['summary_full']} , 0)";
+	$eventType_squery [] = "if (`summary` LIKE '%"    . $to_search_esc . "%' , {$weights['experience_full']} , 0)";
+	$eventType_squery [] = "if (`summary` LIKE '%"    . $to_search_esc . "%' , {$weights['full_st_date']} , 0)";
+	$eventType_squery [] = "if (`summary` LIKE '%"    . $to_search_esc . "%' , {$weights['full_from_date']} , 0)";
 
 	//fill  keywords match 
 	$keyword = '';
@@ -164,13 +177,13 @@ function search_events_main(string $to_search, int $limit_res = 6 , float $relev
 
 	foreach ( $to_search_keywords  as $keyword){
 		$keyword = substr($keyword , 0 -1);
-		$eventName_squery [] = "if (`event_name` REGEXP '%" . $keyword . "_%' , {$weights['event_name_sub']} , 0)"; 
-		$eventType_squery [] = "if (`event_type` REGEXP '%" . $keyword . "%' , {$weights['event_type']} , 0)";  
-		$summary_squery   [] = "if (`summary` REGEXP '%"    . $keyword . "%' , {$weights['summary']} , 0)"; 
-		$fromDate_squery  [] = "if (`from_date` REGEXP '%"  . $keyword .   "%' , {$weights['from_date']} , 0)";
-		$startDate_squery [] = "if (`start_date` REGEXP '%" . $keyword .   "%' , {$weights['start_date']} , 0)" ;
-		$exp_squery       [] = "if (`experience` REGEXP '%" . $keyword .   "%' , {$weights['experience']} , 0)" ;
-		$content_squery   [] = "if (`content` REGEXP '%"    . $keyword .   "%' , {$weights['content']} , 0)" ;
+		$eventName_squery [] = "if (`event_name` LIKE '%" . $keyword . "_%' , {$weights['event_name_sub']} , 0)"; 
+		$eventType_squery [] = "if (`event_type` LIKE '%" . $keyword . "_%' , {$weights['event_type']} , 0)";  
+		$summary_squery   [] = "if (`summary` LIKE '%"    . $keyword . "_%' , {$weights['summary']} , 0)"; 
+		$fromDate_squery  [] = "if (`from_date` LIKE '%"  . $keyword .  "_%' , {$weights['from_date']} , 0)";
+		$startDate_squery [] = "if (`start_date` LIKE '%" . $keyword .  "_%' , {$weights['start_date']} , 0)" ;
+		$exp_squery       [] = "if (`experience` LIKE '%" . $keyword .  "_%' , {$weights['experience']} , 0)" ;
+		$content_squery   [] = "if (`content` LIKE '%"    . $keyword .  "_%' , {$weights['content']} , 0)" ;
 	}
 
 //in case any is empty make expression = 0  (summation needs int val not null or other vals)

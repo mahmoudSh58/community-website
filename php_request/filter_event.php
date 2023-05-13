@@ -76,6 +76,8 @@ function get_filtered_events($filter_on = null)
 		$filter_slct_query = "SELECT * FROM `event` WHERE `event_type` = 'course'";
 	} else if ($filter_on == 'conference') {
 		$filter_slct_query = "SELECT * FROM `event` WHERE `event_type` = 'conference'";
+	} else if ($filter_on == 'reg_ended') {
+		$filter_slct_query = "SELECT * FROM `event` WHERE `to_date` <  DATE(NOW())";
 	} else if ($filter_on == 'can_join') {
 		if (!isset($_COOKIE['id'])) {
 			$filter_slct_query = "SELECT * FROM `event` WHERE `to_date` > DATE(NOW())";
@@ -86,7 +88,6 @@ function get_filtered_events($filter_on = null)
 			$sub_query_res = mysqli_fetch_all($sub_query_res);
 			$final_res = [];
 
-			// edit by mahmoud
 			
 			if (!empty($sub_query_res)) {
 				$event_id_include = implode(',', array_map(function ($item) {
@@ -99,14 +100,7 @@ function get_filtered_events($filter_on = null)
 			}
 			$filter_db_res = mysqli_fetch_all($final_res, MYSQLI_ASSOC); //fitler_db_res is  2D array [int index]=>[id_event , ...]
 
-			//------------------------------------------------
 
-			// $i = 0;
-			// foreach ($sub_query_res as $id_event) {
-			// 	$final_res[] = mysqli_query($conn, "SELECT * FROM `event` WHERE `id_event` !=  {$id_event[0]} AND `to_date` > DATE(NOW()) ");
-			// 	$filter_db_res[] = mysqli_fetch_assoc($final_res[$i]); //fitler_db_res is  2D array [int index]=>[id_event , ...]
-			// 	$i++;
-			// }
 
 			mysqli_close($conn);
 			return $filter_db_res;

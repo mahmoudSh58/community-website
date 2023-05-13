@@ -141,6 +141,7 @@ if (isset($_COOKIE['id'])) {
 						"course" => "Courses",
 						"conference" => "Conferences",
 						"can_join" => "Can Join",
+						"reg_ended" => "Registeration Ended",
 						"ended" => "Ended"
 					];
 					foreach ($options as $value => $text) {
@@ -214,16 +215,17 @@ if (isset($_COOKIE['id'])) {
 			if (isset($_SESSION['search_events_res']) and !isset($_SESSION['filter_events_res'])) {
 				$search_events_res = $_SESSION['search_events_res']; // session var  from search_event.php
 
-				if ($search_events_res  == -1)
+				if ( $search_events_res  == -1)
 					$results = $search_events_res;
-				else
-					foreach ($filter_events_res as $res)
+				else 
+					foreach ($search_events_res as $res)
 						$results[] = $res;
+
 			} else if (!isset($_SESSION['search_events_res']) and isset($_SESSION['filter_events_res'])) {
 				$filter_events_res = $_SESSION['filter_events_res']; //  session var from filter_event.php
 
-				if ($filter_events_res  == -1)
-					$results = $filter_events_res;
+				if ($filter_events_res  == -1 or is_int($filter_events_res))
+					$results = -1;
 				else
 					foreach ($filter_events_res as $res)
 						$results[] = $res;
