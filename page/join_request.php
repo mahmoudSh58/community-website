@@ -1,5 +1,7 @@
 <?php
+if (session_status() == PHP_SESSION_NONE)
 session_start();
+
 $privilege = '';
 $con = mysqli_connect('localhost', 'root', '', 'community_website_db');
 if (isset($_COOKIE['id'])) {
