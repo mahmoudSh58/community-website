@@ -187,7 +187,7 @@ if (isset($_COOKIE['id'])) {
 			?>
 		</div>
 	</div>
-	<!-- <?php
+	<?php
 	#TESTING
 	echo "the state filter is " . var_dump(isset($_SESSION['filter_events_res']));
 	echo "<br>";
@@ -198,7 +198,7 @@ if (isset($_COOKIE['id'])) {
 	echo ($_SERVER['REQUEST_METHOD'] == 'GET');
 	echo "<br>";
 	echo var_dump($_SESSION['last_search'])
-	?> -->
+	?>
 	<div class="cont">
 		<?php
 
@@ -229,18 +229,19 @@ if (isset($_COOKIE['id'])) {
 						$results[] = $res;
 			} else {
 				$search_events_res = $_SESSION['search_events_res']; // session var  from search_event.php
-				$filter_events_res = $_SESSION['filter_events_res']; //  session var from filter_event.php
-
-				foreach ($filter_events_res as $fltr_res) {
-					if (is_int($search_events_res))
-						break;
-					foreach ($search_events_res as $srch_res) {
-						if ($srch_res['id_event'] == $fltr_res['id_event']) { //&& the two results and show the anded result
-							$results[] = $srch_res;
+				$filter_events_res = $_SESSION['filter_events_res']; //  session var from filter_event.php\
+				
+				if(! is_int($filter_events_res) )
+					foreach ($filter_events_res as $fltr_res) {
+						if (is_int($search_events_res))
 							break;
+						foreach ($search_events_res as $srch_res) {
+							if ($srch_res['id_event'] == $fltr_res['id_event']) { //&& the two results and show the anded result
+								$results[] = $srch_res;
+								break;
+							}
 						}
 					}
-				}
 			}
 
 
