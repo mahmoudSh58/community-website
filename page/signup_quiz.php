@@ -38,7 +38,6 @@ $q_keys_db =  array_keys($questions);
 $all_probs_choices = [];
 $questions_statement = [];
 $i = 0;
-#TESTING
 
 foreach ($questions as $q) { //each element is a dom object that has one Question
 	

@@ -28,7 +28,7 @@ if (isset($_COOKIE['id'])) {
 
     if ($privilege != 'admin' && $privilege != 'owner') {
         $_SESSION['error'] = 1;
-        $_SESSION['message'] = "This is page for admin";
+        $_SESSION['message'] = "Access Denied: only admins page";
         header('location: ../index.php');
         exit;
     }
