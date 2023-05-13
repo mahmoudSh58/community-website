@@ -92,7 +92,7 @@ function discard_trivial_words( mysqli $conn , string $to_clean_trivial , int $w
 	return $query_imp_words;
 }
 
-function search_events_main(string $to_search, int $limit_res = 4 , float $relevance_threshhold = 24 ): array | int//relevance in our MySQL is between 0-1
+function search_events_main(string $to_search, int $limit_res = 4 , float $relevance_threshhold = 20 ): array | int//relevance in our MySQL is between 0-1
 {
 	$final_found_events = [];
 	$conn = mysqli_connect('localhost' , 'root' , '' , 'community_website_db');
@@ -130,16 +130,16 @@ function search_events_main(string $to_search, int $limit_res = 4 , float $relev
 	// global $weights;
 	$weights =
 		[
-			'event_name_full' => 15,
-			'event_name_sub'  => 8,
+			'event_name_full' => 20,
 			'summary_full'    => 9,
+			'event_name_sub'  => 8,
 			'event_type'      => 8,
 			'experience_full' => 8,
+			'summary' 			=> 8,
 			'full_st_date'    => 7,
 			'full_from_date'  => 7,
 			'content' 			=> 6,
 			'experience'      => 5,
-			'summary' 			=> 5,
 			'from_date'       => 3,
 			'start_date' 		=> 3,
 		];
@@ -158,9 +158,9 @@ function search_events_main(string $to_search, int $limit_res = 4 , float $relev
 	// start filling sub queries with  to_search user Query full match
 	$eventName_squery [] = "if (`event_name` LIKE '%" . $to_search_esc . "%' , {$weights['event_name_full']} , 0)"; //if found i.e.(perfect full match) => return score form wieghts to be added if not found return 0 to be added
 	$eventType_squery [] = "if (`summary` LIKE '%"    . $to_search_esc . "%' , {$weights['summary_full']} , 0)";
-	$eventType_squery [] = "if (`summary` LIKE '%"    . $to_search_esc . "%' , {$weights['experience_full']} , 0)";
-	$eventType_squery [] = "if (`summary` LIKE '%"    . $to_search_esc . "%' , {$weights['full_st_date']} , 0)";
-	$eventType_squery [] = "if (`summary` LIKE '%"    . $to_search_esc . "%' , {$weights['full_from_date']} , 0)";
+	$eventType_squery [] = "if (`experience` LIKE '%"    . $to_search_esc . "%' , {$weights['experience_full']} , 0)";
+	$eventType_squery [] = "if (`start_date` LIKE '%"    . $to_search_esc . "%' , {$weights['full_st_date']} , 0)";
+	$eventType_squery [] = "if (`from_date` LIKE '%"    . $to_search_esc . "%' , {$weights['full_from_date']} , 0)";
 
 	//fill  keywords match 
 	$keyword = '';
