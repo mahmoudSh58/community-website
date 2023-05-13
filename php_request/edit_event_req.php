@@ -66,5 +66,5 @@
   echo $sql;
   mysqli_query($con, $sql);
   
-  
+  unset($_SESSION['id_event']);
   header('location:../page/event.php');
