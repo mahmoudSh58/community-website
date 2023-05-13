@@ -51,7 +51,7 @@ if (isset($_COOKIE['id'])) {
 	<link rel="stylesheet" href="css/bootstrap.min.css" />
 	<link rel="stylesheet" href="css/all.min.css" />
 	<link rel="stylesheet" href="css/home.css" />
-	<link rel="icon" href="image/events/icon.png" />
+	<link rel="shortcut icon" href="image/eksu-white.ico" />
 	<script src="js/home_f.js"></script>
 	<title>PS Community</title>
 </head>
