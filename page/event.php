@@ -187,7 +187,7 @@ if (isset($_COOKIE['id'])) {
 			?>
 		</div>
 	</div>
-	<?php
+	<!-- <?php
 	#TESTING
 	echo "the state filter is " . var_dump(isset($_SESSION['filter_events_res']));
 	echo "<br>";
@@ -198,7 +198,8 @@ if (isset($_COOKIE['id'])) {
 	echo ($_SERVER['REQUEST_METHOD'] == 'GET');
 	echo "<br>";
 	echo var_dump($_SESSION['last_search'])
-	?>
+	//END TESTING 
+	?> -->
 	<div class="cont">
 		<?php
 
