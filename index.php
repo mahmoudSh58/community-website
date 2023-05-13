@@ -28,8 +28,10 @@ if (isset($_COOKIE['id'])) {
 
 	if ($results['state'] != 1) {
 		$_SESSION['error'] = 1;
-		if ($results['state'] == -1) $_SESSION['message'] = "User is blocked.";
-		else $_SESSION['message'] = "User is pending Approval...";
+		if ($results['state'] == -1)
+			$_SESSION['message'] = "User is blocked.";
+		else
+			$_SESSION['message'] = "User is pending Approval...";
 
 		header('location: php_request/logout.php');
 		exit;
@@ -63,35 +65,39 @@ if (isset($_COOKIE['id'])) {
 				<img src="image/eksu black.svg" width="70" height="50" alt="" />
 				<span class="icon-text"> EKSU-PSC</span>
 			</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-					<?php
-					if ($privilege == 'admin' || $privilege == 'owner') {
-						echo '<li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Control</a>
-                  </li>
-            ';
-					}
-					?>
 					<li class="nav-item">
 						<a class="nav-link active disabled" aria-current="page" href="#">Home</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link px-lg-3" href="page/event.php">Events</a>
 					</li>
+
 					<?php
 					if (isset($_COOKIE['id'])) {
 						echo '
 
           <li class="nav-item">
-            <a class="nav-link px-lg-3" href="#">Chat</a>
+            <a class="nav-link px-lg-3 disabled" style="color: #9E9E9E;" href="#">Forum<sub>(soon)</sub></a>
           </li>
           <li class="nav-item">
             <a class="nav-link px-lg-3" href="page/member.php">Members</a>
           </li>';
+					}
+					
+					?>
+					<?php
+					if ($privilege == 'admin' || $privilege == 'owner') {
+						echo '<li class="nav-item">
+                    			<a class="nav-link" aria-current="page" href="page/join_request.php">Join-Request</a>
+                			  </li>
+            			';
 					}
 					?>
 					<li class="nav-item mt-2 m-lg-0">
@@ -177,23 +183,29 @@ if (isset($_COOKIE['id'])) {
 				<!-- Section: Social media -->
 				<section class="mb-4">
 					<!-- Facebook -->
-					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+							class="fab fa-facebook-f"></i></a>
 
 
 					<!-- Twitter -->
-					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-twitter"></i></a>
+					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+							class="fab fa-twitter"></i></a>
 
 					<!-- Google -->
-					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-google"></i></a>
+					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+							class="fab fa-google"></i></a>
 
 					<!-- Instagram -->
-					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-instagram"></i></a>
+					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+							class="fab fa-instagram"></i></a>
 
 					<!-- Linkedin -->
-					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
+					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+							class="fab fa-linkedin-in"></i></a>
 
 					<!-- Github -->
-					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-github"></i></a>
+					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+							class="fab fa-github"></i></a>
 				</section>
 				<!-- Section: Social media -->
 			</div>

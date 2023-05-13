@@ -28,7 +28,7 @@ if (isset($_COOKIE['id'])) {
 
     if ($privilege != 'admin' && $privilege != 'owner') {
         $_SESSION['error'] = 1;
-        $_SESSION['message'] = "Access Denied: only admins page";
+        $_SESSION['message'] = "This is page for admin";
         header('location: ../index.php');
         exit;
     }
@@ -47,9 +47,9 @@ if (isset($_COOKIE['id'])) {
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/all.min.css" />
     <link rel="stylesheet" href="../css/home.css" />
-    <link rel="stylesheet" href="../css/add_event.css" />
+    <link rel="stylesheet" href="../css/join_request.css" />
 
-    <title>add Event</title>
+    <title>join request</title>
 </head>
 
 <body>
@@ -84,14 +84,14 @@ if (isset($_COOKIE['id'])) {
                     }
                     ?>
 
-					<?php
-					if ($privilege == 'admin' || $privilege == 'owner') {
-						echo '<li class="nav-item">
-                    			<a class="nav-link" aria-current="page" href="#">Join-Request</a>
+                    <?php
+                    if ($privilege == 'admin' || $privilege == 'owner') {
+                        echo '<li class="nav-item">
+                    			<a class="nav-link active disabled" aria-current="page" href="#">Join-Request</a>
                 			  </li>
             			';
-					}
-					?>
+                    }
+                    ?>
 
                     <li class="nav-item mt-2 m-lg-0">
                         <?php
@@ -130,113 +130,80 @@ if (isset($_COOKIE['id'])) {
         </div>
     </nav>
 
-    <div class="form">
-        <form class="needs-validation" novalidate method="post" action="../php_request/add_event_req.php"
-            enctype='multipart/form-data'>
-            <div class="form row m-2">
-                <h3 class="h3 text-center mb-4" style="font-family : monospace;">Add Event Application</h3>
-            </div>
 
-            <div class="form row m-2">
-                <div class="col-md-6 mb-2">
-                    <label for="title">Title <sub style='color:red;'>*</sub> </label>
-                    <input type="text" class="form-control r" id="title" placeholder="Title" name="title" required>
-                </div>
-
-                <div class="col-md-6 mb-2">
-                    <label for="type">Event Type <sub style='color:red;'>*</sub></label>
-                    <select id="type" class='form-select' name='type' required>
-                        <option value="course">course</option>
-                        <option value="contest">contest</option>
-                        <option value="conference">conference</option>
-                    </select>
-                </div>
-
-            </div>
-
-            <div class="form row m-2">
-                <div class="col-md-4 mb-2 md-form md-outline input-with-post-icon datepicker">
-                    <label for="from">From <sub style='color:red;'>*</sub></label>
-                    <input placeholder="Select date" type="date" id="from" name="from" class="form-control" required>
-                </div>
-
-                <div class="col-md-4 mb-2 md-form md-outline input-with-post-icon datepicker">
-                    <label for="to">To <sub style='color:red;'>*</sub></label>
-                    <input placeholder="Select date" type="date" id="to" name="to" class="form-control" required>
-                </div>
-            </div>
-
-            <div class="form row m-2">
-                <div class="col-md-4 mb-2 md-form md-outline input-with-post-icon datepicker">
-                    <label for="start">Start <sub style='color:red;'>*</sub> </label>
-                    <input placeholder="Select date" type="datetime-local" id="start" name="start" class="form-control"
-                        required>
-                </div>
-
-                <div class="col-md-4 mb-2 md-form md-outline input-with-post-icon datepicker">
-                    <label for="end">End <sub style='color:red;'>*</sub> </label>
-                    <input placeholder="Select date" type="datetime-local" id="end" name="end" class="form-control"
-                        required>
-                </div>
-
-            </div>
-
-            <div class="form row m-2">
-                <div class="col-md-12 mb-2">
-                    <label for="summary">Summary <sub style='color:red;'>without details *</sub> </label>
-                    <textarea class="form-control" id="summary" name="summary" rows="2" required></textarea>
-                </div>
-            </div>
-
-            <div class="form row m-2">
-                <div class="col-md-12 mb-2">
-                    <label for="description">Description <sub style='color:blue;'>in details</sub> </label>
-                    <textarea class="form-control" id="description" name="description" rows="4"></textarea>
-                </div>
-            </div>
-
-            <div class="form row m-2">
-                <div class="col-md-12 mb-2">
-                    <label for="content">Content</label>
-                    <textarea class="form-control" id="content" name="content" rows="4"></textarea>
-                </div>
-            </div>
-
-            <div class="form row m-2">
-                <div class="col-md-12 mb-2">
-                    <label for="qualifications">Qualifications</label>
-                    <textarea class="form-control" id="qualifications" name="qualifications" rows="4"></textarea>
-                </div>
-            </div>
-
-            <div class="form row m-2">
-                <div class="col-md-12 mb-2">
-                    <label for="experience">Experience</label>
-                    <textarea class="form-control" id="experience" name="experience" rows="4"></textarea>
-                </div>
-            </div>
-
-            <div class="form row i-college m-2">
-                <div class="col-md-6 mb-2">
-                    <label class="form-label" for="num_lecture">Number of lectures</label>
-                    <input type="number" id="num_lecture" name="num_lecture" min='0' class="form-control" />
-                </div>
-            </div>
-
-            <div class="form row i-image m-2">
-                <div class="col-md-6 mb-2">
-                    <label for="file" class="form-label">Upload image <sub style='color:red;'>*</sub></label>
-                    <input class="form-control" type="file" id="file" name="url_img" enctype="multipart/form-data"
-                        required>
-                </div>
-            </div>
-
-            <button class="btn btn-primary m-2" type="submit" style="
-                margin-left: 40% !important;
-                width: 20%;
-            ">Add Event</button>
-        </form>
+    <div class="form row m-2">
+        <h3 class="h3 text-center mb-4" style="font-family : monospace;">Join Requests</h3>
     </div>
+
+    <?php
+    $select_q = "SELECT * FROM `user` WHERE `state` ='0'";
+    $data = mysqli_query($con, $select_q);
+    $results = mysqli_fetch_all($data, MYSQLI_ASSOC);
+
+
+    if (empty($results)) {
+        echo "
+            <p style='
+            height: 75vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            color: #c3c3c3;
+            margin: 0;
+            '>NO REQUESTS YET</p>
+            ";
+    }else{
+
+        $_SESSION['users'] = [];
+
+        echo'
+        <div class="cont m-3" style="min-height: 75vh;">
+        <table class="table align-middle mb-0 bg-white m-0 text-center">
+            <tbody>
+                <hr class="m-0">
+        ';
+        $i=0;
+        foreach($results as $result){
+
+            $_SESSION['users'][$i] = $result['id_user'];
+            
+            echo"
+            <tr>
+                <th scope='row'>" .ucfirst($result['first_name']) . ' ' . ucfirst($result['second_name']) . ' ' . ucfirst($result['last_name'])."</th>
+                <td>". ucwords($result['college']) ."</td>
+                <td><button type='button' class='btn btn-secondary info-user' id='$i'><i class='fa-solid fa-eye'></i></button></td>
+            </tr>
+            ";
+            $i++;
+        }
+        echo '
+                </tbody>
+            </table>
+        </div>
+        ';
+
+        echo '<div class="overlay"></div>';
+        $i=0;
+        foreach($results as $result){
+            echo"
+            <form method='post' action='../php_request/join_event.php' class='overform_card user-$i'>
+                <div class='d-flex' style='
+                justify-content: space-around;
+                flex-wrap: wrap;
+                align-items: center;
+                '>
+                    <button type='submit' style='width:200px' class='btn btn-success mb-2' name='accept' value='$i'>Accept</button>
+                    <button type='submit' style='width:200px'  class='btn btn-danger mb-2' name='reject' value='$i'>Reject</button>
+                </div>
+                <div class='mb-3 btn xmark'><i class='fa-solid fa-xmark'></i></div>
+            </form>
+            ";
+            $i++;
+        }
+    }
+    ?>
+
 
 
     <div class="footer">
@@ -289,7 +256,7 @@ if (isset($_COOKIE['id'])) {
 
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="../js/all.min.js"></script>
-    <script src="../js/add_event.js"></script>
+    <script src="../js/join_request.js"></script>
     <?php
     if (isset($_SESSION['error']) && $_SESSION['error'] != 0) {
         echo "<div class='alert alert-danger' role='alert' style='

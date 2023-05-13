@@ -97,12 +97,6 @@ $_SESSION['choosed_questions_id_ordered'] = $q_keys_db;
 					<li class="nav-item">
 						<a class="nav-link px-lg-3" href="event.php">Events</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link px-lg-3" href="#">Chat</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link px-lg-3" href="#">Members</a>
-					</li>
 					<li class="nav-item mt-2 m-lg-0">
 						<button class="btn btn-success ms-lg-3 login">
 							Login

@@ -85,7 +85,7 @@ function discard_trivial_words( mysqli $conn , string $to_clean_trivial , int $w
 	return $query_imp_words;
 }
 
-function search_events_main(string $to_search, int $limit_res = 4 , float $relevance_threshhold = 0.2 ): array | int//relevance in our MySQL is between 0-1
+function search_events_main(string $to_search, int $limit_res = 6 , float $relevance_threshhold = 0.2 ): array | int//relevance in our MySQL is between 0-1
 {
 	$final_found_events = [];
 	$conn = mysqli_connect('localhost' , 'root' , '' , 'community_website_db');
@@ -150,26 +150,27 @@ function search_events_main(string $to_search, int $limit_res = 4 , float $relev
 	$eventType_squery [] = "if (`summary` LIKE '%"    . $to_search_esc . "%' , {$weights['summary_full']} , 0)";
 
 	//fill  keywords match 
-	// $keyword = null;
-		//patern matches = one extra or less char to keyword | two adjacent chars swapped |  extra one letter inserted after any of first 4 chars
-	// $pattern = '[[:<:]]('.substr_replace($keyword, '[[:alpha:]]?', 1, 0).'|'
-	// 							.substr_replace($keyword, '[[:alpha:]]?', 0, 1).'|'
-	// 							.substr_replace($keyword, '', 1, 1).'|'
-	// 							.substr_replace($keyword, '[[:alpha:]]?', 2, 0).'|'
-	// 							.substr_replace($keyword, '[[:alpha:]]?', 1, 1).'|'
-	// 							.substr_replace($keyword, '[[:alpha:]]?', 0, 2).'|'
-	// 							.substr_replace($keyword, $keyword[1].$keyword[0], 0, 1).'|'
-	// 							.substr_replace($keyword, $keyword[1].$keyword[0], 1, 1).'|'
-	// 							.substr_replace($keyword, $keyword[3].$keyword[2].$keyword[1].$keyword[0], 0, 2).')[[:>:]]';
+	$keyword = '';
+		// patern matches = one extra or less char to keyword | two adjacent chars swapped |  extra one letter inserted after any of first 4 chars
+	$pattern = '[[:<:]]('.substr_replace($keyword, '[[:alpha:]]?', 1, 0).'|'
+								.substr_replace($keyword, '[[:alpha:]]?', 0, 1).'|'
+								.substr_replace($keyword, '', 1, 1).'|'
+								.substr_replace($keyword, '[[:alpha:]]?', 2, 0).'|'
+								.substr_replace($keyword, '[[:alpha:]]?', 1, 1).'|'
+								.substr_replace($keyword, '[[:alpha:]]?', 0, 2).'|'
+								.substr_replace($keyword, $keyword[1].$keyword[0], 0, 1).'|'
+								.substr_replace($keyword, $keyword[1].$keyword[0], 1, 1).'|'
+								.substr_replace($keyword, $keyword[3].$keyword[2].$keyword[1].$keyword[0], 0, 2).')[[:>:]]';
 
 	foreach ( $to_search_keywords  as $keyword){
-		$eventName_squery [] = "if (`event_name` LIKE '%" . $keyword . "%' , {$weights['event_name_sub']} , 0)"; 
-		$eventType_squery [] = "if (`event_type` LIKE '%" . $keyword . "%' , {$weights['event_type']} , 0)";  
-		$summary_squery   [] = "if (`summary` LIKE '%"    . $keyword . "%' , {$weights['summary']} , 0)"; 
-		$fromDate_squery  [] = "if (`from_date` LIKE '%"  . $keyword . "%' , {$weights['from_date']} , 0)";
-		$startDate_squery [] = "if (`start_date` LIKE '%" . $keyword . "%' , {$weights['start_date']} , 0)" ;
-		$exp_squery       [] = "if (`experience` LIKE '%" . $keyword . "%' , {$weights['experience']} , 0)" ;
-		$content_squery   [] = "if (`content` LIKE '%"    . $keyword . "%' , {$weights['content']} , 0)" ;
+		$keyword = substr($keyword , 0 -1);
+		$eventName_squery [] = "if (`event_name` REGEXP '%" . $keyword . "_%' , {$weights['event_name_sub']} , 0)"; 
+		$eventType_squery [] = "if (`event_type` REGEXP '%" . $keyword . "%' , {$weights['event_type']} , 0)";  
+		$summary_squery   [] = "if (`summary` REGEXP '%"    . $keyword . "%' , {$weights['summary']} , 0)"; 
+		$fromDate_squery  [] = "if (`from_date` REGEXP '%"  . $keyword .   "%' , {$weights['from_date']} , 0)";
+		$startDate_squery [] = "if (`start_date` REGEXP '%" . $keyword .   "%' , {$weights['start_date']} , 0)" ;
+		$exp_squery       [] = "if (`experience` REGEXP '%" . $keyword .   "%' , {$weights['experience']} , 0)" ;
+		$content_squery   [] = "if (`content` REGEXP '%"    . $keyword .   "%' , {$weights['content']} , 0)" ;
 	}
 
 //in case any is empty make expression = 0  (summation needs int val not null or other vals)

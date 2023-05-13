@@ -1,4 +1,4 @@
-    let b_l = document.querySelector(".login");
+let b_l = document.querySelector(".login");
     let b_s = document.querySelector(".signup");
     
     if(b_l!=null){
@@ -100,17 +100,31 @@
     });
     }
 
-var forms = document.getElementsByClassName('needs-validation');
-// Loop over them and prevent submission
-var validation = Array.prototype.filter.call(forms, function(form) {
-    form.addEventListener('submit', function(event) {    
-        if (form.checkValidity() === false ) {
-            form.classList.add('was-validated');
-            event.preventDefault();
-        }
-        else{
-            setTimeout(event.returnValue = true,1000);
-        }
-    }, false);
-},false);
+    let user_b = document.querySelectorAll('.info-user');
+    let overlay = document.querySelector('.overlay');
+    console.log(overlay);
+    user_b.forEach((elem)=>{
+        elem.addEventListener('click',()=>{
+            let user_in = elem.getAttribute('id');
+            let form = document.querySelector(`.user-${user_in}`);
+            overlay.style.display = 'block';
+            form.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        })
+    })
+          
+overlay.onclick = function(){
+        let forms = document.querySelectorAll('form');
+        overlay.style.display = 'none';
+        forms.forEach((elem)=>{
+            elem.style.display='none';
+        })
+        document.body.style.overflow = 'initial';
+    }
 
+let b_x = document.querySelectorAll('.xmark');
+b_x.forEach((elem)=>{
+    elem.addEventListener('click',()=>{
+        overlay.click();
+    })
+})

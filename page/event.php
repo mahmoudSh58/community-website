@@ -63,14 +63,6 @@ if (isset($_COOKIE['id'])) {
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-					<?php
-					if ($privilege == 'admin' || $privilege == 'owner') {
-						echo '<li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Control</a>
-                  </li>
-            ';
-					}
-					?>
 					<li class="nav-item">
 						<a class="nav-link" href="../index.php">Home</a>
 					</li>
@@ -82,11 +74,20 @@ if (isset($_COOKIE['id'])) {
 					if (isset($_COOKIE['id'])) {
 						echo '
           <li class="nav-item">
-            <a class="nav-link px-lg-3" href="#">Chat</a>
+          <a class="nav-link px-lg-3 disabled" style="color: #9E9E9E;" href="#">Forum<sub>(soon)</sub></a>
           </li>
           <li class="nav-item">
             <a class="nav-link px-lg-3" href="member.php">Members</a>
           </li>';
+					}
+					?>
+
+					<?php
+					if ($privilege == 'admin' || $privilege == 'owner') {
+						echo '<li class="nav-item">
+                    			<a class="nav-link" aria-current="page" href="#">Join-Request</a>
+                			  </li>
+            			';
 					}
 					?>
 
@@ -143,10 +144,9 @@ if (isset($_COOKIE['id'])) {
 						"ended" => "Ended"
 					];
 					foreach ($options as $value => $text) {
-						if ($_SESSION['last_filter'] == $value){
+						if ($_SESSION['last_filter'] == $value) {
 							echo "<option value=$value selected>$text</option>";
-						}
-						else
+						} else
 							echo "<option value='$value'>$text</option>";
 					}
 
@@ -155,16 +155,15 @@ if (isset($_COOKIE['id'])) {
 				<button type="submit" class="btn btn-primary">Filter</button>
 			</form>
 			<form method="get" action='../php_request/search_event.php' style='width:250px; padding:8px' class='input-group'>
-				<?php if (isset($_SESSION['search_events_res']) and isset($_SESSION['last_search'])){
+				<?php if (isset($_SESSION['search_events_res']) and isset($_SESSION['last_search'])) {
 					$last_searched = htmlspecialchars($_SESSION['last_search']); //alter style = change placeholder to be Search and add value="$last_searched" choose what best suits you
 					echo "<div class=\"form-outline\">
-						<input type=\"search\" maxlength=\"100\" name=\"to_search\" style=\"border-radius: 5px 0 0 5px;width: 193px;\" placeholder=\"$last_searched\" class=\"form-control\" />
+						<input type=\"search\" maxlength=\"100\" name=\"to_search\" style=\"border-radius: 5px 0 0 5px;width: 193px;\" value=$last_searched placeholder=\"Search\" class=\"form-control\" />
 					</div>";
 					echo "<button type=\"submit\" class=\"btn btn-primary\">
-					<i class=\"fas fa-close\"></i>
+					<i class=\"fas fa-search\"></i>
 					</button>";
-					
-				}else{
+				} else {
 					echo "<div class=\"form-outline\">
 						<input type=\"search\" maxlength=\"100\" name=\"to_search\" style=\"border-radius: 5px 0 0 5px;width: 193px;\" placeholder=\"Search\" class=\"form-control\" />
 					</div>";
@@ -188,18 +187,18 @@ if (isset($_COOKIE['id'])) {
 		</div>
 	</div>
 	<!-- <?php
-	#TESTING
-	echo "the state filter is " . var_dump(isset($_SESSION['filter_events_res']));
-	echo "<br>";
-	echo $_SESSION['error'];
-	echo "<br>";
-	echo "the search" . var_dump(isset($_SESSION['search_events_res']));
-	echo "<br>";
-	echo ($_SERVER['REQUEST_METHOD'] == 'GET');
-	echo "<br>";
-	echo var_dump($_SESSION['last_search'])
-	//END TESTING 
-	?> -->
+			#TESTING
+			echo "the state filter is " . var_dump(isset($_SESSION['filter_events_res']));
+			echo "<br>";
+			echo $_SESSION['error'];
+			echo "<br>";
+			echo "the search" . var_dump(isset($_SESSION['search_events_res']));
+			echo "<br>";
+			echo ($_SERVER['REQUEST_METHOD'] == 'GET');
+			echo "<br>";
+			echo var_dump($_SESSION['last_search'])
+			//END TESTING 
+			?> -->
 	<div class="cont">
 		<?php
 
@@ -212,7 +211,7 @@ if (isset($_COOKIE['id'])) {
 		} else {
 
 
-			if (isset($_SESSION['search_events_res']) and !isset($_SESSION['filter_events_res']) ) {
+			if (isset($_SESSION['search_events_res']) and !isset($_SESSION['filter_events_res'])) {
 				$search_events_res = $_SESSION['search_events_res']; // session var  from search_event.php
 
 				if ($search_events_res  == -1)
@@ -231,8 +230,8 @@ if (isset($_COOKIE['id'])) {
 			} else {
 				$search_events_res = $_SESSION['search_events_res']; // session var  from search_event.php
 				$filter_events_res = $_SESSION['filter_events_res']; //  session var from filter_event.php\
-				
-				if(! is_int($filter_events_res) )
+
+				if (!is_int($filter_events_res))
 					foreach ($filter_events_res as $fltr_res) {
 						if (is_int($search_events_res))
 							break;
@@ -270,6 +269,20 @@ if (isset($_COOKIE['id'])) {
         ";
 		} else {
 			foreach ($results as $result) {
+
+				$backgroung_type = null;
+				$color_type = null;
+
+				if ($result['event_type'] == 'course') {
+					$backgroung_type = 'red';
+					$color_type = 'white';
+				} else if ($result['event_type'] == 'conference') {
+					$backgroung_type = '#FFEB3B';
+					$color_type = 'black';
+				} else if ($result['event_type'] == 'contest') {
+					$backgroung_type = 'blue';
+					$color_type = 'white';
+				}
 
 				$backgroung_type = null;
 				$color_type = null;

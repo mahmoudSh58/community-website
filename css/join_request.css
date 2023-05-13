@@ -1,0 +1,27 @@
+.overlay {
+    display: none;
+  }
+  
+.overform_card {
+    display: none;
+    position: fixed;
+    top: 5%;
+    left: 10%;
+    width: 80%;
+    height: 90%;
+    padding: 20px;
+    background-color: white;
+    z-index: 10000;
+    overflow: auto;
+  }
+
+.xmark {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    font-size: 1.5rem;
+}
+
+.xmark:hover{
+    color: red;
+}

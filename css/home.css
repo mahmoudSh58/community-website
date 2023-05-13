@@ -149,4 +149,6 @@ body {
     justify-content: center;
 }
 
-
+li {
+    margin: 0 .8rem;
+}
