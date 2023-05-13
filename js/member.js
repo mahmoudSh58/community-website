@@ -101,4 +101,59 @@ document.addEventListener("DOMContentLoaded", function() {
         window.location.replace("signup.php");
       });
     }
+
+    let admin_b = document.querySelectorAll(".admin_b");
+    admin_b.forEach((elem)=>{
+
+      elem.addEventListener('click',function() {
+
+        let id = elem.getAttribute('id');
+
+        const overlay = document.createElement('div');
+
+        const form = document.createElement('form');
+        
+        form.setAttribute('method','post');
+        form.setAttribute('action','../php_request/action_user.php');
+        form.setAttribute('class','text-center');
+        form.setAttribute('style','border-radius: 10px;');
+        form.innerHTML= `
+        <div class="mb-3">
+        <label for="role " style ='margin: 15px 0 7px 0;'>Choose Role</label>
+          <select class="form-select text-center" id='role' name='role' required>
+            <option value="HR">HR</option>
+            <option value="instructor">Instructor</option>
+            <option value="admin">admin</option>
+          </select>
+        </div> 
+        <input type='hidden' name='id' value='${id}'>
+        <button type="submit" name='submit' value='admin' class="btn btn-success mx-auto">Continue</button>
+        `
+  
+        let b_x = document.createElement('div');
+        b_x.innerHTML = `<i class="fa-solid fa-xmark"></i>`;
+        b_x.classList.add("mb-3" ,"btn" ,"xmark");
+        form.appendChild(b_x);
+  
+        form.classList.add('overform');
+  
+        overlay.classList.add('overlay');
+        overlay.classList.add('text-center');
+        document.body.appendChild(overlay);
+        document.body.style.overflow = 'hidden';
+        
+        overlay.onclick = function(){
+            overlay.remove();
+            form.remove();
+            document.body.style.overflow = 'initial';
+        }
+        
+        b_x.onclick = function () {
+            overlay.click();
+        };
+  
+        document.body.appendChild(form);
+    });                
     });
+    });
+

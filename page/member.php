@@ -50,7 +50,7 @@ if (isset($_COOKIE['id'])) {
 
 	<script src="../js/icon.js"></script>
 
-    <title>Event</title>
+    <title>Members</title>
 </head>
 
 <body>
@@ -232,7 +232,7 @@ if (isset($_COOKIE['id'])) {
                                 echo "
                                     <form class='dropdown-item p-0 m-0' action='../php_request/action_user.php' method='post'>
                                         <input type='hidden' name='id' value='$d'>
-                                        <a type='submit' name='submit' value='unadmin' class='btn btn-link' style = 'text-decoration: none;color: red;'>UnAdmin</a>
+                                        <button type='submit' name='submit' value='unadmin' class='btn btn-link' style = 'text-decoration: none;color: red;'>UnAdmin</button>
                                     </form>
                                     ";
                             } else {
@@ -250,10 +250,7 @@ if (isset($_COOKIE['id'])) {
                                             <button type='submit' name='submit' value='block' class='btn btn-link' style = 'text-decoration: none;color: blue;'>Block</button>
                                         </form>
 
-                                        <form class=' dropdown-item p-0 m-0' action='../php_request/action_user.php' method='post'>
-                                            <input type='hidden' name='id' value='$d'>
-                                            <button type='submit' name='submit' value='admin' class='btn btn-link' style = 'text-decoration: none;color: blue;'>Admin</button>
-                                        </form>
+                                        <button id='$d' value='admin' class='btn btn-link admin_b' style = 'text-decoration: none;color: blue;'>Admin</button>
                                         ";
                                 }
                             }
