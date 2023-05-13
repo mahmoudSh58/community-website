@@ -49,7 +49,9 @@ if (isset($_COOKIE['id'])) {
 	<link rel="stylesheet" href="../css/home.css" />
 	<link rel="stylesheet" href="../css/add_event.css" />
 
-	<title>Edit Event</title>
+	<script src="../js/icon.js"></script>
+
+    <title>Edit Event</title>
 </head>
 
 <body>

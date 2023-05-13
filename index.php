@@ -51,7 +51,37 @@ if (isset($_COOKIE['id'])) {
 	<link rel="stylesheet" href="css/bootstrap.min.css" />
 	<link rel="stylesheet" href="css/all.min.css" />
 	<link rel="stylesheet" href="css/home.css" />
-	<link rel="shortcut icon" href="image/eksu-white.ico" />
+
+	<script>
+
+		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			// Dark mode is enabled
+			var browserMode = 'dark';
+		} else {
+			// Light mode is enabled
+			var browserMode = 'light';
+		}
+
+		
+		var icon_dark = document.createElement('link');
+		icon_dark.rel = 'icon';
+		icon_dark.href = 'image/eksu-white.ico';
+
+		var icon_light = document.createElement('link');
+		icon_light.rel = 'icon';
+		icon_light.href = 'image/eksu-black.ico';
+
+		var iconMetaTag = document.querySelector('#icon_tap');
+
+		if (browserMode === 'dark') {
+			document.head.appendChild(icon_dark);
+		} else {
+			document.head.appendChild(icon_light);
+		}
+
+	</script>
+
+
 	<script src="js/home_f.js"></script>
 	<title>PS Community</title>
 </head>
@@ -91,7 +121,7 @@ if (isset($_COOKIE['id'])) {
             <a class="nav-link px-lg-3" href="page/member.php">Members</a>
           </li>';
 					}
-					
+
 					?>
 					<?php
 					if ($privilege == 'admin' || $privilege == 'owner') {
