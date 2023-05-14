@@ -6,6 +6,8 @@
 // TODO if number names to actual numbr  (search both)-> one to 1..
 // TODO its better : seprate words from number like level1 -> level 1
 
+//TODO : add show clicke count and also order by it and relevance score
+
 if (session_status() === PHP_SESSION_NONE)
 	session_start();
 //reset search and search only on || login || logout || when user uses them
@@ -213,7 +215,7 @@ function search_events_main(string $to_search, int $limit_res = 4 , float $relev
   				    (" . implode(" + " , $startDate_squery ) . ") +
   				    (" . implode(" + " , $exp_squery )       . ") +
   				    (" . implode(" + " , $content_squery )   . ") )
-  AS relevance FROM `event` HAVING relevance > $relevance_threshhold  ORDER BY relevance DESC , `event`.`to_date` DESC LIMIT $limit_res";
+  AS relevance FROM `event` HAVING relevance > $relevance_threshhold  ORDER BY relevance DESC LIMIT $limit_res";
 
   	// Execute DB Search Query
 	$db_search_res = mysqli_query( $conn , $main_search_query );

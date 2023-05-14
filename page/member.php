@@ -84,7 +84,7 @@ if (isset($_COOKIE['id'])) {
                     <?php
                     if ($privilege == 'admin' || $privilege == 'owner') {
                         echo '<li class="nav-item">
-                    			<a class="nav-link" aria-current="page" href="#">Join-Request</a>
+                    			<a class="nav-link" aria-current="page" href="join_request.php">Join-Request</a>
                 			  </li>
             			';
                     }
