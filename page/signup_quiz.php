@@ -75,9 +75,10 @@ $_SESSION['choosed_questions_id_ordered'] = $q_keys_db;
 	<link rel="stylesheet" href="../css/all.min.css" />
 	<link rel="stylesheet" href="../css/home.css" />
 	<link rel="stylesheet" href="../css/signup.css" />
-	<link rel="stylesheet" href="../js/highlight_js/styles/default.min.css">
-
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
 	<script src="../js/icon.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
 
 	<title>Signup Quiz</title>
 </head>

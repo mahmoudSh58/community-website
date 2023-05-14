@@ -70,8 +70,9 @@ if (isset($_COOKIE['id'])) {
 	<link rel="stylesheet" href="../css/all.min.css" />
 	<link rel="stylesheet" href="../css/home.css" />
 	<link rel="stylesheet" href="../css/join_request.css" />
-	<link rel="stylesheet" href="../js/highlight_js/styles/default.min.css">
-
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
 
 	<script src="../js/icon.js"></script>
 
@@ -410,10 +411,6 @@ if (isset($_COOKIE['id'])) {
 	<script src="../js/bootstrap.bundle.min.js"></script>
 	<script src="../js/all.min.js"></script>
 	<script src="../js/join_request.js"></script>
-	<script src="../js/highlight_js/highlight.min.js"></script>
-	<script>
-		hljs.highlightAll();
-	</script>
 
 	<?php
 	if (isset($_SESSION['error']) && $_SESSION['error'] != 0) {
