@@ -200,6 +200,7 @@ if (isset($_COOKIE['id'])) {
             <tr>
                 <th scope='row'>" . ucfirst($result['first_name']) . ' ' . ucfirst($result['second_name']) . ' ' . ucfirst($result['last_name']) . "</th>
                 <td>" . ucwords($result['college']) . "</td>
+				<td>" . ucwords($result['experience']) . "</td>
                 <td><button type='button' class='btn btn-secondary info-user' id='$i'><i class='fa-solid fa-eye'></i></button></td>
             </tr>
             ";
