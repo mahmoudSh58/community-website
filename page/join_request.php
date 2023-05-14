@@ -196,11 +196,14 @@ if (isset($_COOKIE['id'])) {
 			$_SESSION['users'][$i] = $result['id_user'];
 			$_SESSION['users_exp'][$i] = $result['experience'];
 
+			$age = date('Y') - intval($result['birthday']);
+
 			echo "
             <tr>
                 <th scope='row'>" . ucfirst($result['first_name']) . ' ' . ucfirst($result['second_name']) . ' ' . ucfirst($result['last_name']) . "</th>
                 <td>" . ucwords($result['college']) . "</td>
 				<td>" . ucwords($result['experience']) . "</td>
+				<td>" . $age . " Y</td>
                 <td><button type='button' class='btn btn-secondary info-user' id='$i'><i class='fa-solid fa-eye'></i></button></td>
             </tr>
             ";
