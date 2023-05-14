@@ -355,7 +355,7 @@ if (isset($_COOKIE['id'])) {
 			echo "<hr class=\"border-primary my-4 \">";
 			echo "
 			<div class='text-center bg-white text-black rounded py-2 mb-4' style='font-weight: bold; width: 110px; margin: 0 auto; border: 2px solid black;'>
- 				 Mark: {$total_mark}
+ 				 Mark: $total_mark / $q_no 
 			</div>
 			<div class='text-center rounded py-2 mb-4' >
  				 ( hard: {$diff_arr[3]} , medium: {$diff_arr[2]} , easy: {$diff_arr[1]} )
