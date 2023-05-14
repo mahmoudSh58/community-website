@@ -249,7 +249,7 @@ if (isset($_COOKIE['id'])) {
 
             <div class='form row i-image m-2'>
                 <div class='col-md-6 mb-2'>
-                    <label for='file' class='form-label'>Upload image <sub style='color:red;'>*</sub></label>
+                    <label for='file' class='form-label'>Upload image</label>
                     <input class='form-control' type='file' id='file' name='url_img'  enctype='multipart/form-data'>
                 </div>
             </div>
