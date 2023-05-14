@@ -55,8 +55,8 @@ body {
 .overform {
     position: fixed;
     top: 10%;
-    left: 25%;
-    width: 50%;
+    left: 15%;
+    width: 70%;
     padding: 20px;
     background-color: white;
     z-index: 10000;

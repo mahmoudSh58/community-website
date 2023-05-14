@@ -142,7 +142,6 @@ if (isset($_COOKIE['id'])) {
 		exit;
 	}
 
-	$id_event = $_POST['id'];
 	$select_q = "SELECT `id_event`, `event_type`, `event_name`, `from_date`, `to_date`, `start_date` , `summary`, `description`, `end_date`, `num_lecture`, `content`, `qualification`, `experience`  FROM `event` WHERE `id_event` =$id_event";
 	$data = mysqli_query($con, $select_q);
 	$result = mysqli_fetch_assoc($data);
@@ -250,8 +249,8 @@ if (isset($_COOKIE['id'])) {
 
             <div class='form row i-image m-2'>
                 <div class='col-md-6 mb-2'>
-                    <label for='file' class='form-label'>Upload image <sub style='color:red;'>*</sub></label>
-                    <input class='form-control' type='file' id='file' name='url_img'  enctype='multipart/form-data' required>
+                    <label for='file' class='form-label'>Upload image</label>
+                    <input class='form-control' type='file' id='file' name='url_img'  enctype='multipart/form-data'>
                 </div>
             </div>
 
