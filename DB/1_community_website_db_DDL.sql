@@ -10,10 +10,9 @@ SET time_zone = "+00:00";
 	
 
 -- TODO : add added_by   to problems table 
--- TODO : add user_name  to user table
--- TODO : add user_name  to user_ans atble
--- TODO : add total_mark to end of each 4 questions to user_ans table
-
+-- TODO : add user_name  to user table (login by it  not very imp todo)
+-- TODO : add user_name  to user_ans atble same as prev todo
+-- TODO : add source_link colm in DB event table
 
 
 -- Table structure for table `user`
@@ -42,7 +41,6 @@ CREATE TABLE  `user` (
 )  ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_general_ci;
 
 
-
 -- Table structure for table `event`
 CREATE TABLE `event` (
 	`id_event` int(11) PRIMARY KEY  AUTO_INCREMENT,
@@ -59,7 +57,7 @@ CREATE TABLE `event` (
 	`content` text , -- not needed for contest
 	`qualification` text  , -- if course only 
 	`experience` text  , -- if contest  = Beginner , Intermediate(middle) , Expert
-	`made_by` varchar(100) NOT NULL, 
+	`made_by` varchar(100) , 
 	`edit_by` varchar(100) , 
 	`img_url` varchar(400) NOT NULL DEFAULT '../image/events/default.jpg'
 	
@@ -94,7 +92,7 @@ CREATE  TABLE  `problems` (
 CREATE TABLE `user_ans` (
 	`ans_id` INT(11) PRIMARY KEY AUTO_INCREMENT ,
 	`id_user` varchar(100) NOT NULL, 
-	`prob_id` INT(11) NOT NULL, 
+	`prob_id` INT(11), 
 	`ans` varchar(11) NOT NULL  ,
  	`correct_ans` varchar(11) NOT NULL  -- ans a , b , c
 	

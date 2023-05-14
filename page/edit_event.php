@@ -272,7 +272,7 @@ if (isset($_COOKIE['id'])) {
 				<!-- Section: Social media -->
 				<section class='mb-4'>
 					<!-- Facebook -->
-					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+					<a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/groups/918934416132082" role="button"><i class="fab fa-facebook-f"></i></a>
 
 					<!-- Twitter -->
 					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-twitter"></i></a>

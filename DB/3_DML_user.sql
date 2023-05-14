@@ -6,9 +6,10 @@
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
--- DISABLE FOREIGN KEY CHECKs BEFORE INSERTING SAMPLE DATA !!!
--- DISABLE FOREIGN KEY CHECKs BEFORE INSERTING SAMPLE DATA !!!
--- DISABLE FOREIGN KEY CHECKs BEFORE INSERTING SAMPLE DATA !!!
+-- DISABLE FOREIGN KEY CHECK !!!
+-- DISABLE FOREIGN KEY CHECK !!!
+-- DISABLE FOREIGN KEY CHECK !!!
+-- DISABLE FOREIGN KEY CHECK !!!
 
 START TRANSACTION;
 
@@ -17,11 +18,11 @@ START TRANSACTION;
 
 INSERT INTO `user` (`id_user`, `role`, `privilege`, `first_name`, `second_name`, `last_name`, `email`, `password`, `governorate`, `city`, `college`, `level`, `birthday`, `gender`, `experience`, `state`, `blocked_by`, `accept_by`, `time`) VALUES
 ('645404bac1e07', 'head', 'owner', 'mohamed', 'mohamed', 'saleh', 'alrisha77777@gmail.com', '$2y$10$3lKP./bldfmwFQfGzIhE4ObmrhQPxyIwYFdJFfvj9LgpywdTFZkV.', 'kafrelsheikh', 'balteem', 'Faculty of Engineering', '3', '2001', 'male', 'middle', 1, NULL, '645404bac1e07', '2023-05-04 19:17:14'),
-('645404bac1e88', 'member', 'member', 'sameer', 'saber', 'elbanna', 'sameer@gmail.com', '$2y$10$294yuy3cy7/aklPAljIBZeHF7cyBObS2cehN.Gg7O7C8i9egFmcDS', 'damietta', 'faqous', 'faculty of engineering', '2', '2003', 'male', 'no skill', -1,'6454079ac4851', '6454079ac4851', '2023-05-04 20:47:22'),
-('6454070febaa4', 'instructor', 'admin', 'ahmed', 'mohamed', 'salem', 'ahmed@gmail.com', '$2y$10$pqgWX/T0TUP07Yg4OXXvtencuqdCPhhbEy.1xoFLovhmVzOZTwn1q', 'kafrelsheikh', 'dsouq', 'Faculty of Engineering', '2', '2002', 'male', 'no skill', 1, NULL, '645404bac1e07', '2023-05-04 19:27:11'),
 ('6454079ac4851', 'HR', 'admin', 'salem', 'mostafa', 'salem', 'salem@gmail.com', '$2y$10$P1f19idWFnADSTSYOC0hi.sEgQI4Rc2lUffnW/xdpJGYQVuOTMeO2', 'cairo', 'aboud', 'Faculty of Computer and Information', '1', '2004', 'male', 'no skill', 1, NULL, '645404bac1e07', '2023-05-04 19:29:30'),
-('645409ea3f469', 'member', 'member', 'noor', 'mohamed', 'eisa', 'noor11@gmail.com', '$2y$10$KdMbqFkByJ8a6gMVCR9NV.cNT7kL.HDYQ8zCZ8lOQXGJ1w00wcoJm', 'alexandria', 'burj alarab', 'Faculty of Engineering', '2', '2002', 'male', 'beginner', 1, NULL, '6454079ac4851', '2023-05-04 19:39:22'),
+('6454070febaa4', 'instructor', 'admin', 'ahmed', 'mohamed', 'salem', 'ahmed@gmail.com', '$2y$10$pqgWX/T0TUP07Yg4OXXvtencuqdCPhhbEy.1xoFLovhmVzOZTwn1q', 'kafrelsheikh', 'dsouq', 'Faculty of Engineering', '2', '2002', 'male', 'no skill', 1, NULL, '645404bac1e07', '2023-05-04 19:27:11'),
 ('64540aa8153bc', 'instructor', 'admin', 'noora', 'mohamed', 'elsayed', 'noora44@gmail.com', '$2y$10$DX7vxfyXx8NDI3jmQdTZU.9BbiCjEdF7aEVcT1XXt8qTZcNB3jns6', 'kafrelsheikh', 'alhamol', 'faculity of commerce', '2', '2003', 'female', 'no skill', 1, NULL, '645404bac1e07', '2023-05-04 19:42:32'),
+('645404bac1e88', 'member', 'member', 'sameer', 'saber', 'elbanna', 'sameer@gmail.com', '$2y$10$294yuy3cy7/aklPAljIBZeHF7cyBObS2cehN.Gg7O7C8i9egFmcDS', 'damietta', 'faqous', 'faculty of engineering', '2', '2003', 'male', 'no skill', -1,'6454079ac4851', '6454079ac4851', '2023-05-04 20:47:22'),
+('645409ea3f469', 'member', 'member', 'noor', 'mohamed', 'eisa', 'noor11@gmail.com', '$2y$10$KdMbqFkByJ8a6gMVCR9NV.cNT7kL.HDYQ8zCZ8lOQXGJ1w00wcoJm', 'alexandria', 'burj alarab', 'Faculty of Engineering', '2', '2002', 'male', 'beginner', 1, NULL, '6454079ac4851', '2023-05-04 19:39:22'),
 ('64540b74563cf', 'member', 'member', 'shimaa', 'naser', 'saleh', 'shimaa44@gmail.com', '$2y$10$oKfuLvL3Rcyk12gr7ABS5.MrqsS.jn/Uysl61aVzBym.eutpC/OOO', 'beheira', 'markaz badr', 'Faculty of Computer and Information', '2', '2002', 'female', 'beginner', 1, NULL, '6454079ac4851', '2023-05-04 19:45:56'),
 ('64540c1acc65e', 'member', 'member', 'magdy', 'mohamed', 'elsyed', 'magdy239@gmail.com', '$2y$10$jhNKi3YxTU8w.BekTAXRR.V413v.iB9apM1dDX83mW/lY1jVyBqyW', 'al-gharbiyeh', 'mansoura', 'Faculty of Engineering', '3', '2001', 'male', 'middle', 1, NULL, '6454079ac4851', '2023-05-04 19:48:42'),
 ('64540c7db9a88', 'member', 'member', 'karem', 'ahmed', 'halawa', 'karem24@gmail.com', '$2y$10$xy3BuZs3hSNBdGk0rBdLUu914fmSp9y06D/ElnMPkxyLmgjPkZpSS', 'kafrelsheikh', 'baltem', 'faculity of commerce', '4', '2001', 'male', 'beginner', 1, NULL, '6454079ac4851', '2023-05-04 19:50:21'),

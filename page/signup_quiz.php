@@ -1,5 +1,6 @@
+<!-- TODO: ADD HORZ seperator line like one in join requests between questions ans space between choices and statement -->
 <!-- TODO: ADD timer to quiz then restart with new random probs -->
-<!-- TODO : replace footer and header with footer and header function  -->
+<!-- TODO: replace footer and header with footer and header function  -->
 <!-- TODO: replace all this radio form type with functoins takes question and choices and prints the html form  -->
 
 <?php
@@ -119,7 +120,7 @@ $_SESSION['choosed_questions_id_ordered'] = $q_keys_db;
 				<h3 class="h3 text-center mb-4" style="font-family : monospace;">Signup Quiz<h3>
 			</div>
 			<div class="form row m-2">
-				<h6> <strong> <br>Qusetion 1:</strong> </h6>
+				<h6> <strong> <br>Question 1:</strong> </h6>
 				<?php echo "<pre><code class='language-cpp langugae-plaintext'>{$questions_statement[$q_keys_db[0]]}</code></pre>" ?>
 				</label>
 				<div class="form-check form-check-inline" id="Q1">
@@ -143,7 +144,7 @@ $_SESSION['choosed_questions_id_ordered'] = $q_keys_db;
 			</div>
 			<div class="form row m-2">
 				<label for="Q2">
-					<h6> <strong> <br>Qusetion 2:</strong> </h6>
+					<h6> <strong> <br>Question 2:</strong> </h6>
 					<?php echo "<pre><code class='language-cpp langugae-plaintext'>{$questions_statement[$q_keys_db[1]]}</code></pre>" ?>
 				</label>
 				<div class="form-check form-check-inline" id="Q2">
@@ -167,7 +168,7 @@ $_SESSION['choosed_questions_id_ordered'] = $q_keys_db;
 			</div>
 			<div class="form row m-2">
 				<label for="Q3">
-					<h6> <strong> <br>Qusetion 3:</strong> </h6>
+					<h6> <strong> <br>Question 3:</strong> </h6>
 					<?php echo "<pre><code class='language-cpp langugae-plaintext'>{$questions_statement[$q_keys_db[2]]}</code></pre>" ?>
 				</label>
 				<div class="form-check form-check-inline" id="Q3">
@@ -191,7 +192,7 @@ $_SESSION['choosed_questions_id_ordered'] = $q_keys_db;
 			</div>
 			<div class="form row m-2">
 				<label for="Q4">
-					<h6> <strong> <br>Qusetion 4:</strong> </h6>
+					<h6> <strong> <br>Question 4:</strong> </h6>
 					<?php echo "<pre><code class='language-cpp langugae-plaintext'>{$questions_statement[$q_keys_db[3]]}</code></pre>" ?>
 				</label>
 				<div class="form-radio form-radio-inline" id="Q4">
@@ -219,7 +220,7 @@ $_SESSION['choosed_questions_id_ordered'] = $q_keys_db;
 				<div class="btn-group  mx-auto  d-flex justify-content-center " style=" width : 350px; " id="bottom_buttons">
 					<a class="btn btn-primary  rounded-pill mx-1" style=" width : 100px;" href="./signup.php">
 						< Previous </a>
-							<button class="btn btn-primary  rounded-pill mx-1" type="submit">Done</button>
+							<button class="btn btn-primary  rounded-pill mx-1" type="submit">Apply</button>
 							<button class="btn btn-secondary  rounded-pill mx-1 disabled" style=" width : 100px;">
 								Next ></button>
 				</div>

@@ -1,4 +1,12 @@
 <?php
+
+
+//TODO : add filter option : By EKSU-PSC (US)
+
+
+
+
+
 if (session_status() === PHP_SESSION_NONE)
 	session_start();
 
@@ -74,7 +82,7 @@ function get_filtered_events($filter_on = null)
 
 
 		}
-	} else if ($filter_on == 'contest') {  // contests than is not ended or apply closed but about to start will get first
+	} else if ($filter_on == 'contest') {  // contests than is not ended or apply closed but about to start will get first also easier will show first to help be more beginner friendly community
 		$filter_slct_query = "SELECT * FROM `event` WHERE `event_type` = 'contest' ORDER BY CASE WHEN `to_date` < NOW() THEN 1 ELSE 0 END, `start_date` ASC ,  FIELD(`experience`, 'beginner', 'middle', 'Expert')";
 	} else if ($filter_on == 'course') { 
 		$filter_slct_query = "SELECT * FROM `event` WHERE `event_type` = 'course' -- ORDER BY `to_date` DESC";

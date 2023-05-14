@@ -1,7 +1,8 @@
 <?php
 if (session_status() == PHP_SESSION_NONE)
 	session_start();
-
+//TODO : add more button to redirect to outer links 
+// TODO : add source_link colm in DB event table
 
 $privilege = '';
 $con = mysqli_connect('localhost', 'root', '', 'community_website_db');
@@ -349,7 +350,7 @@ if (isset($_COOKIE['id'])) {
 				<!-- Section: Social media -->
 				<section class="mb-4">
 					<!-- Facebook -->
-					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+					<a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/groups/918934416132082" role="button"><i class="fab fa-facebook-f"></i></a>
 
 					<!-- Twitter -->
 					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-twitter"></i></a>
@@ -364,7 +365,7 @@ if (isset($_COOKIE['id'])) {
 					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
 
 					<!-- Github -->
-					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-github"></i></a>
+					<a class="btn btn-outline-light btn-floating m-1" href="https://github.com/mahmoudSh58/community-website" role="button"><i class="fab fa-github"></i></a>
 				</section>
 				<!-- Section: Social media -->
 			</div>

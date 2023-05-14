@@ -358,7 +358,7 @@ if (isset($_COOKIE['id'])) {
                 <!-- Section: Social media -->
                 <section class="mb-4">
                     <!-- Facebook -->
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                    <a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/groups/918934416132082" role="button"><i
                             class="fab fa-facebook-f"></i></a>
 
                     <!-- Twitter -->
@@ -378,7 +378,7 @@ if (isset($_COOKIE['id'])) {
                             class="fab fa-linkedin-in"></i></a>
 
                     <!-- Github -->
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                    <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/mahmoudSh58/community-website" role="button"><i
                             class="fab fa-github"></i></a>
                 </section>
                 <!-- Section: Social media -->
