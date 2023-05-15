@@ -119,7 +119,7 @@ if (isset($_COOKIE['id'])) {
 					<hr class="my-2">
 
 					<li>
-                    <form action="php_request/logout.php" method="post" class="d-inline">
+                    <form action="../php_request/logout.php" method="post" class="d-inline">
                     <button class="btn btn-link p-0" style="text-decoration: none;" type="submit">Logout</button>
                     </form>
                     </li>
