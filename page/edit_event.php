@@ -51,7 +51,7 @@ if (isset($_COOKIE['id'])) {
 
 	<script src="../js/icon.js"></script>
 
-    <title>Edit Event</title>
+	<title>Edit Event</title>
 </head>
 
 <body>
@@ -61,7 +61,9 @@ if (isset($_COOKIE['id'])) {
 				<img src="../image/eksu black.svg" width="70" height="50" alt="" />
 				<span class="icon-text"> EKSU-PSC</span>
 			</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -87,7 +89,7 @@ if (isset($_COOKIE['id'])) {
 					<?php
 					if ($privilege == 'admin' || $privilege == 'owner') {
 						echo '<li class="nav-item">
-                    			<a class="nav-link" aria-current="page" href="#">Join-Request</a>
+                    			<a class="nav-link" aria-current="page" href="join_request.php">Join-Request</a>
                 			  </li>
             			';
 					}
@@ -107,9 +109,18 @@ if (isset($_COOKIE['id'])) {
                     width: 10px;
                     margin-top: -6px;"
                     aria-labelledby="navbarDropdown">';
-							echo '<li>
-                    <form action="../php_request/logout.php" style="margin:10%;" method="post" class="d-inline">
-                    <button class="btn btn-warning me-lg-3" type="submit">Logout</button>
+
+							echo '
+					
+					<li>
+					<a class="nav-link disabled p-0" style="color: #9E9E9E;" href="#">Profile<sub>(soon)</sub></a>
+					</li>
+
+					<hr class="my-2">
+
+					<li>
+                    <form action="php_request/logout.php" method="post" class="d-inline">
+                    <button class="btn btn-link p-0" style="text-decoration: none;" type="submit">Logout</button>
                     </form>
                     </li>
                   </ul>
@@ -134,7 +145,8 @@ if (isset($_COOKIE['id'])) {
 	if (isset($_POST['id'])) {
 		$id_event = $_POST['id'];
 		$_SESSION['id_event'] = $id_event;
-	} else if (isset($_SESSION['id_event'])) $id_event = $_SESSION['id_event'];
+	} else if (isset($_SESSION['id_event']))
+		$id_event = $_SESSION['id_event'];
 	else {
 		$_SESSION['error'] = 1;
 		$_SESSION['message'] = "Error! Try again.";
@@ -271,22 +283,29 @@ if (isset($_COOKIE['id'])) {
 				<!-- Section: Social media -->
 				<section class='mb-4'>
 					<!-- Facebook -->
-					<a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/groups/918934416132082" role="button"><i class="fab fa-facebook-f"></i></a>
+					<a class="btn btn-outline-light btn-floating m-1"
+						href="https://www.facebook.com/groups/918934416132082" role="button"><i
+							class="fab fa-facebook-f"></i></a>
 
 					<!-- Twitter -->
-					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-twitter"></i></a>
+					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+							class="fab fa-twitter"></i></a>
 
 					<!-- Google -->
-					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-google"></i></a>
+					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+							class="fab fa-google"></i></a>
 
 					<!-- Instagram -->
-					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-instagram"></i></a>
+					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+							class="fab fa-instagram"></i></a>
 
 					<!-- Linkedin -->
-					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
+					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+							class="fab fa-linkedin-in"></i></a>
 
 					<!-- Github -->
-					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-github"></i></a>
+					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+							class="fab fa-github"></i></a>
 				</section>
 				<!-- Section: Social media -->
 			</div>

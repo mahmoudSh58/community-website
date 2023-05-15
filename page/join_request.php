@@ -4,15 +4,15 @@
 if (session_status() == PHP_SESSION_NONE)
 	session_start();
 
-	if(isset($_SESSION['users_exp']))
-		unset($_SESSION['users_exp']);
-	
-	if(isset($_SESSION['users']))
-		unset($_SESSION['users']);
+if (isset($_SESSION['users_exp']))
+	unset($_SESSION['users_exp']);
+
+if (isset($_SESSION['users']))
+	unset($_SESSION['users']);
 
 $privilege = '';
 $con = mysqli_connect('localhost', 'root', '', 'community_website_db');
-		
+
 if (mysqli_connect_errno()) {
 	echo "Failed to connect to MySQL: " . mysqli_connect_error();
 	$_SESSION['error'] = 1;
@@ -86,7 +86,9 @@ if (isset($_COOKIE['id'])) {
 				<img src="../image/eksu black.svg" width="70" height="50" alt="" />
 				<span class="icon-text"> EKSU-PSC</span>
 			</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -132,9 +134,17 @@ if (isset($_COOKIE['id'])) {
                     width: 10px;
                     margin-top: -6px;"
                     aria-labelledby="navbarDropdown">';
-							echo '<li>
-                    <form action="../php_request/logout.php" style="margin:10%;" method="post" class="d-inline">
-                    <button class="btn btn-warning me-lg-3" type="submit">Logout</button>
+							echo '
+					
+					<li>
+					<a class="nav-link disabled p-0" style="color: #9E9E9E;" href="#">Profile<sub>(soon)</sub></a>
+					</li>
+
+					<hr class="my-2">
+
+					<li>
+                    <form action="php_request/logout.php" method="post" class="d-inline">
+                    <button class="btn btn-link p-0" style="text-decoration: none;" type="submit">Logout</button>
                     </form>
                     </li>
                   </ul>
@@ -160,13 +170,13 @@ if (isset($_COOKIE['id'])) {
 	</div>
 
 	<?php
-	require_once  '../php_request/quiz_generate.php';
+	require_once '../php_request/quiz_generate.php';
 	$select_q = "SELECT * FROM `user` WHERE `state` ='0'";
 
 	$data = mysqli_query($con, $select_q);
 	$results = mysqli_fetch_all($data, MYSQLI_ASSOC);
 	mysqli_close($con);
-	
+
 
 	if (empty($results)) {
 		echo "
@@ -218,7 +228,7 @@ if (isset($_COOKIE['id'])) {
 		echo '<div class="overlay"></div>';
 		$i = 0;
 		foreach ($results as $result) { // for each uesr?
-
+	
 			echo "
 			<form method='post' action='../php_request/join_request_db.php' class='overform_card user-$i'>";
 			echo "
@@ -264,13 +274,13 @@ if (isset($_COOKIE['id'])) {
 				$mid_solved,
 				$easy_solve,
 				$q_ids_db
-			)  = get_old_ans($_SESSION['users'][$i]);
+			) = get_old_ans($_SESSION['users'][$i]);
 			// ----------------------------------------------------------------------
-
+	
 			$q_no = count($q_ids_db);
-			$total_mark = 0 ;
-			$diff_arr = [ null , 0 ,  0 ,  0]; //1 easy 2mid 3hard
-			
+			$total_mark = 0;
+			$diff_arr = [null, 0, 0, 0]; //1 easy 2mid 3hard
+	
 			for ($j = 0; $j < $q_no; $j++) {
 				$q = $j + 1;
 
@@ -289,7 +299,7 @@ if (isset($_COOKIE['id'])) {
 				// class="form-check-label custom-bg-color rounded d-inline align-items-center m-2" style="padding: 1px 10px; border-radius: 20px; background-color: red !important;"
 				// class="form-check-label custom-bg-color rounded d-inline align-items-center m-2" style="padding: 1px 10px; border-radius: 20px; background-color: blue !important;"
 				// class="form-check-label custom-bg-color rounded d-inline align-items-center m-2" style="padding: 1px 10px; border-radius: 20px; background-color: transparent !important;"
-
+	
 				if ($user_choices[$j] == $correct_ans[$j]) {
 					$total_mark++;
 					$diff_arr[$q_difficulty[$j]]++;
@@ -377,22 +387,30 @@ if (isset($_COOKIE['id'])) {
 				<!-- Section: Social media -->
 				<section class="mb-4">
 					<!-- Facebook -->
-					<a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/groups/918934416132082" role="button"><i class="fab fa-facebook-f"></i></a>
+					<a class="btn btn-outline-light btn-floating m-1"
+						href="https://www.facebook.com/groups/918934416132082" role="button"><i
+							class="fab fa-facebook-f"></i></a>
 
 					<!-- Twitter -->
-					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-twitter"></i></a>
+					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+							class="fab fa-twitter"></i></a>
 
 					<!-- Google -->
-					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-google"></i></a>
+					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+							class="fab fa-google"></i></a>
 
 					<!-- Instagram -->
-					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-instagram"></i></a>
+					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+							class="fab fa-instagram"></i></a>
 
 					<!-- Linkedin -->
-					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
+					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+							class="fab fa-linkedin-in"></i></a>
 
 					<!-- Github -->
-					<a class="btn btn-outline-light btn-floating m-1" href="https://github.com/mahmoudSh58/community-website" role="button"><i class="fab fa-github"></i></a>
+					<a class="btn btn-outline-light btn-floating m-1"
+						href="https://github.com/mahmoudSh58/community-website" role="button"><i
+							class="fab fa-github"></i></a>
 				</section>
 				<!-- Section: Social media -->
 			</div>

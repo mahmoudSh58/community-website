@@ -62,7 +62,7 @@ if (isset($_COOKIE['id'])) {
 			var browserMode = 'light';
 		}
 
-		
+
 		var icon_dark = document.createElement('link');
 		icon_dark.rel = 'icon';
 		icon_dark.href = 'image/eksu-white.ico';
@@ -145,9 +145,17 @@ if (isset($_COOKIE['id'])) {
                     width: 10px;
                     margin-top: -6px;"
                     aria-labelledby="navbarDropdown">';
-							echo '<li>
-                    <form action="php_request/logout.php" style="margin:10%;" method="post" class="d-inline">
-                    <button class="btn btn-warning me-lg-3" type="submit">Logout</button>
+							echo '
+					
+					<li>
+					<a class="nav-link disabled p-0" style="color: #9E9E9E;" href="#">Profile<sub>(soon)</sub></a>
+					</li>
+
+					<hr class="my-2">
+
+					<li>
+                    <form action="php_request/logout.php" method="post" class="d-inline">
+                    <button class="btn btn-link p-0" style="text-decoration: none;" type="submit">Logout</button>
                     </form>
                     </li>
                   </ul>
@@ -235,7 +243,8 @@ if (isset($_COOKIE['id'])) {
 							class="fab fa-linkedin-in"></i></a>
 
 					<!-- Github -->
-					<a class="btn btn-outline-light btn-floating m-1" href="https://github.com/mahmoudSh58/community-website" role="button"><i
+					<a class="btn btn-outline-light btn-floating m-1"
+						href="https://github.com/mahmoudSh58/community-website" role="button"><i
 							class="fab fa-github"></i></a>
 				</section>
 				<!-- Section: Social media -->

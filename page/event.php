@@ -50,7 +50,7 @@ if (isset($_COOKIE['id'])) {
 	<link rel="stylesheet" href="../css/event.css" />
 
 	<script src="../js/icon.js"></script>
-  <title>Event</title>
+	<title>Event</title>
 </head>
 
 <body>
@@ -60,7 +60,9 @@ if (isset($_COOKIE['id'])) {
 				<img src="../image/eksu black.svg" width="70" height="50" alt="" />
 				<span class="icon-text"> EKSU-PSC</span>
 			</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -107,9 +109,17 @@ if (isset($_COOKIE['id'])) {
                     width: 10px;
                     margin-top: -6px;"
                     aria-labelledby="navbarDropdown">';
-							echo '<li>
-                    <form action="../php_request/logout.php" style="margin:10%;" method="post" class="d-inline">
-                    <button class="btn btn-warning me-lg-3" type="submit">Logout</button>
+							echo '
+					
+					<li>
+					<a class="nav-link disabled p-0" style="color: #9E9E9E;" href="#">Profile<sub>(soon)</sub></a>
+					</li>
+
+					<hr class="my-2">
+
+					<li>
+                    <form action="php_request/logout.php" method="post" class="d-inline">
+                    <button class="btn btn-link p-0" style="text-decoration: none;" type="submit">Logout</button>
                     </form>
                     </li>
                   </ul>
@@ -132,7 +142,8 @@ if (isset($_COOKIE['id'])) {
 	<div class="title">
 		<span>Events</span>
 		<div class='forms'>
-			<form method='get' action='../php_request/filter_event.php' style='width:250px; padding:8px' class="input-group">
+			<form method='get' action='../php_request/filter_event.php' style='width:250px; padding:8px'
+				class="input-group">
 				<select name="filter" class="form-select">
 					<?php
 					// Define an array of option values and text
@@ -157,7 +168,8 @@ if (isset($_COOKIE['id'])) {
 				</select>
 				<button type="submit" class="btn btn-primary">Filter</button>
 			</form>
-			<form method="get" action='../php_request/search_event.php' style='width:250px; padding:8px' class='input-group'>
+			<form method="get" action='../php_request/search_event.php' style='width:250px; padding:8px'
+				class='input-group'>
 				<?php if (isset($_SESSION['search_events_res']) and isset($_SESSION['last_search'])) {
 					$last_searched = htmlspecialchars($_SESSION['last_search']); //alter style = change placeholder to be Search and add value="$last_searched" choose what best suits you
 					echo "<div class=\"form-outline\">
@@ -176,7 +188,7 @@ if (isset($_COOKIE['id'])) {
 					// if (isset($_GET['to_search']))
 					// 	$_SESSION['error'] = 2;
 					// 	$_SESSION['message2'] = 'Search Reset';
-
+				
 				}
 				?>
 			</form>
@@ -190,18 +202,18 @@ if (isset($_COOKIE['id'])) {
 		</div>
 	</div>
 	<!-- <?php
-			#TESTING
-			echo "the state filter is " . var_dump(isset($_SESSION['filter_events_res']));
-			echo "<br>";
-			echo $_SESSION['error'];
-			echo "<br>";
-			echo "the search" . var_dump(isset($_SESSION['search_events_res']));
-			echo "<br>";
-			echo ($_SERVER['REQUEST_METHOD'] == 'GET');
-			echo "<br>";
-			echo var_dump($_SESSION['last_search'])
-			//END TESTING 
-			?> -->
+	#TESTING
+	echo "the state filter is " . var_dump(isset($_SESSION['filter_events_res']));
+	echo "<br>";
+	echo $_SESSION['error'];
+	echo "<br>";
+	echo "the search" . var_dump(isset($_SESSION['search_events_res']));
+	echo "<br>";
+	echo ($_SERVER['REQUEST_METHOD'] == 'GET');
+	echo "<br>";
+	echo var_dump($_SESSION['last_search'])
+		//END TESTING 
+		?> -->
 	<div class="cont">
 		<?php
 
@@ -216,17 +228,17 @@ if (isset($_COOKIE['id'])) {
 
 			if (isset($_SESSION['search_events_res']) and !isset($_SESSION['filter_events_res'])) {
 				$search_events_res = $_SESSION['search_events_res']; // session var  from search_event.php
-
-				if ( $search_events_res  == -1)
+		
+				if ($search_events_res == -1)
 					$results = $search_events_res;
-				else 
+				else
 					foreach ($search_events_res as $res)
 						$results[] = $res;
 
 			} else if (!isset($_SESSION['search_events_res']) and isset($_SESSION['filter_events_res'])) {
 				$filter_events_res = $_SESSION['filter_events_res']; //  session var from filter_event.php
-
-				if ($filter_events_res  == -1 or is_int($filter_events_res))
+		
+				if ($filter_events_res == -1 or is_int($filter_events_res))
 					$results = -1;
 				else
 					foreach ($filter_events_res as $res)
@@ -234,7 +246,7 @@ if (isset($_COOKIE['id'])) {
 			} else {
 				$search_events_res = $_SESSION['search_events_res']; // session var  from search_event.php
 				$filter_events_res = $_SESSION['filter_events_res']; //  session var from filter_event.php\
-
+		
 				if (!is_int($filter_events_res))
 					foreach ($filter_events_res as $fltr_res) {
 						if (is_int($search_events_res))
@@ -350,22 +362,30 @@ if (isset($_COOKIE['id'])) {
 				<!-- Section: Social media -->
 				<section class="mb-4">
 					<!-- Facebook -->
-					<a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/groups/918934416132082" role="button"><i class="fab fa-facebook-f"></i></a>
+					<a class="btn btn-outline-light btn-floating m-1"
+						href="https://www.facebook.com/groups/918934416132082" role="button"><i
+							class="fab fa-facebook-f"></i></a>
 
 					<!-- Twitter -->
-					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-twitter"></i></a>
+					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+							class="fab fa-twitter"></i></a>
 
 					<!-- Google -->
-					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-google"></i></a>
+					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+							class="fab fa-google"></i></a>
 
 					<!-- Instagram -->
-					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-instagram"></i></a>
+					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+							class="fab fa-instagram"></i></a>
 
 					<!-- Linkedin -->
-					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
+					<a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+							class="fab fa-linkedin-in"></i></a>
 
 					<!-- Github -->
-					<a class="btn btn-outline-light btn-floating m-1" href="https://github.com/mahmoudSh58/community-website" role="button"><i class="fab fa-github"></i></a>
+					<a class="btn btn-outline-light btn-floating m-1"
+						href="https://github.com/mahmoudSh58/community-website" role="button"><i
+							class="fab fa-github"></i></a>
 				</section>
 				<!-- Section: Social media -->
 			</div>
