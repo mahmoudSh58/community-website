@@ -158,7 +158,7 @@ if (isset($_COOKIE['id'])) {
 						"ended" => "Ended"
 					];
 					foreach ($options as $value => $text) {
-						if ($_SESSION['last_filter'] == $value) {
+						if (isset($_SESSION['last_filter']) and $_SESSION['last_filter'] == $value) {
 							echo "<option value=$value selected>$text</option>";
 						} else
 							echo "<option value='$value'>$text</option>";
